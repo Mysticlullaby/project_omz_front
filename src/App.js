@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import './Omz.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BaseLayout from './components/layout/BaseLayout';
 import MovieList from './components/movies/MovieList';
