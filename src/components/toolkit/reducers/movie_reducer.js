@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 let initialState = {
-    movieList: []
+    movieList: [],
+    movieDetail: {}
 }
 
 const movieSlice = createSlice({
@@ -10,6 +11,10 @@ const movieSlice = createSlice({
     reducers: {
         getMovieList(state, action) {
             state.movieList = action.payload.data
+        },
+
+        getMovieDetail(state, action) {
+            state.movieDetail = action.payload.data
         }
     }
 })
