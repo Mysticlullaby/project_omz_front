@@ -9,6 +9,15 @@ function getSignup(formData, config) {
   };
 }
 
+function getLogin(formData, config) {
+  return async () => {
+    await axios
+      .post("/client/login", formData, config)
+      .then((Response) => Response.data);
+  };
+}
+
 export const clientAction = {
   getSignup,
+  getLogin,
 };

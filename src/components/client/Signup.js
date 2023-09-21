@@ -40,7 +40,7 @@ const Signup = () => {
     <div className="container">
       <form onSubmit={onSubmit}>
         <div class="row g-3">
-          <h1>회원가입</h1>
+          <h1 className="text-center mx-auto">회원가입</h1>
           <div class="col-md-6">
             <input
               type="text"
@@ -155,7 +155,7 @@ const Signup = () => {
             </ul>
           </div>
 
-          <div class="col-12">
+          <div classname="col-12">
             <button type="submit" class="btn btn-warning">
               가입완료
             </button>
