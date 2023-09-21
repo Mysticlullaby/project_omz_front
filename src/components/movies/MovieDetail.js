@@ -1,13 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { movieActions } from '../toolkit/actions/movie_action';
 import { useParams } from 'react-router-dom';
+import ReviewWrite from './ReviewWrite';
+import { IoIosStar } from 'react-icons/io';
+
 
 const MovieDetail = () => {
     const { movieId } = useParams();
     console.log('MovieDetail.js movieId: ', movieId);
 
     const dispatch = useDispatch();
+
+    //모달창 상태값 변수
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    //모달창 상태를 변경하는 함수
+    const openModal = (e) => {
+        setIsModalOpen(true);
+    }
+    const closeModal = () => setIsModalOpen(false);
 
     const getMovieDetail = (movieId) => {
         dispatch(movieActions.getMovieDetail(movieId));
@@ -51,7 +63,8 @@ const MovieDetail = () => {
                             </div>
 
                             <div className='col-2'>
-                                <h5>리뷰 작성하기</h5>
+                                <button onClick={openModal}>Open Modal</button>
+                                <ReviewWrite isOpen={isModalOpen} closeModal={closeModal} />
                             </div>
                         </div>
                     </div>
