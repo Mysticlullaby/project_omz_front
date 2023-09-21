@@ -1,0 +1,16 @@
+& svg {
+    color: gray;
+    cursor: pointer;
+  }
+  
+  :hover svg {
+    color: green;
+  }
+  
+  & svg:hover ~ svg {
+    color: red;
+  }
+  
+  .yellowStar {
+    color: blue;
+  }

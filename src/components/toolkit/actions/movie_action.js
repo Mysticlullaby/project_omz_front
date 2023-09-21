@@ -11,6 +11,17 @@ function getMovieList() {
     }
 }
 
+function getMovieDetail(movieId) {
+    return async (dispatch) => {
+        console.log('axios movieId: ', movieId);
+        const data = await axios
+            .get(`/movie/${movieId}`)
+            .then((response) => response.data);
+        console.log('axios data: ', data);
+        dispatch(movieReducers.getMovieDetail({ data }));
+    }
+}
+
 export const movieActions = {
-    getMovieList
+    getMovieList, getMovieDetail
 }
