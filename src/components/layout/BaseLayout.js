@@ -13,6 +13,11 @@ const BaseLayout = () => {
                   OMZ
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink to="/board/list/1" className="nav-link">
+                  BOARD
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>
