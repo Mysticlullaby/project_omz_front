@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-// import { boardActions } from "../../toolkit/actions/board_action";
+import { boardActions } from "../../toolkit/actions/board_action";
 import { useDispatch, useSelector } from "react-redux";
 import TableRow from "./TableRow";
 import PageNavigation from "./PageNavigation";
-import { boardActions } from "../toolkit/actions/board_action";
 
 const BoardList = () => {
   const { currentPage } = useParams();

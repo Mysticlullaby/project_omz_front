@@ -8,6 +8,7 @@ import MovieDetail from "./components/movies/MovieDetail";
 import Signup from "./components/client/Signup";
 import Login from "./components/client/Login";
 import BoardList from "./components/board/BoardList";
+import BoardWrite from "./components/board/BoardWrite";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
           <Route path="client/Login" element={<Login />} />
           <Route path="movie/:movieId" element={<MovieDetail />} />
           <Route path="board/list/:currentPage" element={<BoardList />} />
+          <Route path="board/write" element={<BoardWrite />} />
+          <Route path="board/write/:num" element={<BoardWrite />} />
         </Route>
       </Routes>
     </div>

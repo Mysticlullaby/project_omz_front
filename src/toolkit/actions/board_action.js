@@ -4,9 +4,9 @@ import { boardReducers } from "../reducers/board_reducer";
 function getBoardList(currentPage) {
   return async (dispatch) => {
     const data = await axios
-    //아래줄의 요청이 성공하면 응답데이터가 data에 저장됨 / 
+      //아래줄의 요청이 성공하면 응답데이터가 data에 저장됨 /
       .get(`/board/list/${currentPage}`)
-      //응답이 성공하면 response의 data속성을 추출함 / 
+      //응답이 성공하면 response의 data속성을 추출함 /
       .then((response) => response.data)
       .catch((error) => {
         console.log(error);
@@ -14,24 +14,20 @@ function getBoardList(currentPage) {
     console.log(data);
     // dispatch({ type: "list", payload: data });
     dispatch(boardReducers.getBoardList({ data })); //slice를 거쳐 store에 저장
-    //디스패치 함수를 사용하여 상태를 업데이트 함. 
+    //디스패치 함수를 사용하여 상태를 업데이트 함.
   };
 }
 
-function getBoardDetail(num, config) {
+function getBoardDetail(omzboard_id, config) {
   return async (dispatch) => {
-    const data = await axios
-      .get(`/board/view/${num}`, config)
-      .then((response) => response.data);
+    const data = await axios.get(`/board/view/${omzboard_id}`, config).then((response) => response.data);
     dispatch(boardReducers.getBoardDetail({ data }));
   };
 }
 
 function getBoardWrite(formData, config) {
   return async () => {
-    await axios
-      .post("/board/write", formData, config)
-      .then((response) => response.data);
+    await axios.post("/board/write", formData, config).then((response) => response.data);
   };
 }
 
@@ -43,7 +39,8 @@ function getBoardDownload(upload) {
         headers: {
           Authorization: localStorage.getItem("Authorization"),
         }, //////////////////////////////////////////////////////
-        responseType: "blob", //blob: 멀티미디어 데이터
+        responseType: "blob",
+        //blob: 멀티미디어 데이터
       })
       .then((response) => response.data);
     //dispatch(boardActions.getBoardDownload(data));
@@ -54,17 +51,13 @@ function getBoardDownload(upload) {
 
 function getBoardUpdate(formData, config) {
   return async () => {
-    await axios
-      .put(`/board/update`, formData, config)
-      .then((response) => response.data);
+    await axios.put(`/board/update`, formData, config).then((response) => response.data);
   };
 }
 
 function getBoardDelete(num, config) {
   return async (dispatch) => {
-    await axios
-      .delete(`/board/delete/${num}`, config)
-      .then((response) => response.data);
+    await axios.delete(`/board/delete/${num}`, config).then((response) => response.data);
   };
 }
 
