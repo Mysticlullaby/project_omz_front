@@ -2,8 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// http://localhost:3000/client/signup
-
 const Signup = () => {
   const navigator = useNavigate();
 
@@ -26,7 +24,7 @@ const Signup = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("/client/signup", client)
+      .post("/signup", client)
       .then((Response) => {
         navigator("/");
       })
