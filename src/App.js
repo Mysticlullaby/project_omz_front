@@ -17,12 +17,12 @@ function App() {
       <Routes>
         <Route path="/" element={<BaseLayout />}>
           <Route index element={<MovieList />} />
-          <Route path="signup" element={<Signup />} />
+          <Route path="signup" element={<PrivateRoute isAuth={false} RouteComponent={Signup} />} />
           <Route path="login" element={<PrivateRoute isAuth={false} RouteComponent={Login} />} />
-          <Route path="movie/:movieId" element={<MovieDetail />} />
-          <Route path="board/list/:currentPage" element={<BoardList />} />
-          <Route path="board/write" element={<BoardWrite />} />
-          <Route path="board/write/:num" element={<BoardWrite />} />
+          <Route path="movie/:movieId" element={<PrivateRoute isAuth={false} RouteComponent={MovieDetail} />} />
+          <Route path="board/list/:currentPage" element={<PrivateRoute isAuth={false} RouteComponent={BoardList} />} />
+          <Route path="board/write" element={<PrivateRoute isAuth={true} RouteComponent={BoardWrite} />} />
+          <Route path="board/write/:num" element={<PrivateRoute isAuth={true} RouteComponent={BoardWrite} />} />
         </Route>
       </Routes>
     </div>
