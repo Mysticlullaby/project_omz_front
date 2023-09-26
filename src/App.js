@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<BaseLayout />}>
           <Route index element={<MovieList />} />
           <Route path="signup" element={<Signup />} />
-          <Route path="login" element={<PrivateRoute isAuth={false} RouteComponent={Login} />} />
+          <Route path="login" element={<Login />} />
           <Route path="movie/:movieId" element={<MovieDetail />} />
           <Route path="board/list/:currentPage" element={<BoardList />} />
           <Route path="board/write" element={<BoardWrite />} />
