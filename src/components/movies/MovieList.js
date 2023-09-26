@@ -24,11 +24,7 @@ const MovieList = () => {
             <div key={movie.movieId} className="col">
               <div className="card" style={{ width: "18 rem" }}>
                 <NavLink to={`/movie/${movie.movieId}`}>
-                  <img
-                    src={movie.poster}
-                    className="card-img-top"
-                    alt={movie.title}
-                  />
+                  <img src={movie.poster} className="card-img-top" alt={movie.title} />
                 </NavLink>
                 <div className="card-body">
                   <p className="card-text">{movie.title}</p>
