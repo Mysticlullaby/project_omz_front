@@ -26,7 +26,7 @@ const Signup = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("/client/signup", client)
+      .post("/signup", client)
       .then((Response) => {
         navigator("/");
       })

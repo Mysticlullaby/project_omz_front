@@ -19,6 +19,20 @@ const BaseLayout = () => {
                 </NavLink>
               </li>
             </ul>
+            <div>
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <NavLink to="/login" className="nav-link">
+                    로그인
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/signup" className="nav-link">
+                    회원가입
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </nav>

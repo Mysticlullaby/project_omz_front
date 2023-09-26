@@ -18,3 +18,7 @@
     padding: 10%;
     background-clip: content-box;
 }
+
+.navbar-expand-lg .navbar-collapse{
+    justify-content: space-between;
+}
