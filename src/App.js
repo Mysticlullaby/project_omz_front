@@ -9,6 +9,7 @@ import Signup from "./components/client/Signup";
 import Login from "./components/client/Login";
 import BoardList from "./components/board/BoardList";
 import BoardWrite from "./components/board/BoardWrite";
+import PrivateRoute from "./access/PrivateRoute";
 
 function App() {
   return (
@@ -16,8 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<BaseLayout />}>
           <Route index element={<MovieList />} />
-          <Route path="client/Signup" element={<Signup />} />
-          <Route path="client/Login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="login" element={<PrivateRoute isAuth={false} RouteComponent={Login} />} />
           <Route path="movie/:movieId" element={<MovieDetail />} />
           <Route path="board/list/:currentPage" element={<BoardList />} />
           <Route path="board/write" element={<BoardWrite />} />
