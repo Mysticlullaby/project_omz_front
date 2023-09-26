@@ -20,17 +20,37 @@ const BaseLayout = () => {
               </li>
             </ul>
             <div>
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <NavLink to="/login" className="nav-link">
-                    로그인
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink to="/signup" className="nav-link">
-                    회원가입
-                  </NavLink>
-                </li>
+              <ul className="navbar-nav align-items-center">
+                {localStorage.getItem('clientId') != null ? (
+                  <>
+                    <li className='nav-item mx-3' style={{ fontSize: '20px', fontWeight: 500 }}>
+                      {localStorage.getItem('clientId')}
+                    </li>
+                    <li className="nav-item">
+                      <NavLink to="/logout" className="nav-link">
+                        로그아웃
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink to="/" className="nav-link">
+                        회원정보 수정
+                      </NavLink>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li className="nav-item">
+                      <NavLink to="/login" className="nav-link">
+                        로그인
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink to="/signup" className="nav-link">
+                        회원가입
+                      </NavLink>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
           </div>

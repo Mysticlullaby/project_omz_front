@@ -10,6 +10,7 @@ import Login from "./components/client/Login";
 import BoardList from "./components/board/BoardList";
 import BoardWrite from "./components/board/BoardWrite";
 import PrivateRoute from "./access/PrivateRoute";
+import Logout from "./components/client/Logout";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route index element={<MovieList />} />
           <Route path="signup" element={<PrivateRoute isAuth={false} RouteComponent={Signup} />} />
           <Route path="login" element={<PrivateRoute isAuth={false} RouteComponent={Login} />} />
+          <Route path='logout' element={<PrivateRoute isAuth={true} RouteComponent={Logout} />} />
           <Route path="movie/:movieId" element={<PrivateRoute isAuth={false} RouteComponent={MovieDetail} />} />
           <Route path="board/list/:currentPage" element={<PrivateRoute isAuth={false} RouteComponent={BoardList} />} />
           <Route path="board/write" element={<PrivateRoute isAuth={true} RouteComponent={BoardWrite} />} />
