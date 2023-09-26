@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { movieActions } from '../toolkit/actions/movie_action';
+import { movieActions } from '../../toolkit/actions/movie_action';
 import { NavLink } from 'react-router-dom';
 
 const MovieList = () => {

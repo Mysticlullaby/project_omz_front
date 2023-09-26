@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { movieActions } from "../toolkit/actions/movie_action";
+import { movieActions } from "../../toolkit/actions/movie_action";
 import { useParams } from "react-router-dom";
 import ReviewWrite from "./ReviewWrite";
 import { IoIosStar } from "react-icons/io";
