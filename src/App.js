@@ -7,6 +7,7 @@ import MovieList from "./components/movies/MovieList";
 import MovieDetail from "./components/movies/MovieDetail";
 import Signup from "./components/client/Signup";
 import Login from "./components/client/Login";
+import PrivateRoute from "./access/PrivateRoute";
 
 function App() {
   return (
@@ -14,8 +15,11 @@ function App() {
       <Routes>
         <Route path="/" element={<BaseLayout />}>
           <Route index element={<MovieList />} />
-          <Route path="client/Signup" element={<Signup />} />
-          <Route path="client/Login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route
+            path="login"
+            element={<PrivateRoute isAuth={false} RouteComponent={Login} />}
+          />
           <Route path="movie/:movieId" element={<MovieDetail />} />
         </Route>
       </Routes>
