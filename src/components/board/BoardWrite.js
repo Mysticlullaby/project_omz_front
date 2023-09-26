@@ -44,7 +44,7 @@ const BoardWrite = () => {
     const formData = new FormData();
     formData.append("subject", subject);
     formData.append("board_content", board_content);
-    //formData.append("client_id", localStorage.getItem("client_id"));
+    formData.append("client_id", localStorage.getItem("client_id"));
     // formData.append("client_name", localStorage.getItem("client_name"));
 
     console.log("filename:", filename);
@@ -58,15 +58,15 @@ const BoardWrite = () => {
     //   formData.append("re_level", boardDetail.re_level);
     // }
 
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //     Authorization: localStorage.getItem("Authorization"),
-    //   },
-    // };
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: localStorage.getItem("Authorization"),
+      },
+    };
 
-    //console.log(localStorage.getItem('Authorization'));
-    // await dispatch(boardActions.getBoardWrite(formData, config));
+    console.log(localStorage.getItem("Authorization"));
+    await dispatch(boardActions.getBoardWrite(formData, config));
     await dispatch(boardActions.getBoardWrite(formData));
 
     setInputs({
@@ -86,7 +86,7 @@ const BoardWrite = () => {
             <tr>
               <td>글쓴이</td>
               <td>
-                <input type="type" readOnly value={localStorage.getItem("client_name")} name="client_name" />
+                <input type="type" readOnly value={localStorage.getItem("client_id")} name="client_id" />
               </td>
             </tr>
             <tr>
