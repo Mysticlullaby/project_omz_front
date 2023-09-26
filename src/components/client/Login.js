@@ -2,8 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// http://localhost:3000/client/login
-
 const Login = () => {
   const [input, setInput] = useState({
     clientId: "",
@@ -21,13 +19,17 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("/client/login", input)
+      .post("/login", input)
       .then((Response) => {
         console.log(Response.data);
 
+        let jwtToken = Response.headers.get("authorization");
+        console.log(jwtToken);
+
+        localStorage.setItem("authorization", jwtToken);
         localStorage.setItem("clientId", Response.data.clientId);
         localStorage.setItem("clientPass", Response.data.clientPass);
-        // localStorage.setItem("isLogin", true);
+        localStorage.setItem("isLogin", true);
 
         setInput({ clientId: "", clientPass: "" });
       })

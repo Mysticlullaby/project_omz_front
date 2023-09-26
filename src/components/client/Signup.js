@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 
 // http://localhost:3000/client/signup
 
@@ -39,9 +38,9 @@ const Signup = () => {
   return (
     <div className="container">
       <form onSubmit={onSubmit}>
-        <div class="row g-3">
+        <div className="row g-3">
           <h1 className="text-center mx-auto">회원가입</h1>
-          <div class="col-md-6">
+          <div className="col-md-6">
             <input
               type="text"
               className="form-control"
@@ -51,7 +50,7 @@ const Signup = () => {
               onChange={handleValueChange}
             />
           </div>
-          <div class="col-md-6">
+          <div className="col-md-6">
             <input
               type="password"
               className="form-control"
@@ -61,7 +60,7 @@ const Signup = () => {
               onChange={handleValueChange}
             />
           </div>
-          <div class="col-md-6">
+          <div className="col-md-6">
             <input
               type="text"
               className="form-control"
@@ -71,7 +70,7 @@ const Signup = () => {
               onChange={handleValueChange}
             />
           </div>
-          <div class="col-md-6">
+          <div className="col-md-6">
             <input
               type="text"
               className="form-control"
@@ -81,7 +80,7 @@ const Signup = () => {
               onChange={handleValueChange}
             />
           </div>
-          <div class="col-md-6">
+          <div className="col-md-6">
             <input
               type="email"
               className="form-control"
@@ -91,7 +90,7 @@ const Signup = () => {
               onChange={handleValueChange}
             />
           </div>
-          <div class="col-md-6">
+          <div className="col-md-6">
             <input
               type="text"
               className="form-control"
@@ -101,7 +100,7 @@ const Signup = () => {
               onChange={handleValueChange}
             />
           </div>
-          <div class="col-md-6">
+          <div className="col-md-6">
             <input
               type="text"
               className="form-control"
@@ -110,7 +109,7 @@ const Signup = () => {
               onChange={handleValueChange}
             />
           </div>
-          <div class="col-md-6">
+          <div className="col-md-6">
             <input
               type="text"
               className="form-control"
@@ -120,10 +119,10 @@ const Signup = () => {
             />
           </div>
 
-          <div class="dropdown">
+          <div className="dropdown">
             <button
               type="button"
-              class="btn btn-secondary dropdown-toggle"
+              className="btn btn-secondary dropdown-toggle"
               name="mbti"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -131,32 +130,32 @@ const Signup = () => {
             >
               MBTI
             </button>
-            <ul class="dropdown-menu dropdown-menu-dark">
+            <ul className="dropdown-menu dropdown-menu-dark">
               <li>
-                <a class="dropdown-item active" href="#">
+                <a className="dropdown-item active" href="#">
                   Action
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">
+                <a className="dropdown-item" href="#">
                   Another action
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">
+                <a className="dropdown-item" href="#">
                   Something else here
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">
+                <a className="dropdown-item" href="#">
                   Separated link
                 </a>
               </li>
             </ul>
           </div>
 
-          <div classname="col-12">
-            <button type="submit" class="btn btn-warning">
+          <div className="col-12">
+            <button type="submit" className="btn btn-warning">
               가입완료
             </button>
           </div>
