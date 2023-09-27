@@ -4,6 +4,8 @@ import { movieActions } from "../../toolkit/actions/movie_action";
 import { useParams } from "react-router-dom";
 import ReviewWrite from "./ReviewWrite";
 import { IoIosStar } from "react-icons/io";
+import { reviewActions } from "../../toolkit/actions/review_action";
+import styled from "styled-components";
 
 const MovieDetail = () => {
   const { movieId } = useParams();
@@ -24,11 +26,17 @@ const MovieDetail = () => {
     dispatch(movieActions.getMovieDetail(movieId));
   };
 
+  const getReviewList = (movieId) => {
+    dispatch(reviewActions.getReviewList(movieId));
+  }
+
   useEffect(() => {
     getMovieDetail(movieId);
+    getReviewList(movieId);
   }, [dispatch, movieId]);
 
   const movie = useSelector((state) => state.movies.movieDetail);
+  const reviewList = useSelector((state) => state.reviews.reviewList);
 
   return (
     <div>
@@ -62,85 +70,48 @@ const MovieDetail = () => {
               </div>
 
               <div className="col-2">
-                <button onClick={openModal}>Open Modal</button>
-                <ReviewWrite isOpen={isModalOpen} closeModal={closeModal} />
+                <button onClick={openModal}>리뷰 작성하기</button>
+                <ReviewWrite isOpen={isModalOpen} closeModal={closeModal} movie={movie} />
               </div>
             </div>
           </div>
         </div>
 
         <div className="row row-cols-md-4 g-2" style={{ padding: 10 }}>
-          <div className="col">
-            <div className="card" style={{ width: "18 rem", height: 300 }}>
-              <div className="card-body">
-                <h5 className="card-title border-bottom pb-2">글쓴이 이름</h5>
-                <p className="card-text">이 영화의 대한 나의 감성평은 어쩌고 저쩌고...</p>
-              </div>
-            </div>
-          </div>
 
-          <div className="col">
-            <div className="card" style={{ width: "18 rem", height: 300 }}>
-              <div className="card-body">
-                <h5 className="card-title border-bottom pb-2">글쓴이 이름</h5>
-                <p className="card-text">이 영화의 대한 나의 감성평은 어쩌고 저쩌고...</p>
-              </div>
-            </div>
-          </div>
+          {reviewList &&
+            reviewList.map((review) => {
+              let score = review.rating;
+              let scoreStates = [true, false, false, false, false, false, false, false, false, false];
+              for (let n = 0; n < 10; n++) {
+                scoreStates[n] = n <= score ? true : false;
+              }
 
-          <div className="col">
-            <div className="card" style={{ width: "18 rem", height: 300 }}>
-              <div className="card-body">
-                <h5 className="card-title border-bottom pb-2">글쓴이 이름</h5>
-                <p className="card-text">이 영화의 대한 나의 감성평은 어쩌고 저쩌고...</p>
-              </div>
-            </div>
-          </div>
+              return (
+                <div key={review.reviewId} className="col">
+                  <div className="card" style={{ width: "18 rem", height: 300 }}>
+                    <div className="card-body">
+                      <h5 className="card-title border-bottom pb-2">{review.clientId}</h5>
+                      <Stars>
+                        <span>
+                          {scoreStates.map((isTrue, idx) => {
+                            return (
+                              <IoIosStar
+                                key={idx}
+                                size="15"
+                                className={isTrue && 'yellowStar'}
+                              />
+                            );
+                          })}
+                        </span>
+                      </Stars>
+                      <p className="card-text border-top mt-2 pt-2">{review.reviewContent}</p>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
 
-          <div className="col">
-            <div className="card" style={{ width: "18 rem", height: 300 }}>
-              <div className="card-body">
-                <h5 className="card-title border-bottom pb-2">글쓴이 이름</h5>
-                <p className="card-text">이 영화의 대한 나의 감성평은 어쩌고 저쩌고...</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col">
-            <div className="card" style={{ width: "18 rem", height: 300 }}>
-              <div className="card-body">
-                <h5 className="card-title border-bottom pb-2">글쓴이 이름</h5>
-                <p className="card-text">이 영화의 대한 나의 감성평은 어쩌고 저쩌고...</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col">
-            <div className="card" style={{ width: "18 rem", height: 300 }}>
-              <div className="card-body">
-                <h5 className="card-title border-bottom pb-2">글쓴이 이름</h5>
-                <p className="card-text">이 영화의 대한 나의 감성평은 어쩌고 저쩌고...</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col">
-            <div className="card" style={{ width: "18 rem", height: 300 }}>
-              <div className="card-body">
-                <h5 className="card-title border-bottom pb-2">글쓴이 이름</h5>
-                <p className="card-text">이 영화의 대한 나의 감성평은 어쩌고 저쩌고...</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col">
-            <div className="card" style={{ width: "18 rem", height: 300 }}>
-              <div className="card-body">
-                <h5 className="card-title border-bottom pb-2">글쓴이 이름</h5>
-                <p className="card-text">이 영화의 대한 나의 감성평은 어쩌고 저쩌고...</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -148,3 +119,22 @@ const MovieDetail = () => {
 };
 
 export default MovieDetail;
+
+const Stars = styled.div`
+  svg {
+    color: gray;
+    cursor: pointer;
+  }
+
+  span:hover > svg{
+    color:red
+  }
+
+  svg:hover ~ svg{
+    color: gray;
+  }
+
+  svg.yellowStar {
+    color: red;
+  }
+`;

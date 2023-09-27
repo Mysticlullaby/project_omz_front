@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { IoIosStar } from 'react-icons/io';
 import styled from 'styled-components';
+import { reviewActions } from '../../toolkit/actions/review_action';
 
-function ReviewWrite({ isOpen, closeModal }) {
-    const [inputs, setInputs] = useState({ content: '', rating: 1 });
+function ReviewWrite({ isOpen, closeModal, movie }) {
+    const [inputs, setInputs] = useState({ reviewContent: '', rating: 1 });
     const { reviewContent, rating } = inputs;
-
+    const dispatch = useDispatch();
 
     const [clicked, setClicked] = useState([true, false, false, false, false, false, false, false, false, false]);
     const starArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -27,7 +29,24 @@ function ReviewWrite({ isOpen, closeModal }) {
         });
     };
 
-    const onSubmit = () => {
+    const onSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('movieId', movie.movieId);
+        formData.append('clientId', localStorage.getItem('clientId'));
+        formData.append('reviewContent', reviewContent);
+        formData.append('rating', rating);
+
+        const config = {
+            headers: {
+                Authorization: localStorage.getItem('authorization'),
+            },
+        };
+
+        await dispatch(reviewActions.getReviewWrite(formData, config));
+
+        window.location.replace(`/movie/${movie.movieId}`);
 
     };
 

@@ -28,11 +28,14 @@ const Signup = () => {
     await axios
       .post("/signup", client)
       .then((Response) => {
-        navigator("/");
+        navigator("/login");
+
       })
       .catch((error) => {
         console.log(error);
       });
+
+
   };
 
   return (
