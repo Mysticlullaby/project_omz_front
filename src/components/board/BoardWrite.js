@@ -43,8 +43,8 @@ const BoardWrite = () => {
 
     const formData = new FormData();
     formData.append("subject", subject);
-    formData.append("board_content", board_content);
-    formData.append("client_id", localStorage.getItem("client_id"));
+    formData.append("boardContent", board_content);
+    formData.append("clientId", localStorage.getItem("clientId"));
     // formData.append("client_name", localStorage.getItem("client_name"));
 
     console.log("filename:", filename);
@@ -61,13 +61,14 @@ const BoardWrite = () => {
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
-        Authorization: localStorage.getItem("Authorization"),
+        // Authorization: localStorage.getItem("Authorization"),
+        // 이거 같이넘겨주면 스프링에서 아무리 예외처리 해놔도 삐꾸남
       },
     };
 
     console.log(localStorage.getItem("Authorization"));
-    await dispatch(boardActions.getBoardWrite(formData, config));
-    await dispatch(boardActions.getBoardWrite(formData));
+    dispatch(boardActions.getBoardWrite(formData, config));
+    // await dispatch(boardActions.getBoardWrite(formData));
 
     setInputs({
       subject: "",
@@ -86,7 +87,7 @@ const BoardWrite = () => {
             <tr>
               <td>글쓴이</td>
               <td>
-                <input type="type" readOnly value={localStorage.getItem("client_id")} name="client_id" />
+                <input type="type" readOnly value={localStorage.getItem("clientId")} name="clientId" />
               </td>
             </tr>
             <tr>
