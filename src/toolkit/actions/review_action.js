@@ -20,6 +20,16 @@ function getReviewList(movieId) {
     }
 }
 
+function getReviewPage(movieId, currentPage) {
+    return async (dispatch) => {
+        const data = await axios
+            .get(`/review/page/${movieId}/${currentPage}`)
+            .then((response) => response.data)
+            .catch((error) => console.log(error));
+        dispatch(reviewReducers.getReviewPage({ data }));
+    }
+}
+
 export const reviewActions = {
-    getReviewWrite, getReviewList
+    getReviewWrite, getReviewList, getReviewPage
 }

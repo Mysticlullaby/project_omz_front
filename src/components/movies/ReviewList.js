@@ -1,0 +1,120 @@
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { reviewActions } from '../../toolkit/actions/review_action';
+import { IoIosStar } from "react-icons/io";
+import styled from "styled-components";
+import ReviewPageNavigation from './ReviewPageNavigation';
+import ReviewWrite from './ReviewWrite';
+import { movieActions } from '../../toolkit/actions/movie_action';
+
+const ReviewList = () => {
+    const { movieId, currentPage } = useParams();
+    const dispatch = useDispatch();
+
+    const getReviewPage = (movieId, currentPage) => {
+        dispatch(reviewActions.getReviewPage(movieId, currentPage));
+    };
+
+    //모달창 상태값 변수
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    //모달창 상태를 변경하는 함수
+    const openModal = (e) => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => setIsModalOpen(false);
+
+    const getMovieDetail = (movieId) => {
+        dispatch(movieActions.getMovieDetail(movieId));
+    };
+
+    useEffect(() => {
+        getMovieDetail(movieId);
+        getReviewPage(movieId, currentPage);
+    }, []);
+
+    const movie = useSelector((state) => state.movies.movieDetail);
+    const reviewList = useSelector((state) => state.reviews.reviewPage);
+    const pv = useSelector((state) => state.reviews.pv);
+
+    return (
+        <div>
+            <div className="row mx-4 mb-4 mt-5">
+                <nav className="navbar navbar-expand-lg">
+                    <div className="container-fluid">
+                        <div className="collapse navbar-collapse justify-content-space-between" id="navbarNav">
+                            <ul className="navbar-nav">
+                                <li className="nav-item">
+                                    <h1>리뷰</h1>
+                                </li>
+                                <li className="nav-item">
+                                    <button onClick={openModal}>리뷰 작성하기</button>
+                                    <ReviewWrite isOpen={isModalOpen} closeModal={closeModal} movie={movie} />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+            <div style={{ padding: 10 }}>
+                {reviewList &&
+                    reviewList.map((review) => {
+                        let score = review.rating;
+                        let scoreStates = [true, false, false, false, false, false, false, false, false, false];
+                        for (let n = 0; n < 10; n++) {
+                            scoreStates[n] = n <= score ? true : false;
+                        }
+
+                        return (
+                            <div key={review.reviewId} >
+                                <div className="card my-3" style={{ width: "18 rem" }}>
+                                    <div className="card-body">
+                                        <h5 className="card-title border-bottom pb-2">{review.clientId}</h5>
+                                        <Stars>
+                                            <span>
+                                                {scoreStates.map((isTrue, idx) => {
+                                                    return (
+                                                        <IoIosStar
+                                                            key={idx}
+                                                            size="15"
+                                                            className={isTrue && 'yellowStar'}
+                                                        />
+                                                    );
+                                                })}
+                                            </span>
+                                        </Stars>
+                                        <p className="card-text border-top mt-2 pt-2">{review.reviewContent}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })}
+            </div>
+            {pv && <ReviewPageNavigation getReviewPage={getReviewPage} />}
+        </div>
+    );
+};
+
+export default ReviewList;
+
+const Stars = styled.div`
+  svg {
+    color: gray;
+    cursor: pointer;
+  }
+
+  span:hover > svg{
+    color:red
+  }
+
+  svg:hover ~ svg{
+    color: gray;
+  }
+
+  svg.yellowStar {
+    color: red;
+  }
+`;

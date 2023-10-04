@@ -118,7 +118,7 @@ function ReviewWrite({ isOpen, closeModal, movie }) {
                         </div>
                         <div className='d-flex flex-row-reverse'>
                             <div>
-                                <button className='btn btn-danger mx-1' onClick={closeModal}>닫기</button>
+                                <button type='button' className='btn btn-danger mx-1' onClick={closeModal}>닫기</button>
                                 <input type='submit' className='btn btn-danger mx-1' value='작성하기' />
                             </div>
                         </div>

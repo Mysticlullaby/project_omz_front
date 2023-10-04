@@ -6,7 +6,7 @@ const BaseLayout = () => {
     <div>
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
-          <div className="collapse navbar-collapse" id="navbarNav">
+          <div className="collapse navbar-collapse justify-content-space-between" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
                 <NavLink to="/" className="nav-link">
