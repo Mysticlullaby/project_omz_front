@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { boardActions } from "../../toolkit/actions/board_action";
 
 const BoardView = () => {
-  const { num } = useParams();
+  const { omzboard_id } = useParams();
   const dispatch = useDispatch();
   const navigator = useNavigate();
 
@@ -14,18 +14,19 @@ const BoardView = () => {
 
   const config = {
     headers: {
-      Authorization: localStorage.getItem("Authorization"),
+      //일단 주석 나중에 질문해
+      //Authorization: localStorage.getItem("Authorization"),
     },
   };
 
   useEffect(() => {
-    dispatch(boardActions.getBoardDetail(num, config));
-  }, [dispatch, num]);
+    dispatch(boardActions.getBoardDetail(omzboard_id, config));
+  }, [omzboard_id]);
 
   const handleDownload = async () => {
     const boardFile = await dispatch(boardActions.getBoardDownload(boardDetail.upload, config));
 
-    // await dispatch(boardActions.getBoardDownload(boardDetail.upload));
+    await dispatch(boardActions.getBoardDownload(boardDetail.upload));
 
     const fileName = boardDetail.upload.substring(boardDetail.upload.indexOf("_") + 1);
     console.log(fileName);
@@ -46,7 +47,7 @@ const BoardView = () => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    dispatch(boardActions.getBoardDelete(num, config));
+    dispatch(boardActions.getBoardDelete(omzboard_id, config));
     navigator(`/board/list/${pv.currentPage}`);
   };
 
@@ -56,10 +57,10 @@ const BoardView = () => {
         <tbody>
           <tr>
             <th width="20%">글쓴이</th>
-            <td>{boardDetail["membersDTO"] ? boardDetail["membersDTO"]["memberName"] : null}</td>
+            <td>{boardDetail.clientId}</td>
 
             <th width="20%">조회수</th>
-            <td>{boardDetail.readcount}</td>
+            <td>{boardDetail.readCount}</td>
           </tr>
 
           <tr>
@@ -68,14 +69,9 @@ const BoardView = () => {
           </tr>
 
           <tr>
-            <th>메일</th>
-            <td colSpan="3">{boardDetail.memberEmail}</td>
-          </tr>
-
-          <tr>
             <th>내용</th>
             <td colSpan="3" style={{ whiteSpace: "pre-line" }}>
-              {boardDetail.content}
+              {boardDetail.boardContent}
             </td>
           </tr>
 
@@ -91,13 +87,13 @@ const BoardView = () => {
         리스트
       </Link>
       &nbsp;
-      <Link className="btn btn-primary" to={`/board/write/${num}`}>
+      {/* <Link className="btn btn-primary" to={`/board/write/${omzboard_id}`}>
         답변
-      </Link>
+      </Link> */}
       &nbsp;
-      {boardDetail["membersDTO"] && localStorage.getItem("memberEmail") === boardDetail["membersDTO"]["memberEmail"] && (
+      {boardDetail.clientId === localStorage.getItem("clientId") && (
         <>
-          <Link className="btn btn-primary" to={`/board/update/${num}`}>
+          <Link className="btn btn-primary" to={`/board/update/${omzboard_id}`}>
             수정
           </Link>
 

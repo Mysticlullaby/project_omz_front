@@ -9,13 +9,13 @@ const BoardWrite = () => {
 
   const [inputs, setInputs] = useState({
     subject: "",
-    board_content: "",
+    boardContent: "",
     filename: null,
   });
 
-  const { subject, board_content, filename } = inputs;
+  const { subject, boardContent, filename } = inputs;
 
-  const { omzboard_id } = useParams();
+  const { omzboardId } = useParams();
 
   const pv = useSelector((state) => (state.board.pv ? state.board.pv : { currentPage: 1 }));
 
@@ -43,14 +43,13 @@ const BoardWrite = () => {
 
     const formData = new FormData();
     formData.append("subject", subject);
-    formData.append("boardContent", board_content);
+    formData.append("boardContent", boardContent);
     formData.append("clientId", localStorage.getItem("clientId"));
-    // formData.append("client_name", localStorage.getItem("client_name"));
 
     console.log("filename:", filename);
     if (filename != null) formData.append("filename", filename);
 
-    //답변글이면...
+    //답변글할 때 해제해
     // if (num !== undefined) {
     //   formData.append("num", boardDetail.num);
     //   formData.append("ref", boardDetail.ref);
@@ -72,11 +71,11 @@ const BoardWrite = () => {
 
     setInputs({
       subject: "",
-      board_content: "",
+      boardContent: "",
       filename: null,
     });
 
-    navigator(`/board/list/${omzboard_id ? pv.currentPage : 1}`);
+    navigator(`/board/list/${omzboardId ? pv.currentPage : 1}`);
   };
 
   return (
@@ -95,7 +94,7 @@ const BoardWrite = () => {
                 제목
               </td>
               <td>
-                <input type="text" name="subject" size="40" value={subject} placeholder={omzboard_id !== undefined ? "답변" : null} onChange={handleValueChange} />
+                <input type="text" name="subject" size="40" value={subject} placeholder={omzboardId !== undefined ? "답변" : null} onChange={handleValueChange} />
               </td>
             </tr>
             <tr>
@@ -103,7 +102,7 @@ const BoardWrite = () => {
                 내용
               </td>
               <td>
-                <textarea name="board_content" rows="13" cols="40" value={board_content} onChange={handleValueChange}></textarea>
+                <textarea name="boardContent" rows="13" cols="40" value={boardContent} onChange={handleValueChange}></textarea>
               </td>
             </tr>
 
