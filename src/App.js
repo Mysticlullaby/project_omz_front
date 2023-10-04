@@ -11,6 +11,7 @@ import BoardList from "./components/board/BoardList";
 import BoardWrite from "./components/board/BoardWrite";
 import PrivateRoute from "./access/PrivateRoute";
 import Logout from "./components/client/Logout";
+import Editinfo from "./components/client/Editinfo";
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
           <Route
             path="logout"
             element={<PrivateRoute isAuth={true} RouteComponent={Logout} />}
+          />
+          <Route
+            path="update"
+            element={<PrivateRoute isAuth={true} RouteComponent={Editinfo} />}
           />
           <Route
             path="movie/:movieId"

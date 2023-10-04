@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 const Signup = () => {
   const navigator = useNavigate();
@@ -9,10 +11,6 @@ const Signup = () => {
     clientId: "",
     clientPass: "",
     clientName: "",
-    // phone: "",
-    // email: "",
-    // gender: "",
-    // age: "",
     mbti: "",
     grade: "member",
   });
@@ -72,81 +70,101 @@ const Signup = () => {
             <input
               type="text"
               className="form-control"
-              name="phone"
-              pattern="[0-9]{10,11}"
-              placeholder="예) 01012345678"
-              onChange={handleValueChange}
-            />
-          </div>
-          <div className="col-md-6">
-            <input
-              type="email"
-              className="form-control"
-              name="email"
-              pattern="[A-Za-z0-9]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}"
-              placeholder="예) omz@OMZ.com"
-              onChange={handleValueChange}
-            />
-          </div>
-          <div className="col-md-6">
-            <input
-              type="text"
-              className="form-control"
-              name="age"
-              pattern="[0-9]{2,3}"
-              placeholder="나이를 입력해주세요(숫자 2~3자)"
-              onChange={handleValueChange}
-            />
-          </div>
-          <div className="col-md-6">
-            <input
-              type="text"
-              className="form-control"
-              name="gender"
-              placeholder="성별"
-              onChange={handleValueChange}
-            />
-          </div> */}
-          <div className="col-md-6">
-            <input
-              type="text"
-              className="form-control"
               name="mbti"
               placeholder="MBTI"
               onChange={handleValueChange}
             />
-          </div>
+          </div> */}
 
-          <div className="dropdown">
+          <div class="Dropdown">
             <button
+              class="btn btn-secondary dropdown-toggle"
               type="button"
-              className="btn btn-secondary dropdown-toggle"
-              name="mbti"
+              id="dropdownMenuButton1"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              onChange={handleValueChange}
             >
               MBTI
             </button>
-            <ul className="dropdown-menu dropdown-menu-dark">
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <a className="dropdown-item active" href="#">
-                  Action
+                <a class="dropdown-item" href="#">
+                  ESTP
                 </a>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
-                  Another action
+                <a class="dropdown-item" href="#">
+                  ESFP
                 </a>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
-                  Something else here
+                <a class="dropdown-item" href="#">
+                  ENFP
                 </a>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
-                  Separated link
+                <a class="dropdown-item" href="#">
+                  ENTP
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  ESTJ
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  ESFJ
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  ENFJ
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  ENTJ
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  ISTJ
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  ISFJ
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  INFJ
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  INTJ
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  ISTP
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  ISFP
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  INFP
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  INTP
                 </a>
               </li>
             </ul>
