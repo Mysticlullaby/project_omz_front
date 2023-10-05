@@ -47,8 +47,7 @@ const BoardList = () => {
         <tbody>
           {boardList &&
             boardList.map((board) => {
-              return <TableRow board={board} key={board.num} />;
-              //보드리스트 배열을 map함수를 통해서 순회하는 부분
+              return <TableRow board={board} key={board.omzboardId} />;
               //반복해서 보드리스트의 각 요소를 TableRow로 렌더링 해주는거
             })}
         </tbody>
