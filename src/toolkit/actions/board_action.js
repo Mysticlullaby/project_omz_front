@@ -56,9 +56,9 @@ function getBoardUpdate(formData, config) {
   };
 }
 
-function getBoardDelete(num, config) {
+function getBoardDelete(omzboardId, config) {
   return async (dispatch) => {
-    await axios.delete(`/board/delete/${num}`, config).then((response) => response.data);
+    await axios.delete(`/board/delete/${omzboardId}`, config).then((response) => response.data);
   };
 }
 

@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { boardActions } from "../../toolkit/actions/board_action";
 
 const BoardView = () => {
-  const { omzboard_id } = useParams();
+  const { omzboardId } = useParams();
   const dispatch = useDispatch();
   const navigator = useNavigate();
 
@@ -20,8 +20,8 @@ const BoardView = () => {
   };
 
   useEffect(() => {
-    dispatch(boardActions.getBoardDetail(omzboard_id, config));
-  }, [omzboard_id]);
+    dispatch(boardActions.getBoardDetail(omzboardId, config));
+  }, [omzboardId]);
 
   const handleDownload = async () => {
     const boardFile = await dispatch(boardActions.getBoardDownload(boardDetail.upload, config));
@@ -47,7 +47,7 @@ const BoardView = () => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    dispatch(boardActions.getBoardDelete(omzboard_id, config));
+    dispatch(boardActions.getBoardDelete(omzboardId, config));
     navigator(`/board/list/${pv.currentPage}`);
   };
 
@@ -87,13 +87,13 @@ const BoardView = () => {
         리스트
       </Link>
       &nbsp;
-      {/* <Link className="btn btn-primary" to={`/board/write/${omzboard_id}`}>
+      <Link className="btn btn-primary" to={`/board/write/${omzboardId}`}>
         답변
-      </Link> */}
+      </Link>
       &nbsp;
       {boardDetail.clientId === localStorage.getItem("clientId") && (
         <>
-          <Link className="btn btn-primary" to={`/board/update/${omzboard_id}`}>
+          <Link className="btn btn-primary" to={`/board/update/${omzboardId}`}>
             수정
           </Link>
 

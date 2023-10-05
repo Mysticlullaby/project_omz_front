@@ -22,12 +22,6 @@ const BoardWrite = () => {
   const boardDetail = useSelector((state) => state.board.boardDetail);
 
   const handleValueChange = (e) => {
-    // let nextState = {};
-    // nextState[e.target.name] = e.target.value;
-    // setInputs({ ...inputs, ...nextState });
-
-    // setInputs({ ...inputs, [e.target.name]: e.target.value });
-
     setInputs((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
@@ -49,13 +43,13 @@ const BoardWrite = () => {
     console.log("filename:", filename);
     if (filename != null) formData.append("filename", filename);
 
-    //답변글할 때 해제해
-    // if (num !== undefined) {
-    //   formData.append("num", boardDetail.num);
-    //   formData.append("ref", boardDetail.ref);
-    //   formData.append("re_step", boardDetail.re_step);
-    //   formData.append("re_level", boardDetail.re_level);
-    // }
+    // 답변글
+    if (omzboardId !== undefined) {
+      formData.append("omzboardId", boardDetail.omzboardId);
+      formData.append("boardRef", boardDetail.boardRef);
+      formData.append("reStep", boardDetail.reStep);
+      formData.append("reLevel", boardDetail.reLevel);
+    }
 
     const config = {
       headers: {

@@ -26,8 +26,8 @@ function App() {
           <Route path="movie/:movieId" element={<PrivateRoute isAuth={false} RouteComponent={MovieDetail} />} />
           <Route path="board/list/:currentPage" element={<PrivateRoute isAuth={false} RouteComponent={BoardList} />} />
           <Route path="board/write" element={<PrivateRoute isAuth={true} RouteComponent={BoardWrite} />} />
-          {/* <Route path="board/write/:omzboard_id" element={<PrivateRoute isAuth={true} RouteComponent={BoardWrite} />} /> */}
-          <Route path="board/view/:omzboard_id" element={<PrivateRoute isAuth={true} RouteComponent={BoardView} />} />
+          <Route path="board/write/:omzboardId" element={<PrivateRoute isAuth={true} RouteComponent={BoardWrite} />} />
+          <Route path="board/view/:omzboardId" element={<PrivateRoute isAuth={true} RouteComponent={BoardView} />} />
           <Route path="board/update/:omzboardId" element={<PrivateRoute isAuth={true} RouteComponent={BoardUpdate} />} />
         </Route>
       </Routes>
