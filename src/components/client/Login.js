@@ -70,12 +70,12 @@ const Login = () => {
             />
           </div>
           <div className="col-md-6 mx-auto">
-            <button type="submit" className="btn btn-warning mr-5">
+            <button type="submit" className="btn btn-success">
               로그인
             </button>
-            <Link className="btn btn-secondary" to="/signup">
+            {/* <Link className="btn btn-secondary" to="/signup">
               회원가입
-            </Link>
+            </Link> */}
           </div>
         </form>
       </div>

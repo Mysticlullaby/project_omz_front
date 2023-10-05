@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./omz_style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 import BaseLayout from "./components/layout/BaseLayout";
 import MovieList from "./components/movies/MovieList";
 import MovieDetail from "./components/movies/MovieDetail";

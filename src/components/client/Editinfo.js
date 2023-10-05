@@ -12,8 +12,7 @@ const Editinfo = () => {
     mbti: "",
   });
 
-  const [input, setInput] = useState("");
-
+  const [selectValue, setSelectValue] = useState(""); // 선택한 값을 useState 관리
   const [passwordCheck, setPasswordChcek] = useState("");
 
   const { clientId, clientPass, clientName, mbti } = client;
@@ -24,9 +23,15 @@ const Editinfo = () => {
     },
   };
 
+  const handleChangeMbti = (e) => {
+    const selectMbti = e.target.innerText; // 드롭다운에서 선택한 MBTI 값을 가져옴
+    setSelectValue(selectMbti); // 선택한 값을 useState에 저장
+    setClient({ ...client, mbti: selectMbti }); // 선택한 MBTI를 회원 정보에 저장
+  };
+
   const handleValueChange = (e) => {
     setClient({ ...client, [e.target.name]: e.target.value });
-  };
+  }; // 새로 들어온 값으로 변경함
 
   const passCheck = (e) => {
     const confirmPassword = e.target.value;
@@ -36,13 +41,6 @@ const Editinfo = () => {
     } else {
       setPasswordChcek("비밀번호 일치");
     }
-  };
-
-  const handleDelete = () => {};
-
-  const handleChangeMbti = (e) => {
-    setClient({ ...client, [e.target.name]: e.target.value });
-    setInput("");
   };
 
   const info = async () => {
@@ -156,9 +154,9 @@ const Editinfo = () => {
             />
           </div>
 
-          <div class="Dropdown">
+          <div className="Dropdown">
             <button
-              class="btn btn-secondary dropdown-toggle"
+              className="btn btn-secondary dropdown-toggle"
               type="button"
               id="dropdownMenuButton1"
               data-bs-toggle="dropdown"
@@ -166,84 +164,84 @@ const Editinfo = () => {
             >
               MBTI
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   ESTP
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   ESFP
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   ENFP
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   ENTP
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   ESTJ
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   ESFJ
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   ENFJ
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   ENTJ
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   ISTJ
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   ISFJ
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   INFJ
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   INTJ
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   ISTP
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   ISFP
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   INFP
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" onClick={handleChangeMbti}>
+                <a className="dropdown-item" onClick={handleChangeMbti}>
                   INTP
                 </a>
               </li>
@@ -251,15 +249,8 @@ const Editinfo = () => {
           </div>
 
           <div className="col-12">
-            <button type="submit" className="btn btn-warning">
+            <button type="submit" className="btn btn-success">
               회원정보 수정
-            </button>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={handleDelete}
-            >
-              회원탈퇴
             </button>
           </div>
         </div>
