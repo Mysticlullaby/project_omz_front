@@ -31,7 +31,7 @@ function getBoardWrite(formData, config) {
     await axios.post("/board/write", formData, config).then((response) => response.data);
   };
 }
-
+//깃용 주석
 function getBoardDownload(upload) {
   return async (dispatch) => {
     const data = await axios
