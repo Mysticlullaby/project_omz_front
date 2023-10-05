@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const BaseLayout = () => {
   return (
-    <div>
+    <div className="px-5">
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <div className="collapse navbar-collapse justify-content-space-between" id="navbarNav">
@@ -58,7 +58,9 @@ const BaseLayout = () => {
       </nav>
 
       <hr />
-      <Outlet />
+      <div className="px-5">
+        <Outlet />
+      </div>
     </div>
   );
 };

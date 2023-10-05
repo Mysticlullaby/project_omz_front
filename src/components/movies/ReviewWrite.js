@@ -21,7 +21,7 @@ function ReviewWrite({ isOpen, closeModal, movie }) {
         console.log('clickStates: ', clickStates);
     };
 
-    const sendReview = () => {
+    const sendRating = () => {
         let score = clicked.filter(Boolean).length;
         console.log('score: ', score);
         setInputs((prevState) => {
@@ -57,7 +57,7 @@ function ReviewWrite({ isOpen, closeModal, movie }) {
     };
 
     useEffect(() => {
-        sendReview();
+        sendRating();
     }, [clicked]);
 
     return (

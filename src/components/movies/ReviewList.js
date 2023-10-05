@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { reviewActions } from '../../toolkit/actions/review_action';
 import { IoIosStar } from "react-icons/io";
 import styled from "styled-components";
@@ -39,6 +39,8 @@ const ReviewList = () => {
     const reviewList = useSelector((state) => state.reviews.reviewPage);
     const pv = useSelector((state) => state.reviews.pv);
 
+    console.log('movieId on ReviewList: ', movie.movieId);
+
     return (
         <div>
             <div className="row mx-4 mb-4 mt-5">
@@ -65,31 +67,34 @@ const ReviewList = () => {
                         let score = review.rating;
                         let scoreStates = [true, false, false, false, false, false, false, false, false, false];
                         for (let n = 0; n < 10; n++) {
-                            scoreStates[n] = n <= score ? true : false;
+                            scoreStates[n] = n < score ? true : false;
                         }
 
                         return (
                             <div key={review.reviewId} >
-                                <div className="card my-3" style={{ width: "18 rem" }}>
-                                    <div className="card-body">
-                                        <h5 className="card-title border-bottom pb-2">{review.clientId}</h5>
-                                        <Stars>
-                                            <span>
-                                                {scoreStates.map((isTrue, idx) => {
-                                                    return (
-                                                        <IoIosStar
-                                                            key={idx}
-                                                            size="15"
-                                                            className={isTrue && 'yellowStar'}
-                                                        />
-                                                    );
-                                                })}
-                                            </span>
-                                        </Stars>
-                                        <p className="card-text border-top mt-2 pt-2">{review.reviewContent}</p>
+                                <Link to={`/review/detail/${review.reviewId}`} style={{ textDecoration: 'none' }}>
+                                    <div className="card my-3" style={{ width: "18 rem" }}>
+                                        <div className="card-body">
+                                            <h5 className="card-title border-bottom pb-2">{review.clientId}</h5>
+                                            <Stars>
+                                                <span>
+                                                    {scoreStates.map((isTrue, idx) => {
+                                                        return (
+                                                            <IoIosStar
+                                                                key={idx}
+                                                                size="15"
+                                                                className={isTrue && 'yellowStar'}
+                                                            />
+                                                        );
+                                                    })}
+                                                </span>
+                                            </Stars>
+                                            <p className="card-text border-top mt-2 pt-2">{review.reviewContent}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
                             </div>
+
                         )
                     })}
             </div>

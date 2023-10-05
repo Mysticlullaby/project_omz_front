@@ -1,7 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 let initialState = {
-    reviewList: []
+    reviewList: [],
+    reviewDetail: {
+        'reviewId': '',
+        'movieId': '',
+        'rating': '',
+        'reviewContent': ''
+    },
+    pv: {}
 }
 
 const reviewSlice = createSlice({
@@ -15,6 +22,10 @@ const reviewSlice = createSlice({
         getReviewPage(state, action) {
             state.reviewPage = action.payload.data.reviewPage;
             state.pv = action.payload.data.pv;
+        },
+
+        getReviewDetail(state, action) {
+            state.reviewDetail = action.payload.data;
         }
     }
 })

@@ -12,6 +12,7 @@ import BoardWrite from "./components/board/BoardWrite";
 import PrivateRoute from "./access/PrivateRoute";
 import Logout from "./components/client/Logout";
 import ReviewList from "./components/movies/ReviewList";
+import ReviewDetail from "./components/movies/ReviewDetail";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="board/write" element={<PrivateRoute isAuth={true} RouteComponent={BoardWrite} />} />
           <Route path="board/write/:num" element={<PrivateRoute isAuth={true} RouteComponent={BoardWrite} />} />
           <Route path="review/page/:movieId/:currentPage" element={<PrivateRoute isAuth={false} RouteComponent={ReviewList} />} />
+          <Route path="review/detail/:reviewId" element={<PrivateRoute isAuth={false} RouteComponent={ReviewDetail} />} />
         </Route>
       </Routes>
     </div>
