@@ -3,12 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 let initialState = {
     reviewList: [],
     reviewDetail: {
-        'reviewId': '',
-        'movieId': '',
-        'rating': '',
-        'reviewContent': ''
+        reviewId: '',
+        movieId: '',
+        rating: '',
+        reviewContent: ''
     },
-    pv: {}
+    pv: {
+        currentPage: 1
+    }
 }
 
 const reviewSlice = createSlice({

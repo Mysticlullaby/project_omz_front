@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { movieActions } from "../../toolkit/actions/movie_action";
-import { NavLink, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import ReviewWrite from "./ReviewWrite";
 import { IoIosStar } from "react-icons/io";
 import { reviewActions } from "../../toolkit/actions/review_action";
@@ -66,12 +66,12 @@ const MovieDetail = () => {
           <nav className="navbar navbar-expand-lg">
             <div className="container-fluid">
               <div className="collapse navbar-collapse justify-content-space-between" id="navbarNav">
-                <ul className="navbar-nav">
+                <ul className="navbar-nav align-items-center gap-5">
                   <li className="nav-item">
                     <h1>리뷰</h1>
                   </li>
                   <li className="nav-item">
-                    <button onClick={openModal}>리뷰 작성하기</button>
+                    <button className="btn btn-danger" onClick={openModal}>리뷰 작성하기</button>
                     <ReviewWrite isOpen={isModalOpen} closeModal={closeModal} movie={movie} />
                   </li>
                 </ul>
@@ -95,34 +95,36 @@ const MovieDetail = () => {
         {reviewList &&
           reviewList.map((review) => {
             let score = review.rating;
-            let scoreStates = [true, false, false, false, false, false, false, false, false, false];
-            for (let n = 0; n < 10; n++) {
-              scoreStates[n] = n <= score ? true : false;
+            let scoreStates = [true, false, false, false, false];
+            for (let n = 0; n < 5; n++) {
+              scoreStates[n] = n < score ? true : false;
             }
 
             return (
               <div key={review.reviewId} className="col">
-                <div className="card" style={{ width: "18 rem", height: 300 }}>
-                  <div className="card-body" >
-                    <h5 className="card-title border-bottom pb-2">{review.clientId}</h5>
-                    <Stars>
-                      <span>
-                        {scoreStates.map((isTrue, idx) => {
-                          return (
-                            <IoIosStar
-                              key={idx}
-                              size="15"
-                              className={isTrue && 'yellowStar'}
-                            />
-                          );
-                        })}
-                      </span>
-                    </Stars>
-                    <div>
-                      <p className="card-text border-top mt-2 pt-2 context-area">{review.reviewContent}</p>
+                <Link to={`/review/detail/${review.reviewId}`} style={{ textDecoration: 'none' }}>
+                  <div className="card" style={{ width: "18 rem", height: 300 }}>
+                    <div className="card-body" >
+                      <h5 className="card-title border-bottom pb-2">{review.clientId}</h5>
+                      <Stars>
+                        <span>
+                          {scoreStates.map((isTrue, idx) => {
+                            return (
+                              <IoIosStar
+                                key={idx}
+                                size="15"
+                                className={isTrue && 'yellowStar'}
+                              />
+                            );
+                          })}
+                        </span>
+                      </Stars>
+                      <div>
+                        <p className="card-text border-top mt-2 pt-2 context-area">{review.reviewContent}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
             )
           })}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import { reviewActions } from '../../toolkit/actions/review_action';
 import { IoIosStar } from "react-icons/io";
 import styled from "styled-components";
@@ -47,15 +47,24 @@ const ReviewList = () => {
                 <nav className="navbar navbar-expand-lg">
                     <div className="container-fluid">
                         <div className="collapse navbar-collapse justify-content-space-between" id="navbarNav">
-                            <ul className="navbar-nav">
+                            <ul className="navbar-nav align-items-center gap-5">
                                 <li className="nav-item">
                                     <h1>리뷰</h1>
                                 </li>
                                 <li className="nav-item">
-                                    <button onClick={openModal}>리뷰 작성하기</button>
+                                    <button className='btn btn-danger' onClick={openModal}>리뷰 작성하기</button>
                                     <ReviewWrite isOpen={isModalOpen} closeModal={closeModal} movie={movie} />
                                 </li>
                             </ul>
+                            <div>
+                                <ul className="navbar-nav align-items-center">
+                                    <li className="nav-item">
+                                        <NavLink to={`/movie/${movieId}`} className='nav-link'>
+                                            돌아가기
+                                        </NavLink>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -65,8 +74,8 @@ const ReviewList = () => {
                 {reviewList &&
                     reviewList.map((review) => {
                         let score = review.rating;
-                        let scoreStates = [true, false, false, false, false, false, false, false, false, false];
-                        for (let n = 0; n < 10; n++) {
+                        let scoreStates = [true, false, false, false, false];
+                        for (let n = 0; n < 5; n++) {
                             scoreStates[n] = n < score ? true : false;
                         }
 

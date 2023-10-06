@@ -9,12 +9,12 @@ function ReviewWrite({ isOpen, closeModal, movie }) {
     const { reviewContent, rating } = inputs;
     const dispatch = useDispatch();
 
-    const [clicked, setClicked] = useState([true, false, false, false, false, false, false, false, false, false]);
-    const starArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const [clicked, setClicked] = useState([true, false, false, false, false]);
+    const starArray = [0, 1, 2, 3, 4];
 
     const handleStarClick = index => {
         let clickStates = [...clicked];
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 5; i++) {
             clickStates[i] = i <= index ? true : false;
         }
         setClicked(clickStates);
@@ -55,6 +55,15 @@ function ReviewWrite({ isOpen, closeModal, movie }) {
             return { ...prev, [e.target.name]: e.target.value };
         });
     };
+
+    const onClose = () => {
+        closeModal();
+        setInputs({
+            reviewContent: '',
+            rating: 1
+        });
+        setClicked([true, false, false, false, false]);
+    }
 
     useEffect(() => {
         sendRating();
@@ -118,7 +127,7 @@ function ReviewWrite({ isOpen, closeModal, movie }) {
                         </div>
                         <div className='d-flex flex-row-reverse'>
                             <div>
-                                <button type='button' className='btn btn-danger mx-1' onClick={closeModal}>닫기</button>
+                                <button type='button' className='btn btn-danger mx-1' onClick={onClose}>닫기</button>
                                 <input type='submit' className='btn btn-danger mx-1' value='작성하기' />
                             </div>
                         </div>

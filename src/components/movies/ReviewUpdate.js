@@ -17,20 +17,20 @@ function ReviewUpdate({ isOpen, closeModal, movie }) {
 
     const dispatch = useDispatch();
 
-    let initialArray = [false, false, false, false, false, false, false, false, false, false];
-    for (let i = 0; i < 10; i++) {
+    let initialArray = [false, false, false, false, false];
+    for (let i = 0; i < 5; i++) {
         initialArray[i] = i < review.rating ? true : false;
     }
 
     const [clicked, setClicked] = useState(initialArray);
 
-    const starArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const starArray = [0, 1, 2, 3, 4];
 
     const handleStarClick = (index) => {
         const newRating = index + 1;
 
-        let updatedClicked = [false, false, false, false, false, false, false, false, false, false];
-        for (let i = 0; i < 10; i++) {
+        let updatedClicked = [false, false, false, false, false];
+        for (let i = 0; i < 5; i++) {
             updatedClicked[i] = i < newRating ? true : false;
         }
         setClicked(updatedClicked);
@@ -50,6 +50,7 @@ function ReviewUpdate({ isOpen, closeModal, movie }) {
         console.log('submitted movieId in FormData', movie.movieId);
         console.log('submitted reviewContent in FormData', reviewContent);
         formData.append('movieId', movie.movieId);
+        formData.append('reviewId', review.reviewId);
         formData.append('clientId', localStorage.getItem('clientId'));
         formData.append('reviewContent', reviewContent);
         formData.append('rating', rating);
@@ -62,15 +63,15 @@ function ReviewUpdate({ isOpen, closeModal, movie }) {
 
         await dispatch(reviewActions.getReviewUpdate(formData, config));
 
-        // window.location.replace(`/review/detail/${review.reviewId}`);
+        window.location.replace(`/review/detail/${review.reviewId}`);
     };
 
     const onHandleClose = (e) => {
         e.preventDefault();
         closeModal();
         setInputs(review);
-        let clickStates = [false, false, false, false, false, false, false, false, false, false];
-        for (let i = 0; i < 10; i++) {
+        let clickStates = [false, false, false, false, false];
+        for (let i = 0; i < 5; i++) {
             clickStates[i] = i < review.rating ? true : false;
         }
         setClicked(clickStates);
@@ -86,8 +87,8 @@ function ReviewUpdate({ isOpen, closeModal, movie }) {
     useEffect(() => {
         setInputs(review);
 
-        let clickStates = [false, false, false, false, false, false, false, false, false, false];
-        for (let i = 0; i < 10; i++) {
+        let clickStates = [false, false, false, false, false];
+        for (let i = 0; i < 5; i++) {
             clickStates[i] = i < review.rating ? true : false;
         }
         setClicked(clickStates);
@@ -160,7 +161,7 @@ function ReviewUpdate({ isOpen, closeModal, movie }) {
                                 <button type='button' className='btn btn-danger mx-1' onClick={onHandleClose}>
                                     닫기
                                 </button>
-                                <input type='submit' className='btn btn-danger mx-1' value='작성하기' />
+                                <input type='submit' className='btn btn-danger mx-1' value='수정하기' />
                             </div>
                         </div>
                     </div>
