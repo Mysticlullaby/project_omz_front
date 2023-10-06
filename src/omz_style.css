@@ -22,3 +22,18 @@
 .navbar-expand-lg .navbar-collapse {
   justify-content: space-between;
 }
+
+/* 회원가입 */
+.join .row {
+  align-items: center;
+  flex-direction: column;
+}
+
+.join .insert-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+.join .insert-area input {
+  width: 80%;
+}

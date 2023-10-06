@@ -13,36 +13,51 @@ const Signup = () => {
     grade: "member",
   });
 
-  const [clientId, setClientId] = useState("");
-  const [clientPass, setClientPass] = useState("");
-  const [clientName, setClientName] = useState("");
-  const [mbti, setMbti] = useState("");
+  const config = {
+    headers: {
+      Authorization: localStorage.getItem("authorization"),
+    },
+  };
 
   const handleValueChange = (e) => {
     setClient({ ...client, [e.target.name]: e.target.value });
   };
 
+  // 아아디 중복확인
   const [checkId, setCheckId] = useState(false);
   const [checkIdMsg, setCheckIdMsg] = useState("");
   const onCheckId = async (e) => {
     e.preventDefault();
+    console.log("clientId" + client.clientId);
+    await axios
+      .get(`/signup/${client.clientId}`)
+      .then((Response) => {
+        const resMsg = Response.data;
+        console.log("clinetId" + Response.data);
+        if (resMsg) {
+          alert("사용가능한 아이디입니다.");
+        } else {
+          alert("이미 사용중인 아이디입니다.");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-    try {
-      const res = await axios.post(`/signup/${localStorage.clientId}`, { clientId });
-      const { result } = res.data;
+  // 비밀번호 확인 하단 일치여부 메세지
+  const [passwordCheck, setPasswordChcek] = useState("");
+  const passCheck = (e) => {
+    const confirmPassword = e.target.value;
 
-      if (!result) {
-        setCheckIdMsg("이미 등록된 아이디입니다.");
-        setCheckId(false);
-      } else {
-        setCheckIdMsg("사용 가능한 아이디입니다.");
-        setCheckId(true);
-      }
-    } catch (error) {
-      console.log(error);
+    if (client.clientPass !== confirmPassword) {
+      setPasswordChcek("비밀번호 불일치");
+    } else {
+      setPasswordChcek("비밀번호 일치");
     }
   };
 
+  // mbti 선택 및 입력
   const [selectValue, setSelectValue] = useState("");
   const handleInsertMbti = (e) => {
     const selectMbti = e.target.innerText;
@@ -50,40 +65,49 @@ const Signup = () => {
     setClient({ ...client, mbti: selectMbti });
   };
 
-  // const [passwordCheck, setPasswordChcek] = useState("");
-  // const passCheck = (e) => {
-  //   const confirmPassword = e.target.value;
-
-  //   if (clientPass !== confirmPassword) {
-  //     setPasswordChcek("비밀번호 불일치");
-  //   } else {
-  //     setPasswordChcek("비밀번호 일치");
-  //   }
-  // };
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    // if (!clientPass) {
-    //   alert("비밀번호를 입력하세요");
-    //   return;
-    // }
+    if (
+      !client.clientId ||
+      !client.clientPass ||
+      !client.clientName ||
+      !client.mbti
+    ) {
+      let missingFields = "";
 
-    // const confirmPasswordInput = document.getElementById("confirmPassword"); // 필드에 입력된 값을 가져옴
-    // const confirmPassword = confirmPasswordInput.value; // confirmPassword 값을 가져와 입력된 값을 넣어줌
+      if (!client.clientId) {
+        missingFields += "아이디 ";
+      } else if (!client.clientPass) {
+        missingFields += "패스워드 ";
+      } else if (!client.clientName) {
+        missingFields += "이름 ";
+      } else if (!client.mbti) {
+        missingFields += "MBTI ";
+      }
 
-    // if (!confirmPassword) {
-    //   alert("비밀번호 확인을 입력하세요");
-    //   return;
-    // }
+      if (missingFields) {
+        alert(missingFields + "를(을) 입력하세요");
+        return;
+      }
+    }
 
-    // if (clientPass !== confirmPassword) {
-    //   alert("비밀번호가 일치하지 않습니다");
-    //   return;
-    // }
+    // clientPass와 confirmPassword 일치여부 알림창
+    const confirmPasswordInput = document.getElementById("confirmPassword"); // 필드에 입력된 값을 가져옴
+    const confirmPassword = confirmPasswordInput.value; // confirmPassword 값을 가져와 입력된 값을 넣어줌
+
+    if (!confirmPassword) {
+      alert("비밀번호 확인을 입력하세요");
+      return;
+    }
+
+    if (client.clientPass !== confirmPassword) {
+      alert("비밀번호가 일치하지 않습니다");
+      return;
+    }
 
     await axios
-      .post("/signup", client)
+      .post("/signup", client, config)
       .then((Response) => {
         navigator("/");
       })
@@ -93,11 +117,11 @@ const Signup = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container join">
       <form onSubmit={onSubmit}>
         <div className="row g-3">
           <h1 className="text-center mx-auto">회원가입</h1>
-          <div className="col-md-6">
+          <div className="col-md-6 insert-area">
             <input
               type="text"
               className="form-control"
@@ -106,7 +130,15 @@ const Signup = () => {
               placeholder="아이디를 입력해주세요(영문,숫자 3~8자)"
               onChange={handleValueChange}
             />
+            <button
+              type="submit"
+              className="btn btn-success"
+              onClick={onCheckId}
+            >
+              중복확인
+            </button>
           </div>
+
           <div className="col-md-6">
             <input
               type="password"
@@ -118,7 +150,7 @@ const Signup = () => {
             />
           </div>
 
-          {/* <div className="col-md-6">
+          <div className="col-md-6">
             <input
               type="password"
               className="form-control"
@@ -129,7 +161,7 @@ const Signup = () => {
               onChange={passCheck}
             />
             <span>{passwordCheck}</span>
-          </div> */}
+          </div>
 
           <div className="col-md-6">
             <input
@@ -148,11 +180,12 @@ const Signup = () => {
               className="form-control"
               name="mbti"
               value={client.mbti}
+              placeholder="자신의 MBTI를 선택해주세요"
               readOnly
             />
           </div>
 
-          <div className="Dropdown">
+          <div className="col-md-6 Dropdown">
             <button
               className="btn btn-secondary dropdown-toggle"
               type="button"
@@ -246,7 +279,7 @@ const Signup = () => {
             </ul>
           </div>
 
-          <div className="col-12">
+          <div className="col-6">
             <button type="submit" className="btn btn-success">
               가입완료
             </button>
