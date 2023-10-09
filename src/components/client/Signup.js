@@ -2,8 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// http://localhost:3000/client/signup
-
 const Signup = () => {
   const navigator = useNavigate();
 
@@ -11,10 +9,10 @@ const Signup = () => {
     clientId: "",
     clientPass: "",
     clientName: "",
-    phone: "",
-    email: "",
-    gender: "",
-    age: "",
+    // phone: "",
+    // email: "",
+    // gender: "",
+    // age: "",
     mbti: "",
     grade: "member",
   });
@@ -70,7 +68,7 @@ const Signup = () => {
               onChange={handleValueChange}
             />
           </div>
-          <div className="col-md-6">
+          {/* <div className="col-md-6">
             <input
               type="text"
               className="form-control"
@@ -108,7 +106,7 @@ const Signup = () => {
               placeholder="성별"
               onChange={handleValueChange}
             />
-          </div>
+          </div> */}
           <div className="col-md-6">
             <input
               type="text"
