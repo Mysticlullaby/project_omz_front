@@ -21,10 +21,13 @@ const BaseLayout = () => {
             </ul>
             <div>
               <ul className="navbar-nav align-items-center">
-                {localStorage.getItem('clientId') != null ? (
+                {localStorage.getItem("clientId") != null ? (
                   <>
-                    <li className='nav-item mx-3' style={{ fontSize: '20px', fontWeight: 500 }}>
-                      {localStorage.getItem('clientId')}
+                    <li
+                      className="nav-item mx-3"
+                      style={{ fontSize: "20px", fontWeight: 500 }}
+                    >
+                      {localStorage.getItem("clientId")}
                     </li>
                     <li className="nav-item">
                       <NavLink to="/logout" className="nav-link">
@@ -32,7 +35,7 @@ const BaseLayout = () => {
                       </NavLink>
                     </li>
                     <li className="nav-item">
-                      <NavLink to="/" className="nav-link">
+                      <NavLink to="/update" className="nav-link">
                         회원정보 수정
                       </NavLink>
                     </li>
