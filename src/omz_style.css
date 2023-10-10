@@ -19,6 +19,21 @@
     background-clip: content-box;
 }
 
-.navbar-expand-lg .navbar-collapse{
+.justify-content-space-between{
     justify-content: space-between;
+}
+
+.page-item:first-child .page-link{
+
+}
+
+.page-item:last-child .page-link{
+
+}
+
+.context-area{
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
