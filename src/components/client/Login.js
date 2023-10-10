@@ -40,7 +40,7 @@ const Login = () => {
     await axios
       .post("/login", input)
       .then((Response) => {
-        console.log(Response.data);
+        console.log('loginData: ', Response.data);
 
         let jwtToken = Response.headers.get("authorization");
         console.log(jwtToken);
