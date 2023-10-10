@@ -9,25 +9,19 @@ const BoardWrite = () => {
 
   const [inputs, setInputs] = useState({
     subject: "",
-    board_content: "",
+    boardContent: "",
     filename: null,
   });
 
-  const { subject, board_content, filename } = inputs;
+  const { subject, boardContent, filename } = inputs;
 
-  const { omzboard_id } = useParams();
+  const { omzboardId } = useParams();
 
   const pv = useSelector((state) => (state.board.pv ? state.board.pv : { currentPage: 1 }));
 
   const boardDetail = useSelector((state) => state.board.boardDetail);
 
   const handleValueChange = (e) => {
-    // let nextState = {};
-    // nextState[e.target.name] = e.target.value;
-    // setInputs({ ...inputs, ...nextState });
-
-    // setInputs({ ...inputs, [e.target.name]: e.target.value });
-
     setInputs((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
@@ -43,39 +37,39 @@ const BoardWrite = () => {
 
     const formData = new FormData();
     formData.append("subject", subject);
-    formData.append("board_content", board_content);
-    //formData.append("client_id", localStorage.getItem("client_id"));
-    // formData.append("client_name", localStorage.getItem("client_name"));
+    formData.append("boardContent", boardContent);
+    formData.append("clientId", localStorage.getItem("clientId"));
 
     console.log("filename:", filename);
     if (filename != null) formData.append("filename", filename);
 
-    //답변글이면...
-    // if (num !== undefined) {
-    //   formData.append("num", boardDetail.num);
-    //   formData.append("ref", boardDetail.ref);
-    //   formData.append("re_step", boardDetail.re_step);
-    //   formData.append("re_level", boardDetail.re_level);
-    // }
+    // 답변글
+    if (omzboardId !== undefined) {
+      formData.append("omzboardId", boardDetail.omzboardId);
+      formData.append("boardRef", boardDetail.boardRef);
+      formData.append("reStep", boardDetail.reStep);
+      formData.append("reLevel", boardDetail.reLevel);
+    }
 
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //     Authorization: localStorage.getItem("Authorization"),
-    //   },
-    // };
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        // Authorization: localStorage.getItem("Authorization"),
+        // 이거 같이넘겨주면 스프링에서 아무리 예외처리 해놔도 삐꾸남
+      },
+    };
 
-    //console.log(localStorage.getItem('Authorization'));
-    // await dispatch(boardActions.getBoardWrite(formData, config));
-    await dispatch(boardActions.getBoardWrite(formData));
+    console.log(localStorage.getItem("Authorization"));
+    dispatch(boardActions.getBoardWrite(formData, config));
+    // await dispatch(boardActions.getBoardWrite(formData));
 
     setInputs({
       subject: "",
-      board_content: "",
+      boardContent: "",
       filename: null,
     });
 
-    navigator(`/board/list/${omzboard_id ? pv.currentPage : 1}`);
+    navigator(`/board/list/${omzboardId ? pv.currentPage : 1}`);
   };
 
   return (
@@ -86,7 +80,7 @@ const BoardWrite = () => {
             <tr>
               <td>글쓴이</td>
               <td>
-                <input type="type" readOnly value={localStorage.getItem("client_name")} name="client_name" />
+                <input type="type" readOnly value={localStorage.getItem("clientId")} name="clientId" />
               </td>
             </tr>
             <tr>
@@ -94,7 +88,7 @@ const BoardWrite = () => {
                 제목
               </td>
               <td>
-                <input type="text" name="subject" size="40" value={subject} placeholder={omzboard_id !== undefined ? "답변" : null} onChange={handleValueChange} />
+                <input type="text" name="subject" size="40" value={subject} placeholder={omzboardId !== undefined ? "답변" : null} onChange={handleValueChange} />
               </td>
             </tr>
             <tr>
@@ -102,7 +96,7 @@ const BoardWrite = () => {
                 내용
               </td>
               <td>
-                <textarea name="board_content" rows="13" cols="40" value={board_content} onChange={handleValueChange}></textarea>
+                <textarea name="boardContent" rows="13" cols="40" value={boardContent} onChange={handleValueChange}></textarea>
               </td>
             </tr>
 

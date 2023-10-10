@@ -18,6 +18,7 @@ const PageNavigation = ({ getBoardList }) => {
             &laquo;
           </span>
         </li>
+        {/* idx 지워도돼? */}
         {pageNumbers.map((pnum, idx) => (
           <li key={pnum}>
             <span onClick={() => getBoardList(pnum)} className={pv.currentPage === pnum ? "page-item active" : null}>
