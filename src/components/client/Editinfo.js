@@ -134,7 +134,13 @@ const Editinfo = () => {
               placeholder="비밀번호 확인"
               onChange={passCheck}
             />
-            <span>{passwordCheck}</span>
+            <span
+              className={`password-check ${
+                passwordCheck === "비밀번호 불일치" ? "password-checkError" : ""
+              }`}
+            >
+              {passwordCheck}
+            </span>
           </div>
 
           <div className="col-md-6">
