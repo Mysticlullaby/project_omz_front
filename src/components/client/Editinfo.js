@@ -99,6 +99,7 @@ const Editinfo = () => {
         <div className="row g-3">
           <h1 className="text-center mx-auto">회원정보</h1>
           <div className="col-md-7">
+            아이디
             <input
               type="text"
               className="form-control"
@@ -110,6 +111,7 @@ const Editinfo = () => {
           </div>
 
           <div className="col-md-6">
+            비밀번호
             <input
               type="password"
               className="form-control"
@@ -122,6 +124,7 @@ const Editinfo = () => {
           </div>
 
           <div className="col-md-6">
+            비밀번호 확인
             <input
               type="password"
               className="form-control"
@@ -135,6 +138,7 @@ const Editinfo = () => {
           </div>
 
           <div className="col-md-6">
+            이름
             <input
               type="text"
               className="form-control"
@@ -147,6 +151,7 @@ const Editinfo = () => {
           </div>
 
           <div className="col-md-6">
+            MBTI
             <input
               type="text"
               className="form-control"
@@ -251,7 +256,7 @@ const Editinfo = () => {
           </div>
 
           <div className="col-12">
-            <button type="submit" className="btn btn-success">
+            <button type="submit" className="btn btn-danger">
               회원정보 수정
             </button>
           </div>

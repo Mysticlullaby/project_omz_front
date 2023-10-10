@@ -35,7 +35,7 @@
 }
 
 .join .insert-area input {
-  width: 80%;
+  width: 70%;
 }
 
 .password-check {
@@ -44,4 +44,35 @@
 
 .password-checkError {
   color: red;
+}
+
+/* 로그인 */
+.login {
+  width: 400px;
+  height: 500px;
+  padding: 0px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.login .row {
+  align-items: center;
+  flex-direction: column;
+}
+
+.login .insert-area {
+  /* display: flex; */
+  justify-content: space-between;
+}
+
+.login .insert-area input {
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border-radius: 100px;
+  background-color: #f8f8f8;
 }

@@ -122,6 +122,7 @@ const Signup = () => {
         <div className="row g-3">
           <h1 className="text-center mx-auto">회원가입</h1>
           <div className="col-md-6 insert-area">
+            아이디
             <input
               type="text"
               className="form-control"
@@ -132,7 +133,7 @@ const Signup = () => {
             />
             <button
               type="submit"
-              className="btn btn-success"
+              className="btn btn-danger"
               onClick={onCheckId}
             >
               중복확인
@@ -140,6 +141,7 @@ const Signup = () => {
           </div>
 
           <div className="col-md-6">
+            비밀번호
             <input
               type="password"
               className="form-control"
@@ -151,6 +153,7 @@ const Signup = () => {
           </div>
 
           <div className="col-md-6">
+            비밀번호 확인
             <input
               type="password"
               className="form-control"
@@ -160,11 +163,17 @@ const Signup = () => {
               placeholder="비밀번호 확인"
               onChange={passCheck}
             />
-            <span className={`password-check ${passwordCheck === "비밀번호 불일치" ? "password-checkError" : ""}`}>
-              {passwordCheck}</span>
+            <span
+              className={`password-check ${
+                passwordCheck === "비밀번호 불일치" ? "password-checkError" : ""
+              }`}
+            >
+              {passwordCheck}
+            </span>
           </div>
 
           <div className="col-md-6">
+            이름
             <input
               type="text"
               className="form-control"
@@ -214,6 +223,7 @@ const Signup = () => {
             />
           </div> */}
           <div className="col-md-6">
+            MBTI
             <input
               type="text"
               className="form-control"
@@ -319,7 +329,7 @@ const Signup = () => {
           </div>
 
           <div className="col-6">
-            <button type="submit" className="btn btn-success">
+            <button type="submit" className="btn btn-danger">
               가입완료
             </button>
           </div>

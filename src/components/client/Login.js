@@ -16,24 +16,23 @@ const Login = () => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  // // 아이디 가입여부 확인
-  // const [loginIdCheck, setLoginIdCheck] = useState("");
-  // const IdCheck = async (e) => {
-  //   e.preventDefault();
-  //   console.log("clientId" + clientId)
-  //   await axios.get(`/login/${clientId}`)
-  //   .then((Response))
-  //   if (exists) {
-  //     setLoginIdCheck("존재하지 않는 아이디");
-  //   } else {
-  //     setLoginIdCheck("로그인 가능");
-  //   }
-  // }
+  // 로그인 아이디 가입여부 확인
+  const [loginIdCheck, setLoginIdCheck] = useState("");
+  const IdCheck = async (e) => {
+    e.preventDefault();
+    console.log("clientId" + clientId);
+    await axios.get(`/login/${clientId}`).then(Response);
+    if (clientId === null) {
+      setLoginIdCheck("존재하지 않는 아이디");
+    } else {
+      setLoginIdCheck("로그인 가능");
+    }
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if(!clientId || !clientPass) {
+    if (!clientId || !clientPass) {
       alert("아이디 또는 비밀번호를 입력해주세요.");
       return;
     }
@@ -61,11 +60,12 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container login">
       <div className="row g-3">
         <h1 className="text-center mx-auto">로그인</h1>
         <form onSubmit={onSubmit}>
-          <div className="col-md-6 mx-auto">
+          <div className="col-md-6 mx-auto insert-area">
+            로그인
             <input
               type="text"
               name="clientId"
@@ -77,7 +77,8 @@ const Login = () => {
               onChange={handleValueChange}
             />
           </div>
-          <div className="col-md-6 mx-auto">
+          <div className="col-md-6 mx-auto insert-area">
+            비밀번호
             <input
               type="password"
               name="clientPass"
@@ -89,10 +90,11 @@ const Login = () => {
               onChange={handleValueChange}
             />
           </div>
-          <div className="col-md-6 mx-auto">
-            <button type="submit" className="btn btn-success">
+          <div className="col-md-6 mx-auto submit">
+            <button type="submit" className="btn btn-danger">
               로그인
             </button>
+            &nbsp;
             <Link className="btn btn-secondary" to="/signup">
               회원가입
             </Link>
