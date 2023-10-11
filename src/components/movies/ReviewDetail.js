@@ -8,6 +8,8 @@ import ReviewUpdate from './ReviewUpdate';
 import CommentWrite from './CommentWrite';
 import { commentActions } from '../../toolkit/actions/comment_action';
 import CommentRow from './CommentRow';
+import { PiThumbsUp } from 'react-icons/pi';
+import { likeActions } from '../../toolkit/actions/like_action';
 
 const ReviewDetail = () => {
     const { reviewId } = useParams();
@@ -68,6 +70,15 @@ const ReviewDetail = () => {
         navigator(`/review/page/${review.movieId}/${pv.currentPage}`)
     }
 
+    const addLike = () => {
+        const formData = new FormData();
+
+        formData.append('clientId', localStorage.getItem('clientId'));
+        formData.append('reviewId', reviewId);
+
+        dispatch(likeActions.addlike(formData, config));
+    }
+
     useEffect(() => {
         console.log('reviewDetail page useEffect activated');
         getReviewDetail(reviewId);
@@ -122,6 +133,12 @@ const ReviewDetail = () => {
                         </span>
                     </Stars>
                     <p className="card-text border-top mt-2 pt-2">{review.reviewContent}</p>
+                    <p className='card-text border-top pt-2'>
+                        <Thumbs>
+                            <PiThumbsUp className='icon me-1' onClick={addLike} />
+                            7
+                        </Thumbs>
+                    </p>
                     <button className='btn btn-danger mx-2' onClick={openPanel}>댓글 쓰기</button>
 
                     {localStorage.getItem('clientId') === review.clientId && (
@@ -160,3 +177,17 @@ const Stars = styled.div`
     color: red;
   }
 `;
+
+const Thumbs = styled.div`
+  svg {
+    color: black;
+    width: 18px;
+    height: 18px;
+    transition: all 100ms;
+  }
+
+  svg:hover {
+    color: red;
+    scale: 1.2;
+  }
+`

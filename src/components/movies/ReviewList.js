@@ -7,13 +7,14 @@ import styled from "styled-components";
 import ReviewPageNavigation from './ReviewPageNavigation';
 import ReviewWrite from './ReviewWrite';
 import { movieActions } from '../../toolkit/actions/movie_action';
+import { PiThumbsUp, PiThumbsUpFill } from 'react-icons/pi';
 
 const ReviewList = () => {
     const { movieId, currentPage } = useParams();
     const dispatch = useDispatch();
 
     const getReviewPage = (movieId, currentPage) => {
-        dispatch(reviewActions.getReviewPage(movieId, currentPage));
+        dispatch(reviewActions.getReviewPage(movieId, currentPage, localStorage.getItem('clientId')));
     };
 
     //모달창 상태값 변수
@@ -99,6 +100,11 @@ const ReviewList = () => {
                                                 </span>
                                             </Stars>
                                             <p className="card-text border-top mt-2 pt-2">{review.reviewContent}</p>
+                                            <p className='card-text border-top pt-2'>
+                                                {review.likeCheck ? <PiThumbsUpFill className='icon me-1' color='black' /> : <PiThumbsUp className='icon me-1' color='black' />}
+
+                                                {review.likeCount}
+                                            </p>
                                         </div>
                                     </div>
                                 </Link>

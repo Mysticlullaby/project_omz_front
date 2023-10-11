@@ -18,6 +18,22 @@ function getCommentList(reviewId) {
     }
 }
 
+function getCommentUpdate(formData, config) {
+    return async () => {
+        await axios
+            .put(`/comment/update`, formData, config)
+            .then((response) => response.data);
+    }
+}
+
+function getCommentDelete(commentId, config) {
+    return async () => {
+        await axios
+            .delete(`/comment/delete/${commentId}`, config)
+            .then((response) => response.data);
+    }
+}
+
 export const commentActions = {
-    getCommentWrite, getCommentList
+    getCommentWrite, getCommentList, getCommentUpdate, getCommentDelete
 }

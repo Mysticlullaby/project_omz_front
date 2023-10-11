@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import CommentUpdate from './CommentUpdate';
+import { commentActions } from '../../toolkit/actions/comment_action';
+import { useDispatch } from 'react-redux';
 
 const CommentRow = ({ commentList, review }) => {
+    const dispatch = useDispatch();
+
     const [editingCommentId, setEditingCommentId] = useState(null);
 
     const startEditing = (commentId) => {
@@ -11,6 +15,16 @@ const CommentRow = ({ commentList, review }) => {
     const stopEditing = () => {
         setEditingCommentId(null);
     };
+
+    const onHandleDelete = (commentId) => {
+        const config = {
+            headers: {
+                Authorization: localStorage.getItem('authorization'),
+            },
+        };
+        dispatch(commentActions.getCommentDelete(commentId, config));
+        window.location.replace(`/review/detail/${review.reviewId}`);
+    }
 
     return (
         <>
@@ -27,10 +41,10 @@ const CommentRow = ({ commentList, review }) => {
                             {editingCommentId === comment.commentId && (
                                 <CommentUpdate comment={comment} review={review} stopEditing={stopEditing} />
                             )}
+                            <button className='btn btn-light btn-sm mx-1' onClick={() => startEditing(comment.commentId)}>수정</button>
+                            <button className='btn btn-light btn-sm mx-1' onClick={() => onHandleDelete(comment.commentId)} >삭제</button>
                         </>
                     )}
-                    <button className='btn btn-light btn-sm mx-1' onClick={() => startEditing(comment.commentId)}>수정</button>
-                    <button className='btn btn-light btn-sm mx-1'>삭제</button>
                 </div>
             ))}
         </>
