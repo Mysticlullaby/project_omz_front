@@ -40,7 +40,7 @@ const Login = () => {
     await axios
       .post("/login", input)
       .then((Response) => {
-        console.log('loginData: ', Response.data);
+        console.log("loginData: ", Response.data);
 
         let jwtToken = Response.headers.get("authorization");
         console.log(jwtToken);
@@ -65,7 +65,7 @@ const Login = () => {
         <h1 className="text-center mx-auto">로그인</h1>
         <form onSubmit={onSubmit}>
           <div className="col-md-6 mx-auto insert-area">
-            로그인
+            아이디
             <input
               type="text"
               name="clientId"
