@@ -18,16 +18,16 @@ const Login = () => {
 
   // 로그인 아이디 가입여부 확인
   const [loginIdCheck, setLoginIdCheck] = useState("");
-  const IdCheck = async (e) => {
-    e.preventDefault();
-    console.log("clientId" + clientId);
-    await axios.get(`/login/${clientId}`).then(Response);
-    if (clientId === null) {
-      setLoginIdCheck("존재하지 않는 아이디");
-    } else {
-      setLoginIdCheck("로그인 가능");
-    }
-  };
+  // const IdCheck = async (e) => {
+  //   e.preventDefault();
+  //   console.log("clientId" + clientId);
+  //   await axios.get(`/login/${clientId}`).then(Response);
+  //   if (clientId === null) {
+  //     setLoginIdCheck("존재하지 않는 아이디");
+  //   } else {
+  //     setLoginIdCheck("로그인 가능");
+  //   }
+  // };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -36,6 +36,19 @@ const Login = () => {
       alert("아이디 또는 비밀번호를 입력해주세요.");
       return;
     }
+
+    await axios
+      .get(`/idcheck/${clientId}`)
+      .then((Response) => {
+        if (clientId === null) {
+          setLoginIdCheck("존재하지 않는 아이디");
+        } else {
+          setLoginIdCheck("로그인 가능");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     await axios
       .post("/login", input)
@@ -56,6 +69,10 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
+
+        if (error.response && error.response.status === 401) {
+          alert("비밀번호가 맞지 않습니다.");
+        }
       });
   };
 

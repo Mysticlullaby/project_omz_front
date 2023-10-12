@@ -120,7 +120,7 @@ const Signup = () => {
     <div className="container join">
       <form onSubmit={onSubmit}>
         <div className="row g-3">
-          <h1 className="text-center mx-auto">회원가입</h1>
+          <h1 className="text-center">회원가입</h1>
           <div className="col-md-6 insert-area">
             아이디
             <input
@@ -288,6 +288,10 @@ const Signup = () => {
                 </a>
               </li>
             </ul>
+            &nbsp;&nbsp;
+            <a href="https://www.16personalities.com/ko/%EB%AC%B4%EB%A3%8C-%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95-%EA%B2%80%EC%82%AC">
+              회원님의 MBTI가 궁금하다면?
+            </a>
           </div>
 
           <div className="col-6">
