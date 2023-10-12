@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-function addlike(formData, config) {
+function addLike(formData, config) {
     return async () => {
         await axios
             .post(`/review/like`, formData, config)
@@ -8,6 +8,14 @@ function addlike(formData, config) {
     }
 }
 
+function removeLike(reviewId, clientId, config) {
+    return async () => {
+        await axios
+            .delete(`/review/delete/${reviewId}/${clientId}`, config)
+            .then((response => response.data));
+    }
+}
+
 export const likeActions = {
-    addlike
+    addLike, removeLike
 }

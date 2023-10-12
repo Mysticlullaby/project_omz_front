@@ -8,6 +8,7 @@ import ReviewPageNavigation from './ReviewPageNavigation';
 import ReviewWrite from './ReviewWrite';
 import { movieActions } from '../../toolkit/actions/movie_action';
 import { PiThumbsUp, PiThumbsUpFill } from 'react-icons/pi';
+import { RxChatBubble } from 'react-icons/rx'
 
 const ReviewList = () => {
     const { movieId, currentPage } = useParams();
@@ -101,9 +102,14 @@ const ReviewList = () => {
                                             </Stars>
                                             <p className="card-text border-top mt-2 pt-2">{review.reviewContent}</p>
                                             <p className='card-text border-top pt-2'>
-                                                {review.likeCheck ? <PiThumbsUpFill className='icon me-1' color='black' /> : <PiThumbsUp className='icon me-1' color='black' />}
+                                                {review.likeCheck
+                                                    ? <PiThumbsUpFill className='icon me-2' />
+                                                    : <PiThumbsUp className='icon me-2' />}
 
                                                 {review.likeCount}
+
+                                                <RxChatBubble className='icon ms-3 me-2' />
+                                                {review.commentCount}
                                             </p>
                                         </div>
                                     </div>

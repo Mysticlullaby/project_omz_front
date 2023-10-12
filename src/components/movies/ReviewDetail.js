@@ -8,7 +8,8 @@ import ReviewUpdate from './ReviewUpdate';
 import CommentWrite from './CommentWrite';
 import { commentActions } from '../../toolkit/actions/comment_action';
 import CommentRow from './CommentRow';
-import { PiThumbsUp } from 'react-icons/pi';
+import { PiThumbsUp, PiThumbsUpFill } from 'react-icons/pi';
+import { RxChatBubble } from 'react-icons/rx'
 import { likeActions } from '../../toolkit/actions/like_action';
 
 const ReviewDetail = () => {
@@ -23,6 +24,9 @@ const ReviewDetail = () => {
 
     console.log('commentList: ', commentList);
     console.log('movieId on ReviewDetails: ', movie.movieId);
+
+    //좋아요 추가,삭제 버튼 쿨다운
+    const [isClickOnCool, setIsClickOnCool] = useState();
 
     //모달창 상태값 변수
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,11 +59,11 @@ const ReviewDetail = () => {
 
     const getReviewDetail = (reviewId) => {
         console.log('getReviewDetail function processing');
-        dispatch(reviewActions.getReviewDetail(reviewId));
+        dispatch(reviewActions.getReviewDetail(reviewId, localStorage.getItem('clientId')));
     }
 
     const getCommentList = (reviewId) => {
-        dispatch(commentActions.getCommentList(reviewId));
+        dispatch(commentActions.getCommentList(reviewId, localStorage.getItem('clientId')));
     }
 
 
@@ -70,13 +74,43 @@ const ReviewDetail = () => {
         navigator(`/review/page/${review.movieId}/${pv.currentPage}`)
     }
 
-    const addLike = () => {
+    const addLike = async () => {
+        // alert('좋아요 누릅니다!');
+
+        if (isClickOnCool) {
+            return;
+        }
+
+        setIsClickOnCool(true);
+
+        setTimeout(() => {
+            setIsClickOnCool(false);
+        }, 1000);
+
         const formData = new FormData();
 
         formData.append('clientId', localStorage.getItem('clientId'));
         formData.append('reviewId', reviewId);
 
-        dispatch(likeActions.addlike(formData, config));
+        await dispatch(likeActions.addLike(formData, config));
+        getReviewDetail(reviewId);
+    }
+
+    const removeLike = async () => {
+        // alert('좋아요 취소합니다!');
+
+        if (isClickOnCool) {
+            return;
+        }
+
+        setIsClickOnCool(true);
+
+        setTimeout(() => {
+            setIsClickOnCool(false);
+        }, 1000);
+
+        await dispatch(likeActions.removeLike(reviewId, localStorage.getItem('clientId'), config));
+        getReviewDetail(reviewId);
     }
 
     useEffect(() => {
@@ -133,12 +167,18 @@ const ReviewDetail = () => {
                         </span>
                     </Stars>
                     <p className="card-text border-top mt-2 pt-2">{review.reviewContent}</p>
-                    <p className='card-text border-top pt-2'>
-                        <Thumbs>
-                            <PiThumbsUp className='icon me-1' onClick={addLike} />
-                            7
-                        </Thumbs>
-                    </p>
+                    <Thumbs>
+                        <p className='card-text border-top pt-2 mb-3'>
+                            {review.likeCheck
+                                ? <span onClick={removeLike}><PiThumbsUpFill className='icon thumbs me-2' /></span>
+                                : <span onClick={addLike}><PiThumbsUp className='icon thumbs me-2' /></span>}
+
+                            {review.likeCount}
+
+                            <RxChatBubble className='icon ms-3 me-2' />
+                            {review.commentCount}
+                        </p>
+                    </Thumbs>
                     <button className='btn btn-danger mx-2' onClick={openPanel}>댓글 쓰기</button>
 
                     {localStorage.getItem('clientId') === review.clientId && (
@@ -152,7 +192,7 @@ const ReviewDetail = () => {
                     <CommentWrite isOpen={isPanelOpen} closePanel={closePanel} review={review} />
                 </div>
             </div>
-            <CommentRow commentList={commentList} review={review} />
+            <CommentRow commentList={commentList} review={review} getCommentList={getCommentList} config={config} />
         </div>
     );
 };
@@ -186,8 +226,13 @@ const Thumbs = styled.div`
     transition: all 100ms;
   }
 
-  svg:hover {
+  svg.thumbs:hover {
     color: red;
     scale: 1.2;
+  }
+
+  svg.thumbs:active {
+    color: red;
+    scale: 1.5;
   }
 `

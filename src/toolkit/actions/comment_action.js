@@ -9,10 +9,10 @@ function getCommentWrite(formData, config) {
     }
 }
 
-function getCommentList(reviewId) {
+function getCommentList(reviewId, clientId) {
     return async (dispatch) => {
         const data = await axios
-            .get(`/comment/list/${reviewId}`)
+            .get(`/comment/list/${reviewId}/${clientId}`)
             .then((response) => response.data);
         dispatch(commentReducers.getCommentList({ data }));
     }

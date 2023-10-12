@@ -6,6 +6,8 @@ import ReviewWrite from "./ReviewWrite";
 import { IoIosStar } from "react-icons/io";
 import { reviewActions } from "../../toolkit/actions/review_action";
 import styled from "styled-components";
+import { PiThumbsUp, PiThumbsUpFill } from 'react-icons/pi';
+import { RxChatBubble } from 'react-icons/rx'
 
 const MovieDetail = () => {
   const { movieId } = useParams();
@@ -27,7 +29,7 @@ const MovieDetail = () => {
   };
 
   const getReviewList = (movieId) => {
-    dispatch(reviewActions.getReviewList(movieId));
+    dispatch(reviewActions.getReviewList(movieId, localStorage.getItem('clientId')));
   }
 
   useEffect(() => {
@@ -103,7 +105,7 @@ const MovieDetail = () => {
             return (
               <div key={review.reviewId} className="col">
                 <Link to={`/review/detail/${review.reviewId}`} style={{ textDecoration: 'none' }}>
-                  <div className="card" style={{ width: "18 rem", height: 300 }}>
+                  <div className="card" style={{ width: "18 rem", height: 320 }}>
                     <div className="card-body" >
                       <h5 className="card-title border-bottom pb-2">{review.clientId}</h5>
                       <Stars>
@@ -121,6 +123,19 @@ const MovieDetail = () => {
                       </Stars>
                       <div>
                         <p className="card-text border-top mt-2 pt-2 context-area">{review.reviewContent}</p>
+
+                      </div>
+                      <div>
+                        <p className='card-text border-top pt-2'>
+                          {review.likeCheck
+                            ? <PiThumbsUpFill className='icon me-2' />
+                            : <PiThumbsUp className='icon me-2' />}
+
+                          {review.likeCount}
+
+                          <RxChatBubble className='icon ms-3 me-2' />
+                          {review.commentCount}
+                        </p>
                       </div>
                     </div>
                   </div>
