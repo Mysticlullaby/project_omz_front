@@ -89,3 +89,13 @@
   border-radius: 100px;
   background-color: #f8f8f8;
 }
+
+.delete .insert-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete .row {
+  align-items: center;
+  flex-direction: column;
+}

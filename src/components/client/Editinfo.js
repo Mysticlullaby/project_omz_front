@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Editinfo = () => {
   const navigator = useNavigate();
@@ -265,6 +265,10 @@ const Editinfo = () => {
             <button type="submit" className="btn btn-danger">
               회원정보 수정
             </button>
+            &nbsp;
+            <Link className="btn btn-secondary" to="/delete">
+              회원탈퇴
+            </Link>
           </div>
         </div>
       </form>
