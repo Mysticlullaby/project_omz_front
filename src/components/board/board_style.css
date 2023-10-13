@@ -1,0 +1,77 @@
+.board-btn-danger {
+  background-color: green;
+}
+
+.b-header {
+  margin-bottom: 100px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.board-table-striped {
+  --bs-table-color: salmon;
+  /* --bs-table-accent-bg: transparent; */
+}
+
+/* 아니 이 a태그 어디있는거에여? 저진짜 절대안보여요.. */
+a {
+  color: yellowgreen;
+}
+
+.b-form {
+  width: 100%;
+}
+
+tr.b-List th {
+  text-align: center;
+}
+
+tr.b-List td {
+  height: 60px;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* 게시글 작성할때 내용부분 영역 늘리기 안되게 하는부분 */
+td.b-write textarea {
+  resize: none;
+}
+
+td span.board-btag {
+  text-align: left !important;
+}
+
+td.board-write-td {
+  height: 100px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.b-form tbody tr td {
+  height: 50px;
+  padding: 10px 0;
+}
+
+.board-input {
+  width: 100%;
+}
+
+.btn-area {
+  text-align: right;
+}
+
+.btn-area .btn-l {
+  margin-right: 10px;
+}
+
+.write-area {
+  margin-top: 50px;
+}
+
+.write-padding {
+  padding-top: 80px;
+}
+
+.board-view-content {
+  height: 300px;
+}

@@ -13,20 +13,17 @@ const BaseLayout = () => {
                   OMZ
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/board/list/1" className="nav-link">
-                  BOARD
-                </NavLink>
-              </li>
             </ul>
             <div>
               <ul className="navbar-nav align-items-center">
+                <li className="nav-item">
+                  <NavLink to="/board/list/1" className="nav-link">
+                    BOARD
+                  </NavLink>
+                </li>
                 {localStorage.getItem("clientId") != null ? (
                   <>
-                    <li
-                      className="nav-item mx-3"
-                      style={{ fontSize: "20px", fontWeight: 500 }}
-                    >
+                    <li className="nav-item mx-3" style={{ fontSize: "20px", fontWeight: 500 }}>
                       {localStorage.getItem("clientId")}
                     </li>
                     <li className="nav-item">

@@ -53,7 +53,7 @@ const BoardView = () => {
 
   return (
     <>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
+      <table className="table board-table-striped" style={{ marginTop: 20 }}>
         <tbody>
           <tr>
             <th width="20%">글쓴이</th>
@@ -70,7 +70,7 @@ const BoardView = () => {
 
           <tr>
             <th>내용</th>
-            <td colSpan="3" style={{ whiteSpace: "pre-line" }}>
+            <td className="board-view-content" colSpan="3" style={{ whiteSpace: "pre-line" }}>
               {boardDetail.boardContent}
             </td>
           </tr>
@@ -83,21 +83,21 @@ const BoardView = () => {
           </tr>
         </tbody>
       </table>
-      <Link className="btn btn-primary" to={`/board/list/${pv.currentPage}`}>
+      <Link className="btn btn-danger" to={`/board/list/${pv.currentPage}`}>
         리스트
       </Link>
       &nbsp;
-      <Link className="btn btn-primary" to={`/board/write/${omzboardId}`}>
+      <Link className="btn btn-danger" to={`/board/write/${omzboardId}`}>
         답변
       </Link>
       &nbsp;
       {boardDetail.clientId === localStorage.getItem("clientId") && (
         <>
-          <Link className="btn btn-primary" to={`/board/update/${omzboardId}`}>
+          <Link className="btn btn-danger" to={`/board/update/${omzboardId}`}>
             수정
           </Link>
 
-          <button className="btn btn-primary" onClick={handleDelete}>
+          <button className="btn btn-danger" onClick={handleDelete}>
             삭제
           </button>
         </>
