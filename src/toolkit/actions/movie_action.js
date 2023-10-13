@@ -11,11 +11,11 @@ function getMovieList() {
   }
 }
 
-function getMovieDetail(movieId) {
+function getMovieDetail(movieId, clientId) {
   return async (dispatch) => {
     console.log('axios movieId: ', movieId);
     const data = await axios
-      .get(`/movie/${movieId}`)
+      .get(`/movie/${movieId}/${clientId}`)
       .then((response) => response.data);
     console.log('axios data: ', data);
     dispatch(movieReducers.getMovieDetail({ data }));
