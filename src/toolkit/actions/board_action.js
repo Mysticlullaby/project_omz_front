@@ -18,9 +18,10 @@ function getBoardList(currentPage) {
   };
 }
 
-function getBoardDetail(omzboard_id, config) {
+function getBoardDetail(omzboardId, config) {
+  // alert("omzboardId", omzboardId);
   return async (dispatch) => {
-    const data = await axios.get(`/board/view/${omzboard_id}`, config).then((response) => response.data);
+    const data = await axios.get(`http://127.0.0.1:8090/board/view/${omzboardId}`, config).then((response) => response.data);
     dispatch(boardReducers.getBoardDetail({ data }));
   };
 }
@@ -30,20 +31,20 @@ function getBoardWrite(formData, config) {
     await axios.post("/board/write", formData, config).then((response) => response.data);
   };
 }
-
+//깃용 주석
 function getBoardDownload(upload) {
   return async (dispatch) => {
     const data = await axios
       .get(`/board/contentdownload/${upload}`, {
         ////////////BoardView.js에 정의되어 있음//////////////////
         headers: {
-          Authorization: localStorage.getItem("Authorization"),
+          //Authorization: localStorage.getItem("Authorization"),
         }, //////////////////////////////////////////////////////
         responseType: "blob",
         //blob: 멀티미디어 데이터
       })
       .then((response) => response.data);
-    //dispatch(boardActions.getBoardDownload(data));
+    dispatch(boardActions.getBoardDownload(data));
 
     return data;
   };
@@ -55,9 +56,9 @@ function getBoardUpdate(formData, config) {
   };
 }
 
-function getBoardDelete(num, config) {
+function getBoardDelete(omzboardId, config) {
   return async (dispatch) => {
-    await axios.delete(`/board/delete/${num}`, config).then((response) => response.data);
+    await axios.delete(`/board/delete/${omzboardId}`, config).then((response) => response.data);
   };
 }
 
