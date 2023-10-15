@@ -24,9 +24,6 @@ const BoardList = () => {
 
   return (
     <div>
-      <Link className="btn board-btn-danger" to="/board/write">
-        글쓰기
-      </Link>
       <h3 className="b-header">OMZ 공지사항</h3>
       <table className="table board-table-striped" style={{ marginTop: 20 }}>
         <colgroup>
@@ -52,11 +49,12 @@ const BoardList = () => {
             })}
         </tbody>
       </table>
-
-      {pv && <PageNavigation getBoardList={getBoardList} />}
-      <Link className="btn btn-danger" to="/board/write">
-        글쓰기
-      </Link>
+      <div className="bottom-a">
+        {pv && <PageNavigation getBoardList={getBoardList} />}
+        <Link className="btn btn-danger" to="/board/write">
+          글쓰기
+        </Link>
+      </div>
     </div>
   );
 };

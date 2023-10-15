@@ -5,13 +5,16 @@ const TableRow = ({ board }) => {
     <tr className="b-List">
       <td>{board.omzboardId}</td>
       <td>
-        {board.reLevel > 0 ? (
-          <>
-            <img alt="level" src="/images/level.gif" width={20 * board.reLevel} height="15" />
-            <img alt="re" src="/images/re.png" width={20} height={15} />
-          </>
-        ) : null}
-        <Link to={`/board/view/${board.omzboardId}`}> {board.subject}</Link>
+        <div className="board-list-title">
+          {board.reLevel > 0 ? (
+            <>
+              <img alt="level" src="/images/level.gif" width={20 * board.reLevel} height="15" />
+              <img alt="re" src="/images/re.png" width={20} height={15} />
+            </>
+          ) : null}
+
+          <Link to={`/board/view/${board.omzboardId}`}> {board.subject}</Link>
+        </div>
       </td>
 
       <td>{board.clientId}</td>
