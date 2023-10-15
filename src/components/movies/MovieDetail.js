@@ -47,6 +47,11 @@ const MovieDetail = () => {
   };
 
   const addViewCount = async () => {
+    if (localStorage.getItem('clientId') == null) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
     if (isClickOnCool) {
       return;
     }
@@ -111,8 +116,8 @@ const MovieDetail = () => {
                 <Eyes>
                   {movie.viewCheck ? (
                     <div
-                      onMouseEnter={() => setEyeState(true)} // 마우스 호버 시 `eyeState`를 true로 변경
-                      onMouseLeave={() => setEyeState(false)} // 마우스가 벗어날 때 `eyeState`를 false로 변경
+                      onMouseEnter={() => setEyeState(true)}
+                      onMouseLeave={() => setEyeState(false)}
                     >
                       {eyeState ? (
                         <span onClick={removeViewCount}>
@@ -120,7 +125,7 @@ const MovieDetail = () => {
                         </span>
                       ) : (
                         <span onClick={removeViewCount}>
-                          <IoMdEye className="closed-eye" size='50px' />
+                          <IoMdEye className="opened-eye" size='50px' />
                         </span>
                       )}
                     </div>
@@ -156,7 +161,7 @@ const MovieDetail = () => {
                     <h1>리뷰</h1>
                   </li>
                   <li className="nav-item">
-                    <button className="btn btn-danger" onClick={openModal}>리뷰 작성하기</button>
+                    {localStorage.getItem('clientId') && <button className="btn btn-danger" onClick={openModal}>리뷰 작성하기</button>}
                     <ReviewWrite isOpen={isModalOpen} closeModal={closeModal} movie={movie} />
                   </li>
                 </ul>
@@ -177,7 +182,7 @@ const MovieDetail = () => {
 
       <div className="row row-cols-md-4 g-2" style={{ padding: 10 }}>
 
-        {reviewList &&
+        {reviewList.length > 0 ?
           reviewList.map((review) => {
             let score = review.rating;
             let scoreStates = [true, false, false, false, false];
@@ -225,7 +230,11 @@ const MovieDetail = () => {
                 </Link>
               </div>
             )
-          })}
+          }) :
+          <div>
+            <p>아직 작성된 리뷰가 없습니다</p>
+          </div>
+        }
       </div>
     </div>
   );
@@ -257,12 +266,12 @@ const Eyes = styled.div`
     transition: all 100ms
   }
 
-  svg .opened-eye{
-    color:black
+  .opened-eye {
+    color:black;
   }
 
-  svg .closed-eye{
-    color:grey
+  .closed-eye {
+    color:#CBCBCB;
   }
 
   svg:hover {

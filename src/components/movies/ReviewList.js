@@ -54,7 +54,7 @@ const ReviewList = () => {
                                     <h1>리뷰</h1>
                                 </li>
                                 <li className="nav-item">
-                                    <button className='btn btn-danger' onClick={openModal}>리뷰 작성하기</button>
+                                    {localStorage.getItem('clientId') && <button className='btn btn-danger' onClick={openModal}>리뷰 작성하기</button>}
                                     <ReviewWrite isOpen={isModalOpen} closeModal={closeModal} movie={movie} />
                                 </li>
                             </ul>
