@@ -69,9 +69,9 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
-
         if (error.response && error.response.status === 401) {
-          alert("아이디 또는 비밀번호가 맞지 않습니다.");
+          // alert("아이디 또는 비밀번호가 맞지 않습니다.");
+          alert("회원정보를 확인해 주세요.");
         }
       });
   };

@@ -23,9 +23,10 @@ const Delete = () => {
     },
   };
 
+  // 백엔드에서 회원 이름 불러오기
   const info = async () => {
     await axios
-      .get(`/callName/${localStorage.getItem("clientId")}`, config)
+      .get(`/getClientName/${localStorage.getItem("clientId")}`, config)
       .then((Response) => {
         setClient({ ...Response.data, clientPass: "" });
         console.log(Response.data);
@@ -41,11 +42,11 @@ const Delete = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("내가 입력한 비밀번호: ", clientPass);
-    if (!clientPass) {
-      alert("비밀번호를 입력해주세요");
-      return;
-    }
+    // console.log("내가 입력한 비밀번호: ", clientPass);
+    // if (!clientPass) {
+    //   alert("비밀번호를 입력해주세요");
+    //   return;
+    // }
 
     await axios
       .post("/delete", client, config)
@@ -85,7 +86,7 @@ const Delete = () => {
             />
           </div>
 
-          <div className="col-md-6">
+          {/* <div className="col-md-6">
             비밀번호
             <input
               type="password"
@@ -93,7 +94,7 @@ const Delete = () => {
               name="clientPass"
               onChange={handleValueChange}
             />
-          </div>
+          </div> */}
 
           <div className="col-12">
             <button type="submit" className="btn btn-danger">
