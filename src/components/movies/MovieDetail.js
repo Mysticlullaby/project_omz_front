@@ -30,6 +30,7 @@ const MovieDetail = () => {
   const openModal = (e) => {
     setIsModalOpen(true);
   };
+
   const closeModal = () => setIsModalOpen(false);
 
   const getMovieDetail = (movieId) => {
