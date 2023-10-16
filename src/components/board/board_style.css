@@ -141,3 +141,17 @@ tbody.board-view-table-body tr th {
 .btn-download {
   border: 0;
 }
+
+.popup-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.popup-div-a {
+  background-color: beige;
+  width: 477px;
+  margin: 10px;
+  height: 280px;
+}

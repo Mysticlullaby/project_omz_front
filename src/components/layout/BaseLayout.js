@@ -18,11 +18,11 @@ const BaseLayout = () => {
               <ul className="navbar-nav align-items-center">
                 {localStorage.getItem("clientId") != null ? (
                   <>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                       <NavLink to="/popup" className="nav-link">
                         팝업
                       </NavLink>
-                    </li>
+                    </li> */}
                     <li className="nav-link">{localStorage.getItem("clientId")}님 안녕하세요!</li>
                     <li className="nav-item">
                       <NavLink to="/logout" className="nav-link">

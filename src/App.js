@@ -17,7 +17,6 @@ import ReviewList from "./components/movies/ReviewList";
 import ReviewDetail from "./components/movies/ReviewDetail";
 import BoardView from "./components/board/BoardView";
 import BoardUpdate from "./components/board/BoardUpdate";
-import Popup from "./components/layout/Popup";
 
 function App() {
   return (
@@ -37,7 +36,6 @@ function App() {
           <Route path="board/write/:omzboardId" element={<PrivateRoute isAuth={true} RouteComponent={BoardWrite} />} />
           <Route path="board/view/:omzboardId" element={<PrivateRoute isAuth={true} RouteComponent={BoardView} />} />
           <Route path="board/update/:omzboardId" element={<PrivateRoute isAuth={true} RouteComponent={BoardUpdate} />} />
-          <Route path="popup" element={<Popup />} />
         </Route>
       </Routes>
     </div>

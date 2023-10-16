@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { boardActions } from "../../toolkit/actions/board_action";
 import { useDispatch, useSelector } from "react-redux";
 import TableRow from "./TableRow";
 import PageNavigation from "./PageNavigation";
 import "./board_style.css";
+import Popup from "./Popup";
 
 const BoardList = () => {
   const { currentPage } = useParams();
@@ -22,8 +23,21 @@ const BoardList = () => {
   const boardList = useSelector((state) => state.board.boardList);
   const pv = useSelector((state) => (state.board.pv ? state.board.pv : { currentPage: 1 }));
 
+  // 시작
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
+  const closeModal = (e) => {
+    setIsModalOpen(false);
+  };
+
+  // const openModal = () => setIsModalOpen(true);
+  //이까지
+
   return (
     <div>
+      <div>
+        <Popup isOpen={isModalOpen} closeModal={closeModal} />
+      </div>
       <h3 className="b-header">OMZ 공지사항</h3>
       <table className="table board-table-striped" style={{ marginTop: 20 }}>
         <colgroup>
