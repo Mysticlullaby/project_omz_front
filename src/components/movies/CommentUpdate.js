@@ -17,6 +17,7 @@ const CommentUpdate = ({ stopEditing, review, comment }) => {
         e.preventDefault();
 
         const formData = new FormData();
+        formData.append('commentId', comment.commentId);
         formData.append('reviewId', review.reviewId);
         formData.append('clientId', localStorage.getItem('clientId'));
         formData.append('commentContent', commentContent);
@@ -74,7 +75,7 @@ const CommentUpdate = ({ stopEditing, review, comment }) => {
                         <div className='d-flex flex-row-reverse'>
                             <div>
                                 <button type='button' className='btn btn-danger mx-1' onClick={stopEditing}>닫기</button>
-                                <input type='submit' className='btn btn-danger mx-1' value='작성하기' />
+                                <input type='submit' className='btn btn-danger mx-1' value='수정하기' />
                             </div>
                         </div>
                     </div>

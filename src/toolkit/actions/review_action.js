@@ -9,10 +9,10 @@ function getReviewWrite(formData, config) {
     }
 }
 
-function getReviewList(movieId) {
+function getReviewList(movieId, clientId) {
     return async (dispatch) => {
         const data = await axios
-            .get(`/review/list/${movieId}`)
+            .get(`/review/list/${movieId}/${clientId}`)
             .then((response) => response.data)
             .catch((error) => console.log(error));
         console.log('axios reviewList data: ', data);
@@ -20,20 +20,20 @@ function getReviewList(movieId) {
     }
 }
 
-function getReviewPage(movieId, currentPage) {
+function getReviewPage(movieId, currentPage, clientId) {
     return async (dispatch) => {
         const data = await axios
-            .get(`/review/page/${movieId}/${currentPage}`)
+            .get(`/review/page/${movieId}/${currentPage}/${clientId}`)
             .then((response) => response.data)
             .catch((error) => console.log(error));
         dispatch(reviewReducers.getReviewPage({ data }));
     }
 }
 
-function getReviewDetail(reviewId) {
+function getReviewDetail(reviewId, clientId) {
     return async (dispatch) => {
         const data = await axios
-            .get(`/review/detail/${reviewId}`)
+            .get(`/review/detail/${reviewId}/${clientId}`)
             .then((response) => response.data)
             .catch((error) => console.log(error));
         console.log('axios reviewDetail data: ', data);
