@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { boardActions } from "../../toolkit/actions/board_action";
+import "./board_style.css";
 
 const BoardWrite = () => {
   const navigator = useNavigate();
@@ -73,14 +74,16 @@ const BoardWrite = () => {
   };
 
   return (
-    <>
+    <div className="write-padding">
       <form onSubmit={onSubmit}>
-        <table>
+        <table className="b-form">
           <tbody>
             <tr>
-              <td>글쓴이</td>
+              {/* <td className="board-write-td">작성자</td> */}
+              <td align="center">작성자</td>
               <td>
-                <input type="type" readOnly value={localStorage.getItem("clientId")} name="clientId" />
+                {/* <input type="type" readOnly value={localStorage.getItem("clientId")} name="clientId" /> */}
+                <span className="board-btag">{localStorage.getItem("clientId")}</span>
               </td>
             </tr>
             <tr>
@@ -88,15 +91,15 @@ const BoardWrite = () => {
                 제목
               </td>
               <td>
-                <input type="text" name="subject" size="40" value={subject} placeholder={omzboardId !== undefined ? "답변" : null} onChange={handleValueChange} />
+                <input className="board-input" type="text" name="subject" size="40" value={subject} placeholder={omzboardId !== undefined ? "답변" : null} onChange={handleValueChange} />
               </td>
             </tr>
-            <tr>
+            <tr className="write-area">
               <td width="20%" align="center">
                 내용
               </td>
-              <td>
-                <textarea name="boardContent" rows="13" cols="40" value={boardContent} onChange={handleValueChange}></textarea>
+              <td className="b-write">
+                <textarea className="board-input" name="boardContent" rows="13" cols="40" value={boardContent} onChange={handleValueChange}></textarea>
               </td>
             </tr>
 
@@ -110,12 +113,14 @@ const BoardWrite = () => {
             </tr>
           </tbody>
         </table>
-        <Link className="btn btn-primary" to={`/board/list/${pv.currentPage}`}>
-          리스트
-        </Link>
-        <input type="submit" className="btn btn-primary" value="등록" />
+        <div className="btn-area">
+          <Link className="btn btn-danger btn-l" to={`/board/list/${pv.currentPage}`}>
+            리스트
+          </Link>
+          <input type="submit" className="btn btn-danger" value="등록" />
+        </div>
       </form>
-    </>
+    </div>
   );
 };
 
