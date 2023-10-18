@@ -8,9 +8,10 @@ const Login = () => {
   const [input, setInput] = useState({
     clientId: "",
     clientPass: "",
+    mbti: "",
   });
 
-  const { clientId, clientPass } = input;
+  const { clientId, clientPass, mbti } = input;
 
   const handleValueChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -40,16 +41,17 @@ const Login = () => {
     await axios
       .post("/login", input)
       .then((Response) => {
-        console.log('loginData: ', Response.data);
+        console.log("loginData: ", Response.data);
 
         let jwtToken = Response.headers.get("authorization");
         console.log(jwtToken);
 
         localStorage.setItem("authorization", jwtToken);
         localStorage.setItem("clientId", Response.data.clientId);
+        localStorage.setItem("mbti", Response.data.mbti);
         localStorage.setItem("isLogin", true);
 
-        setInput({ clientId: "", clientPass: "" });
+        setInput({ clientId: "", clientPass: "", mbti: "" });
       })
       .then((Response) => {
         window.location.replace("/");
@@ -66,29 +68,11 @@ const Login = () => {
         <form onSubmit={onSubmit}>
           <div className="col-md-6 mx-auto insert-area">
             로그인
-            <input
-              type="text"
-              name="clientId"
-              className="form-control"
-              id="clientId"
-              value={clientId}
-              placeholder="아이디를 입력해주세요"
-              maxLength="20"
-              onChange={handleValueChange}
-            />
+            <input type="text" name="clientId" className="form-control" id="clientId" value={clientId} placeholder="아이디를 입력해주세요" maxLength="20" onChange={handleValueChange} />
           </div>
           <div className="col-md-6 mx-auto insert-area">
             비밀번호
-            <input
-              type="password"
-              name="clientPass"
-              className="form-control"
-              id="clientPass"
-              value={clientPass}
-              placeholder="비밀번호를 입력해주세요"
-              maxLength="20"
-              onChange={handleValueChange}
-            />
+            <input type="password" name="clientPass" className="form-control" id="clientPass" value={clientPass} placeholder="비밀번호를 입력해주세요" maxLength="20" onChange={handleValueChange} />
           </div>
           <div className="col-md-6 mx-auto submit">
             <button type="submit" className="btn btn-danger">

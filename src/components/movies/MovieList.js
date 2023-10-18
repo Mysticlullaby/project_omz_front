@@ -12,19 +12,26 @@ const MovieList = () => {
   };
 
   const getRecommandList = () => {
-    dispatch(movieActions.getRecommandList(localStorage.getItem('clientId')))
-  }
+    dispatch(movieActions.getRecommandList(localStorage.getItem("clientId")));
+  };
+
+  // 유림 mbti추가부분
+  const getMbtiRecommend = () => {
+    dispatch(movieActions.getMbtiRecommend(localStorage.getItem("mbti")));
+  };
 
   useEffect(() => {
     getOmzPopular();
 
-    if (localStorage.getItem('clientId') != null) {
+    if (localStorage.getItem("clientId") != null) {
       getRecommandList();
+      getMbtiRecommend();
     }
   }, []);
 
   const omzPopularList = useSelector((state) => state.movies.omzPopularList);
   const recommandList = useSelector((state) => state.movies.recommandList);
+  const mbtirecommend = useSelector((state) => state.movies.mbtirecommend);
 
   return (
     <div>
@@ -40,7 +47,7 @@ const MovieList = () => {
                     <img src={movie.poster} className="card-img-top" alt={movie.title} />
                   </NavLink>
                   <div className="card-body">
-                    <p className="card-text">{movie.title}</p>
+                    <p className="card-text-main">{movie.title}</p>
                   </div>
                 </div>
               </div>
@@ -48,7 +55,7 @@ const MovieList = () => {
         </div>
       </div>
 
-      {localStorage.getItem('clientId') &&
+      {localStorage.getItem("clientId") && (
         <>
           <p className="movielist-title">이런 작품은 어떠세요?</p>
           <div className="container">
@@ -69,8 +76,30 @@ const MovieList = () => {
             </div>
           </div>
         </>
-      }
+      )}
 
+      {localStorage.getItem("mbti") && (
+        <>
+          <p className="movielist-title">MBTI {localStorage.getItem("mbti")} 츄촌</p>
+          <div className="container">
+            <div className="row row-cols-md-5 g-3">
+              {mbtirecommend &&
+                mbtirecommend.map((movie, index) => (
+                  <div key={movie.movieId} className="col">
+                    <div className="card" style={{ width: "18 rem" }}>
+                      <NavLink to={`/movie/${movie.movieId}`}>
+                        <img src={movie.poster} className="card-img-top" alt={movie.title} />
+                      </NavLink>
+                      <div className="card-body">
+                        <p className="card-text">{movie.title}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
