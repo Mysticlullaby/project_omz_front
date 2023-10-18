@@ -44,7 +44,6 @@ function getBoardDownload(upload) {
         //blob: 멀티미디어 데이터
       })
       .then((response) => response.data);
-    dispatch(boardActions.getBoardDownload(data));
 
     return data;
   };
