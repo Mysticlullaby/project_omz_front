@@ -35,8 +35,10 @@ const Signup = () => {
         const resMsg = Response.data;
         console.log("clientId" + Response.data);
         if (resMsg) {
+          setCheckId(true);
           alert("사용가능한 아이디입니다.");
         } else {
+          setCheckId(false);
           alert("이미 사용중인 아이디입니다.");
         }
       })
@@ -68,6 +70,11 @@ const Signup = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    if (!checkId) {
+      alert("아이디 중복확인을 해주세요");
+      return;
+    }
+
     if (
       !client.clientId ||
       !client.clientPass ||
@@ -79,7 +86,7 @@ const Signup = () => {
       if (!client.clientId) {
         missingFields += "아이디 ";
       } else if (!client.clientPass) {
-        missingFields += "패스워드 ";
+        missingFields += "비밀번호 ";
       } else if (!client.clientName) {
         missingFields += "이름 ";
       } else if (!client.mbti) {

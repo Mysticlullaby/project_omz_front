@@ -6,7 +6,7 @@ const Delete = () => {
   const navigator = useNavigate();
 
   const [client, setClient] = useState({
-    clieniId: "",
+    clientId: "",
     clientPass: "",
     clientName: "",
   });
@@ -47,6 +47,8 @@ const Delete = () => {
     //   alert("비밀번호를 입력해주세요");
     //   return;
     // }
+
+    
 
     await axios
       .post("/delete", client, config)
