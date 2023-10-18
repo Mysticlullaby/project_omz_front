@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { movieActions } from "../../toolkit/actions/movie_action";
 import { NavLink } from "react-router-dom";
+// import axios from "axios";
 
 const MovieList = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const MovieList = () => {
 
   return (
     <div className="container">
-      <div className="row row-cols-md-5 g-3">
+      <div className="row row-cols-5 g-3">
         {movieList &&
           movieList.map((movie) => (
             <div key={movie.movieId} className="col">

@@ -4,8 +4,10 @@ import { movieReducers } from "../reducers/movie_reducer";
 function getMovieList() {
   return async (dispatch) => {
     const data = await axios
-      .get(`/movie/list`)
-      .then((response) => response.data);
+      // .get(`/movie/list`)
+      .get(`http://127.0.0.1:5000/movieList/`)
+      .then((response) => JSON.parse(response.data));
+    console.log('type of data', typeof (data));
     console.log('axios data: ', data);
     dispatch(movieReducers.getMovieList({ data }));
   }
