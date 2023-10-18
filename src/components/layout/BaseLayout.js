@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import Footer from "./Footer";
 
 const BaseLayout = () => {
+
+  const [input, setInput] = useState('');
+
+  const inputRef = useRef(null);
+
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  }
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && document.activeElement === inputRef.current) {
+      search();
+    }
+  }
+
+  const search = () => {
+    if (input == '') {
+      alert('검색어를 입력하세요');
+      return;
+    }
+    window.location.replace(`/search/${input}`);
+    setInput('');
+  }
+
   return (
     <div className="px-5">
       <nav className="navbar navbar-expand-lg">
@@ -12,6 +36,8 @@ const BaseLayout = () => {
               <Link to={"/"}>
                 <img src="/images/LOGO.png" />
               </Link>
+              <input ref={inputRef} onChange={handleChange} value={input} onKeyDown={handleKeyPress} />
+              <button className="btn btn-danger mx-2" onClick={search}>Search</button>
 
               <ul className="navbar-nav baseL">
                 {localStorage.getItem("clientId") != null ? (
