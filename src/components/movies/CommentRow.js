@@ -33,7 +33,10 @@ const CommentRow = ({ commentList, review, getCommentList, config }) => {
     }
 
     const addLike = async (commentId) => {
-        // alert('좋아요 누릅니다!');
+        if (localStorage.getItem('clientId') == null) {
+            alert('로그인이 필요합니다.');
+            return;
+        }
 
         if (isClickOnCool) {
             return;
