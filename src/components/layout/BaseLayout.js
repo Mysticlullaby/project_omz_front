@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 const BaseLayout = () => {
   return (
@@ -7,22 +7,14 @@ const BaseLayout = () => {
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <div className="collapse navbar-collapse justify-content-space-between" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <NavLink to="/" className="nav-link">
-                  OMZ
-                </NavLink>
-              </li>
-            </ul>
-            <div>
+            <div className="main-title">
+              <Link to={"/"}>
+                <img src="/images/LOGO.png" />
+              </Link>
+
               <ul className="navbar-nav align-items-center">
                 {localStorage.getItem("clientId") != null ? (
                   <>
-                    {/* <li className="nav-item">
-                      <NavLink to="/popup" className="nav-link">
-                        팝업
-                      </NavLink>
-                    </li> */}
                     <li className="nav-link">{localStorage.getItem("clientId")}님 안녕하세요!</li>
                     <li className="nav-item">
                       <NavLink to="/logout" className="nav-link">
