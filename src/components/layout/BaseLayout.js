@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import Footer from "./Footer";
 
 const BaseLayout = () => {
   return (
@@ -56,6 +57,7 @@ const BaseLayout = () => {
       <div className="px-5">
         <Outlet />
       </div>
+      <Footer />
     </div>
   );
 };
