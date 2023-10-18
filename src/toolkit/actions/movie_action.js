@@ -1,12 +1,22 @@
 import axios from "axios";
 import { movieReducers } from "../reducers/movie_reducer";
 
-function getMovieList() {
+function getOmzPopular() {
   return async (dispatch) => {
-    const data = await axios.get(`http://127.0.0.1:5000/movieList`).then((response) => JSON.parse(response.data));
+    const data = await axios.get(`http://127.0.0.1:5000/movieList/omzPopular`).then((response) => JSON.parse(response.data));
     console.log("axios data: ", data);
-    dispatch(movieReducers.getMovieList({ data }));
+    dispatch(movieReducers.getOmzPopular({ data }));
   };
+}
+
+function getRecommandList(clientId) {
+  return async (dispatch) => {
+    const data = await axios
+      .get(`http://127.0.0.1:5000/movieList/recommand?clientId=${clientId}`)
+      // 여기요
+      .then((response) => response.data);
+    dispatch(movieReducers.getRecommandList({ data }));
+  }
 }
 
 function getMovieDetail(movieId, clientId) {
@@ -19,6 +29,7 @@ function getMovieDetail(movieId, clientId) {
 }
 
 export const movieActions = {
-  getMovieList,
+  getOmzPopular,
+  getRecommandList,
   getMovieDetail,
 };
