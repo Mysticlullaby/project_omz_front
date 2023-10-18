@@ -13,7 +13,7 @@ const BaseLayout = () => {
                 <img src="/images/LOGO.png" />
               </Link>
 
-              <ul className="navbar-nav align-items-center">
+              <ul className="navbar-nav baseL">
                 {localStorage.getItem("clientId") != null ? (
                   <>
                     <li className="nav-link">{localStorage.getItem("clientId")}님 안녕하세요!</li>
