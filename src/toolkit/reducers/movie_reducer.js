@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 let initialState = {
-    movieList: [],
+    omzPopularList: [],
+    recommandList: [],
     movieDetail: {}
 }
 
@@ -9,8 +10,12 @@ const movieSlice = createSlice({
     name: 'movies',
     initialState,
     reducers: {
-        getMovieList(state, action) {
-            state.movieList = action.payload.data
+        getOmzPopular(state, action) {
+            state.omzPopularList = action.payload.data
+        },
+
+        getRecommandList(state, action) {
+            state.recommandList = action.payload.data
         },
 
         getMovieDetail(state, action) {
