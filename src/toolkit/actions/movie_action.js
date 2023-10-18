@@ -13,6 +13,7 @@ function getRecommandList(clientId) {
   return async (dispatch) => {
     const data = await axios
       .get(`http://127.0.0.1:5000/movieList/recommand?clientId=${clientId}`)
+      // 여기요
       .then((response) => response.data);
     dispatch(movieReducers.getRecommandList({ data }));
   }
