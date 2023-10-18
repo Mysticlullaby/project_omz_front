@@ -117,7 +117,7 @@
   justify-content: flex-end;
 }
 
-.card-text {
+.card-text-main {
   font-size: 20px;
   font-weight: bold;
 }

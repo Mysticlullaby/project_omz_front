@@ -13,9 +13,10 @@ import { RxChatBubble } from "react-icons/rx";
 const ReviewList = () => {
   const { movieId, currentPage } = useParams();
   const dispatch = useDispatch();
+  const clientId = localStorage.getItem("clientId");
 
   const getReviewPage = (movieId, currentPage) => {
-    dispatch(reviewActions.getReviewPage(movieId, currentPage, localStorage.getItem("clientId")));
+    dispatch(reviewActions.getReviewPage(movieId, currentPage, clientId));
   };
 
   //모달창 상태값 변수
@@ -29,7 +30,7 @@ const ReviewList = () => {
   const closeModal = () => setIsModalOpen(false);
 
   const getMovieDetail = (movieId) => {
-    dispatch(movieActions.getMovieDetail(movieId));
+    dispatch(movieActions.getMovieDetail(movieId, clientId));
   };
 
   useEffect(() => {
@@ -54,9 +55,11 @@ const ReviewList = () => {
                   <h1>리뷰</h1>
                 </li>
                 <li className="nav-item">
-                  <button className="btn btn-danger" onClick={openModal}>
-                    리뷰 작성하기
-                  </button>
+                  {movie.reviewId == 0 ? <button className="btn btn-danger" onClick={openModal}>리뷰 작성하기</button> :
+                    <NavLink to={`/review/detail/${movie.reviewId}`}>
+                      <button className="btn btn-danger">내가 쓴 리뷰 보기</button>
+                    </NavLink>
+                  }
                   <ReviewWrite isOpen={isModalOpen} closeModal={closeModal} movie={movie} />
                 </li>
               </ul>
@@ -123,14 +126,6 @@ const Stars = styled.div`
   svg {
     color: gray;
     cursor: pointer;
-  }
-
-  span:hover > svg {
-    color: red;
-  }
-
-  svg:hover ~ svg {
-    color: gray;
   }
 
   svg.yellowStar {
