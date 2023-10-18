@@ -112,12 +112,25 @@
   margin-left: 60px;
 }
 
-.navbar-nav {
+.navbar-nav.baseL {
   width: 100%;
   justify-content: flex-end;
 }
 
 .card-text-main {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.footer {
+  /* position: fixed; */
+  margin-top: 70px;
+  bottom: 0;
+  width: 1200px;
+  /* background-color: #f2f2f2; */
+  padding: 10px;
+  text-align: left;
 }

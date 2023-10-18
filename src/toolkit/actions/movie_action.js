@@ -29,6 +29,14 @@ function getWavePopular() {
   }
 }
 
+// 유림 mbti추가부분
+function getMbtiRecommend(mbti) {
+  return async (dispatch) => {
+    const data = await axios.get(`http://127.0.0.1:5000/movieList/mbtiPopular?mbti=${mbti}`).then((response) => JSON.parse(response.data));
+    dispatch(movieReducers.getMbtiRecommend({ data }));
+  };
+}
+
 function getRecommandList(clientId) {
   return async (dispatch) => {
     const data = await axios
@@ -36,7 +44,7 @@ function getRecommandList(clientId) {
       // 여기요
       .then((response) => response.data);
     dispatch(movieReducers.getRecommandList({ data }));
-  }
+  };
 }
 
 function getMovieList() {
@@ -76,5 +84,6 @@ export const movieActions = {
   getRecommandList,
   getMovieList,
   getSearchList,
+  getMbtiRecommend,
   getMovieDetail,
 };

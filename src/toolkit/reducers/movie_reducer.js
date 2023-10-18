@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 let initialState = {
     omzPopularList: [],
@@ -8,15 +8,16 @@ let initialState = {
     recommandList: [],
     movieList: [],
     searchList: [],
-    movieDetail: {}
+    movieDetail: {},
+    mbtirecommend: [],
 }
 
 const movieSlice = createSlice({
-    name: 'movies',
+    name: "movies",
     initialState,
     reducers: {
         getOmzPopular(state, action) {
-            state.omzPopularList = action.payload.data
+            state.omzPopularList = action.payload.data;
         },
 
         getNetflixPopular(state, action) {
@@ -45,7 +46,11 @@ const movieSlice = createSlice({
 
         getMovieDetail(state, action) {
             state.movieDetail = action.payload.data
-        }
+        },
+
+        getMbtiRecommend(state, action) {
+            state.mbtirecommend = action.payload.data;
+        },
     }
 })
 

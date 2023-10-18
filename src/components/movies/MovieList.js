@@ -40,7 +40,14 @@ const MovieList = () => {
     if (updatedViewCount > 0) {
       getRecommandList();
     }
-  }
+
+    dispatch(movieActions.getRecommandList(localStorage.getItem("clientId")));
+  };
+
+  // 유림 mbti추가부분
+  const getMbtiRecommend = () => {
+    dispatch(movieActions.getMbtiRecommend(localStorage.getItem("mbti")));
+  };
 
   useEffect(() => {
     getOmzPopular();
@@ -49,8 +56,9 @@ const MovieList = () => {
     getWavePopular();
     getMovieList();
 
-    if (clientId != null) {
+    if (localStorage.getItem("clientId") != null) {
       checkViewCount();
+      getMbtiRecommend();
     }
   }, []);
 
@@ -60,6 +68,7 @@ const MovieList = () => {
   const waveList = useSelector((state) => state.movies.wavePopular);
   const recommandList = useSelector((state) => state.movies.recommandList);
   const movieList = useSelector((state) => state.movies.movieList);
+  const mbtirecommend = useSelector((state) => state.movies.mbtirecommend);
 
   return (
     <div className="overallpage">
@@ -82,6 +91,29 @@ const MovieList = () => {
             ))}
         </div>
       </div>
+
+      {localStorage.getItem("mbti") && (
+        <>
+          <p className="movielist-title">MBTI {localStorage.getItem("mbti")} 츄촌</p>
+          <div className="container">
+            <div className="row row-cols-md-5 g-3">
+              {mbtirecommend &&
+                mbtirecommend.map((movie, index) => (
+                  <div key={movie.movieId} className="col">
+                    <div className="card" style={{ width: "18 rem" }}>
+                      <NavLink to={`/movie/${movie.movieId}`}>
+                        <img src={movie.poster} className="card-img-top" alt={movie.title} />
+                      </NavLink>
+                      <div className="card-body">
+                        <p className="card-text">{movie.title}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </>
+      )}
 
       <p className="movielist-title">넷플릭스 인기작</p>
       <div className="container">

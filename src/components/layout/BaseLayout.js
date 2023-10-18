@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import Footer from "./Footer";
 
 const BaseLayout = () => {
 
@@ -38,7 +39,7 @@ const BaseLayout = () => {
               <input ref={inputRef} onChange={handleChange} value={input} onKeyDown={handleKeyPress} />
               <button className="btn btn-danger mx-2" onClick={search}>Search</button>
 
-              <ul className="navbar-nav align-items-center">
+              <ul className="navbar-nav baseL">
                 {localStorage.getItem("clientId") != null ? (
                   <>
                     <li className="nav-link">{localStorage.getItem("clientId")}님 안녕하세요!</li>
@@ -82,6 +83,7 @@ const BaseLayout = () => {
       <div className="px-5">
         <Outlet />
       </div>
+      <Footer />
     </div>
   );
 };
