@@ -52,14 +52,15 @@ const Login = () => {
 
     await axios
       .post("/login", input)
-      .then((Response) => {
-        console.log("loginData: ", Response.data);
+      .then((response) => {
+        console.log("loginData: ", response.data);
 
-        let jwtToken = Response.headers.get("authorization");
+        let jwtToken = response.headers.get("authorization");
         console.log(jwtToken);
 
         localStorage.setItem("authorization", jwtToken);
-        localStorage.setItem("clientId", Response.data.clientId);
+        localStorage.setItem("clientId", response.data.clientId);
+        // localStorage.setItem("mbti", response.data.mbti);
         localStorage.setItem("isLogin", true);
 
         setInput({ clientId: "", clientPass: "" });
