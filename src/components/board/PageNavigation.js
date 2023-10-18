@@ -18,16 +18,17 @@ const PageNavigation = ({ getBoardList }) => {
             &laquo;
           </span>
         </li>
-        {/* idx 지워도돼? */}
-        {pageNumbers.map((pnum, idx) => (
-          <li key={pnum}>
-            <span onClick={() => getBoardList(pnum)} className={pv.currentPage === pnum ? "page-item active" : null}>
-              <Link to={`/board/list/${pnum}`} className="page-link">
-                {pnum}
-              </Link>
-            </span>
-          </li>
-        ))}
+        <div className="paging-a">
+          {pageNumbers.map((pnum) => (
+            <li key={pnum}>
+              <span onClick={() => getBoardList(pnum)} className={pv.currentPage === pnum ? "page-item active" : null}>
+                <Link to={`/board/list/${pnum}`} className="page-link">
+                  {pnum}
+                </Link>
+              </span>
+            </li>
+          ))}
+        </div>
 
         <li className={pv.endPage >= pv.totalPage ? "page-item disabled" : "page-item"}>
           <span className="page-link" onClick={() => getBoardList(pv.startPage + pv.blockPage)}>

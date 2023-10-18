@@ -24,8 +24,10 @@ const BoardView = () => {
   }, [omzboardId]);
 
   const handleDownload = async () => {
-    const boardFile = await dispatch(boardActions.getBoardDownload(boardDetail.upload, config));
+    const boardFile = await dispatch(boardActions.getBoardDownload(boardDetail.upload));
 
+    // await dispatch(boardActions.getBoardDownload(boardDetail.upload, config));
+    //
     await dispatch(boardActions.getBoardDownload(boardDetail.upload));
 
     const fileName = boardDetail.upload.substring(boardDetail.upload.indexOf("_") + 1);
@@ -52,9 +54,9 @@ const BoardView = () => {
   };
 
   return (
-    <>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
-        <tbody>
+    <div className="board-view-table">
+      <table className="table board-table-striped" style={{ marginTop: 20 }}>
+        <tbody className="board-view-table-body">
           <tr>
             <th width="20%">글쓴이</th>
             <td>{boardDetail.clientId}</td>
@@ -70,7 +72,7 @@ const BoardView = () => {
 
           <tr>
             <th>내용</th>
-            <td colSpan="3" style={{ whiteSpace: "pre-line" }}>
+            <td className="board-view-content" colSpan="3" style={{ whiteSpace: "pre-line" }}>
               {boardDetail.boardContent}
             </td>
           </tr>
@@ -78,31 +80,36 @@ const BoardView = () => {
           <tr>
             <th>파일</th>
             <td colSpan="3">
-              <button onClick={handleDownload}>{boardDetail.upload ? boardDetail.upload.substring(boardDetail.upload.indexOf("_") + 1) : null}</button>
+              {boardDetail.upload ? (
+                <button className="btn-download" onClick={handleDownload}>
+                  {boardDetail.upload.substring(boardDetail.upload.indexOf("_") + 1)}
+                </button>
+              ) : null}
             </td>
           </tr>
         </tbody>
       </table>
-      <Link className="btn btn-primary" to={`/board/list/${pv.currentPage}`}>
-        리스트
-      </Link>
-      &nbsp;
-      <Link className="btn btn-primary" to={`/board/write/${omzboardId}`}>
-        답변
-      </Link>
-      &nbsp;
-      {boardDetail.clientId === localStorage.getItem("clientId") && (
-        <>
-          <Link className="btn btn-primary" to={`/board/update/${omzboardId}`}>
-            수정
-          </Link>
-
-          <button className="btn btn-primary" onClick={handleDelete}>
-            삭제
-          </button>
-        </>
-      )}
-    </>
+      <div className="board-view-btn">
+        <Link className="btn btn-danger" to={`/board/list/${pv.currentPage}`}>
+          리스트
+        </Link>
+        &nbsp;
+        <Link className="btn btn-danger" to={`/board/write/${omzboardId}`}>
+          댓글
+        </Link>
+        &nbsp;
+        {boardDetail.clientId === localStorage.getItem("clientId") && (
+          <>
+            <Link className="btn btn-danger" to={`/board/update/${omzboardId}`}>
+              수정
+            </Link>
+            <button className="btn btn-danger-delete" onClick={handleDelete}>
+              삭제
+            </button>
+          </>
+        )}
+      </div>
+    </div>
   );
 };
 

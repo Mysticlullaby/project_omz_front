@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 const BaseLayout = () => {
   return (
@@ -7,28 +7,15 @@ const BaseLayout = () => {
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <div className="collapse navbar-collapse justify-content-space-between" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <NavLink to="/" className="nav-link">
-                  OMZ
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/board/list/1" className="nav-link">
-                  BOARD
-                </NavLink>
-              </li>
-            </ul>
-            <div>
+            <div className="main-title">
+              <Link to={"/"}>
+                <img src="/images/LOGO.png" />
+              </Link>
+
               <ul className="navbar-nav align-items-center">
                 {localStorage.getItem("clientId") != null ? (
                   <>
-                    <li
-                      className="nav-item mx-3"
-                      style={{ fontSize: "20px", fontWeight: 500 }}
-                    >
-                      {localStorage.getItem("clientId")}
-                    </li>
+                    <li className="nav-link">{localStorage.getItem("clientId")}님 안녕하세요!</li>
                     <li className="nav-item">
                       <NavLink to="/logout" className="nav-link">
                         로그아웃
@@ -37,6 +24,11 @@ const BaseLayout = () => {
                     <li className="nav-item">
                       <NavLink to="/update" className="nav-link">
                         회원정보 수정
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink to="/board/list/1" className="nav-link">
+                        공지사항
                       </NavLink>
                     </li>
                   </>
