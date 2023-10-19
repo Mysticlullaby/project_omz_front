@@ -7,7 +7,7 @@ import axios from "axios";
 const MovieList = () => {
   const dispatch = useDispatch();
   const clientId = localStorage.getItem('clientId');
-  const [viewCount, setViewCount] = useState(0);
+  const [reviewCount, setReviewCount] = useState(0);
 
   const getOmzPopular = () => {
     dispatch(movieActions.getOmzPopular());
@@ -33,15 +33,14 @@ const MovieList = () => {
     dispatch(movieActions.getRecommandList(clientId))
   }
 
-  const checkViewCount = async () => {
-    const response = await axios.get(`/view/check/${clientId}`);
-    const updatedViewCount = response.data;
-    setViewCount(updatedViewCount);
-    if (updatedViewCount > 0) {
+  const checkReviewCount = async () => {
+    const response = await axios.get(`/review/count/${clientId}`);
+    const updatedReviewCount = response.data;
+    setReviewCount(updatedReviewCount);
+    console.log('reviewCount: ', updatedReviewCount);
+    if (updatedReviewCount > 3) {
       getRecommandList();
     }
-
-    dispatch(movieActions.getRecommandList(localStorage.getItem("clientId")));
   };
 
   // 유림 mbti추가부분
@@ -57,7 +56,7 @@ const MovieList = () => {
     getMovieList();
 
     if (localStorage.getItem("clientId") != null) {
-      checkViewCount();
+      checkReviewCount();
       getMbtiRecommend();
     }
   }, []);
@@ -175,7 +174,7 @@ const MovieList = () => {
         </div>
       </div>
 
-      {localStorage.getItem('clientId') && viewCount > 0 &&
+      {localStorage.getItem('clientId') && reviewCount > 3 &&
         <>
           <p className="movielist-title">이런 작품은 어떠세요?</p>
           <div className="container">
