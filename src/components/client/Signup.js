@@ -35,8 +35,10 @@ const Signup = () => {
         const resMsg = Response.data;
         console.log("clientId" + Response.data);
         if (resMsg) {
+          setCheckId(true);
           alert("사용가능한 아이디입니다.");
         } else {
+          setCheckId(false);
           alert("이미 사용중인 아이디입니다.");
         }
       })
@@ -68,13 +70,23 @@ const Signup = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (!client.clientId || !client.clientPass || !client.clientName || !client.mbti) {
+    if (!checkId) {
+      alert("아이디 중복확인을 해주세요");
+      return;
+    }
+
+    if (
+      !client.clientId ||
+      !client.clientPass ||
+      !client.clientName ||
+      !client.mbti
+    ) {
       let missingFields = "";
 
       if (!client.clientId) {
         missingFields += "아이디 ";
       } else if (!client.clientPass) {
-        missingFields += "패스워드 ";
+        missingFields += "비밀번호 ";
       } else if (!client.clientName) {
         missingFields += "이름 ";
       } else if (!client.mbti) {
@@ -118,35 +130,87 @@ const Signup = () => {
           <h1 className="text-center mx-auto client">회원가입</h1>
           <div className="col-md-6 insert-area">
             아이디
-            <input type="text" className="form-control" name="clientId" pattern="[A-Za-z0-9]{3,8}" placeholder="아이디를 입력해주세요(영문,숫자 3~8자)" onChange={handleValueChange} />
-            <button type="submit" className="btn btn-danger" onClick={onCheckId}>
+            <input
+              type="text"
+              className="form-control"
+              name="clientId"
+              pattern="[A-Za-z0-9]{3,8}"
+              placeholder="아이디를 입력해주세요(영문,숫자 3~8자)"
+              onChange={handleValueChange}
+            />
+            <button
+              type="submit"
+              className="btn btn-danger"
+              onClick={onCheckId}
+            >
               중복확인
             </button>
           </div>
 
           <div className="col-md-6">
             비밀번호
-            <input type="password" className="form-control" name="clientPass" pattern="[a-zA-Z0-9]{8,15}" placeholder="비밀번호를 입력해주세요(영문,숫자 8~15자)" onChange={handleValueChange} />
+            <input
+              type="password"
+              className="form-control"
+              name="clientPass"
+              pattern="[a-zA-Z0-9]{8,15}"
+              placeholder="비밀번호를 입력해주세요(영문,숫자 8~15자)"
+              onChange={handleValueChange}
+            />
           </div>
 
           <div className="col-md-6">
             비밀번호 확인
-            <input type="password" className="form-control" id="confirmPassword" name="confirmPassword" pattern="[a-zA-Z0-9]{8,15}" placeholder="비밀번호 확인" onChange={passCheck} />
-            <span className={`password-check ${passwordCheck === "비밀번호 불일치" ? "password-checkError" : ""}`}>{passwordCheck}</span>
+            <input
+              type="password"
+              className="form-control"
+              id="confirmPassword"
+              name="confirmPassword"
+              pattern="[a-zA-Z0-9]{8,15}"
+              placeholder="비밀번호 확인"
+              onChange={passCheck}
+            />
+            <span
+              className={`password-check ${
+                passwordCheck === "비밀번호 불일치" ? "password-checkError" : ""
+              }`}
+            >
+              {passwordCheck}
+            </span>
           </div>
 
           <div className="col-md-6">
             이름
-            <input type="text" className="form-control" name="clientName" pattern="[가-힣]{3,7}" placeholder="이름을 입력해주세요(한글 3~7자)" onChange={handleValueChange} />
+            <input
+              type="text"
+              className="form-control"
+              name="clientName"
+              pattern="[가-힣]{3,7}"
+              placeholder="이름을 입력해주세요(한글 3~7자)"
+              onChange={handleValueChange}
+            />
           </div>
 
           <div className="col-md-6">
             MBTI
-            <input type="text" className="form-control" name="mbti" value={client.mbti} placeholder="자신의 MBTI를 선택해주세요" readOnly />
+            <input
+              type="text"
+              className="form-control"
+              name="mbti"
+              value={client.mbti}
+              placeholder="자신의 MBTI를 선택해주세요"
+              readOnly
+            />
           </div>
 
           <div className="col-md-6 Dropdown">
-            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <button
+              className="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               MBTI
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -231,6 +295,10 @@ const Signup = () => {
                 </a>
               </li>
             </ul>
+            &nbsp;&nbsp;
+            <a href="https://www.16personalities.com/ko/%EB%AC%B4%EB%A3%8C-%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95-%EA%B2%80%EC%82%AC">
+              <b>회원님의 MBTI가 궁금하다면? (Click!!)</b>
+            </a>
           </div>
 
           <div className="col-6">
