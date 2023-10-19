@@ -60,7 +60,7 @@ const Login = () => {
 
         localStorage.setItem("authorization", jwtToken);
         localStorage.setItem("clientId", response.data.clientId);
-        // localStorage.setItem("mbti", response.data.mbti);
+        localStorage.setItem("mbti", response.data.mbti);
         localStorage.setItem("isLogin", true);
 
         setInput({ clientId: "", clientPass: "" });

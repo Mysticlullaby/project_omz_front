@@ -208,14 +208,6 @@ const Stars = styled.div`
     cursor: pointer;
   }
 
-  span:hover > svg{
-    color:red
-  }
-
-  svg:hover ~ svg{
-    color: gray;
-  }
-
   svg.yellowStar {
     color: red;
   }

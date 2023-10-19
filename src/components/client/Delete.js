@@ -48,8 +48,6 @@ const Delete = () => {
     //   return;
     // }
 
-    
-
     await axios
       .post("/delete", client, config)
       .then((Response) => {

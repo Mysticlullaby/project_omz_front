@@ -162,7 +162,11 @@ const MovieDetail = () => {
                     <h1>리뷰</h1>
                   </li>
                   <li className="nav-item">
-                    {localStorage.getItem('clientId') && <button className="btn btn-danger" onClick={openModal}>리뷰 작성하기</button>}
+                    {movie.reviewId == 0 ? <button className="btn btn-danger" onClick={openModal}>리뷰 작성하기</button> :
+                      <NavLink to={`/review/detail/${movie.reviewId}`}>
+                        <button className="btn btn-danger">내가 쓴 리뷰 보기</button>
+                      </NavLink>
+                    }
                     <ReviewWrite isOpen={isModalOpen} closeModal={closeModal} movie={movie} />
                   </li>
                 </ul>
@@ -247,14 +251,6 @@ const Stars = styled.div`
   svg {
     color: gray;
     cursor: pointer;
-  }
-
-  span:hover > svg{
-    color:red
-  }
-
-  svg:hover ~ svg{
-    color: gray;
   }
 
   svg.yellowStar {

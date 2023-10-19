@@ -297,7 +297,7 @@ const Signup = () => {
             </ul>
             &nbsp;&nbsp;
             <a href="https://www.16personalities.com/ko/%EB%AC%B4%EB%A3%8C-%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95-%EA%B2%80%EC%82%AC">
-              회원님의 MBTI가 궁금하다면?
+              <b>회원님의 MBTI가 궁금하다면? (Click!!)</b>
             </a>
           </div>
 

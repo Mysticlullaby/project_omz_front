@@ -18,6 +18,7 @@ import ReviewDetail from "./components/movies/ReviewDetail";
 import BoardView from "./components/board/BoardView";
 import BoardUpdate from "./components/board/BoardUpdate";
 import Delete from "./components/client/Delete";
+import SearchList from "./components/movies/SearchList";
 
 function App() {
   return (
@@ -49,6 +50,12 @@ function App() {
             path="movie/:movieId"
             element={
               <PrivateRoute isAuth={false} RouteComponent={MovieDetail} />
+            }
+          />
+          <Route
+            path="search/:keyword"
+            element={
+              <PrivateRoute isAuth={false} RouteComponent={SearchList} />
             }
           />
           <Route
