@@ -60,10 +60,10 @@ const Delete = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container delete">
       <form onSubmit={onSubmit}>
         <div className="row g-3">
-          <h1 className="text-center mx-auto">회원탈퇴</h1>
+          <h1 className="text-center mx-auto client">회원탈퇴</h1>
           <div className="col-md-6 insert-area">
             아이디
             <input
