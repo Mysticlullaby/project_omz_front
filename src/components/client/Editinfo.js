@@ -124,7 +124,7 @@ const Editinfo = () => {
             <input type="text" className="form-control" name="mbti" value={client.mbti} readOnly />
           </div>
 
-          <div className="Dropdown">
+          <div className="Dropdown-lim">
             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               MBTI
             </button>
@@ -213,7 +213,7 @@ const Editinfo = () => {
           </div>
 
           <div className="col-12 edit-btn text-center">
-            <button type="submit" className="btn btn-danger">
+            <button type="submit" className="btn btn-danger lim-btn">
               회원정보 수정
             </button>
           </div>

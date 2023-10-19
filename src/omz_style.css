@@ -90,12 +90,15 @@
 }
 
 /* 회원정보 수정에서 MBTI 드롭다운 위치조정 */
-.Dropdown {
+.Dropdown-lim {
   margin-left: 550px;
 }
 
 .col-12.edit-btn {
-  width: 250px;
+  margin-top: 50px;
+}
+.btn-danger.lim-btn {
+  width: 200px;
 }
 
 /* 메인페이지 CSS */

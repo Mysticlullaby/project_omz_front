@@ -36,7 +36,7 @@ const MovieList = () => {
   const checkViewCount = async () => {
     const response = await axios.get(`/view/check/${clientId}`);
     const updatedViewCount = response.data;
-    setViewCount(updatedViewCount);
+    setReviewCount(updatedViewCount);
     if (updatedViewCount > 0) {
       getRecommandList();
     }
