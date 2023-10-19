@@ -35,8 +35,10 @@ const Signup = () => {
         const resMsg = Response.data;
         console.log("clientId" + Response.data);
         if (resMsg) {
+          setCheckId(true);
           alert("사용가능한 아이디입니다.");
         } else {
+          setCheckId(false);
           alert("이미 사용중인 아이디입니다.");
         }
       })
@@ -68,6 +70,11 @@ const Signup = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    if (!checkId) {
+      alert("아이디 중복확인을 해주세요");
+      return;
+    }
+
     if (
       !client.clientId ||
       !client.clientPass ||
@@ -79,7 +86,7 @@ const Signup = () => {
       if (!client.clientId) {
         missingFields += "아이디 ";
       } else if (!client.clientPass) {
-        missingFields += "패스워드 ";
+        missingFields += "비밀번호 ";
       } else if (!client.clientName) {
         missingFields += "이름 ";
       } else if (!client.mbti) {
@@ -120,7 +127,7 @@ const Signup = () => {
     <div className="container join">
       <form onSubmit={onSubmit}>
         <div className="row g-3">
-          <h1 className="text-center mx-auto">회원가입</h1>
+          <h1 className="text-center mx-auto client">회원가입</h1>
           <div className="col-md-6 insert-area">
             아이디
             <input
@@ -288,6 +295,10 @@ const Signup = () => {
                 </a>
               </li>
             </ul>
+            &nbsp;&nbsp;
+            <a href="https://www.16personalities.com/ko/%EB%AC%B4%EB%A3%8C-%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95-%EA%B2%80%EC%82%AC">
+              <b>회원님의 MBTI가 궁금하다면? (Click!!)</b>
+            </a>
           </div>
 
           <div className="col-6">

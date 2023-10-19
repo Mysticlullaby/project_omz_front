@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { boardActions } from "../../toolkit/actions/board_action";
+import "./board_style.css";
 
 const BoardUpdate = () => {
   const navigator = useNavigate();
@@ -80,51 +81,52 @@ const BoardUpdate = () => {
   };
 
   return (
-    <>
-      <form name="frm">
-        <table className="table table-striped" style={{ marginTop: 20 }}>
-          <tbody>
-            <tr>
-              <th width="20%">글쓴이</th>
-              <td>{boardDetail.clientId}</td>
-              <th width="20%">등록일</th>
-              <td>{boardDetail.regDate}</td>
-            </tr>
+    <div className="for-footer-board">
+      <div className="write-padding">
+        <form name="frm">
+          <table className="b-form" style={{ marginTop: 20 }}>
+            <tbody>
+              <tr>
+                <th width="20%">작성자</th>
+                <td>{localStorage.getItem("clientId")}</td>
+              </tr>
 
-            <tr>
-              <th>제목</th>
-              <td colSpan="3">
-                <input type="text" name="subject" id="subject" value={subject} onChange={handleValueChange} />
-              </td>
-            </tr>
-            <tr>
-              <th>내용</th>
-              <td colSpan="3">
-                <textarea name="boardContent" id="boardContent" rows="13" cols="40" value={boardContent} onChange={handleValueChange}></textarea>
-              </td>
-            </tr>
+              <tr>
+                <th>제목</th>
+                <td colSpan="3">
+                  <input type="text" name="subject" id="subject" value={subject} onChange={handleValueChange} />
+                </td>
+              </tr>
+              <tr>
+                <th>내용</th>
+                <td colSpan="3">
+                  <textarea name="boardContent" id="boardContent" rows="13" cols="40" value={boardContent} onChange={handleValueChange}></textarea>
+                </td>
+              </tr>
 
-            <tr>
-              <th>첨부파일</th>
-              <td colSpan="3">
-                <input type="file" name="filename" id="filepath" onChange={handleFileChange} />
-                <span>{boardDetail.upload ? boardDetail.upload.substring(boardDetail.upload.indexOf("_") + 1) : null}</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <button className="btn btn-primary" onClick={handleUpdate}>
-          수정
-        </button>
-        <button className="btn btn-primary" onClick={handleReset}>
-          취소
-        </button>
-        <button className="btn btn-primary" onClick={handleBack}>
-          뒤로
-        </button>
-      </form>
-      ;{" "}
-    </>
+              <tr>
+                <th>첨부파일</th>
+                <td colSpan="3">
+                  <input type="file" name="filename" id="filepath" onChange={handleFileChange} />
+                  <span>{boardDetail.upload ? boardDetail.upload.substring(boardDetail.upload.indexOf("_") + 1) : null}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div className="btn-area change">
+            <button className="btn btn-danger btn-lim" onClick={handleUpdate}>
+              수정제출
+            </button>
+            <button className="btn btn-danger btn-lim2" onClick={handleReset}>
+              수정사항 취소
+            </button>
+            <button className="btn btn-danger" onClick={handleBack}>
+              리스트
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

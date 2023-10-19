@@ -75,7 +75,10 @@ const ReviewDetail = () => {
     }
 
     const addLike = async () => {
-        // alert('좋아요 누릅니다!');
+        if (localStorage.getItem('clientId') == null) {
+            alert('로그인이 필요합니다.');
+            return;
+        }
 
         if (isClickOnCool) {
             return;
@@ -179,7 +182,7 @@ const ReviewDetail = () => {
                             {review.commentCount}
                         </p>
                     </Thumbs>
-                    <button className='btn btn-danger mx-2' onClick={openPanel}>댓글 쓰기</button>
+                    {localStorage.getItem('clientId') && <button className='btn btn-danger mx-2' onClick={openPanel}>댓글 쓰기</button>}
 
                     {localStorage.getItem('clientId') === review.clientId && (
                         <>
@@ -203,14 +206,6 @@ const Stars = styled.div`
   svg {
     color: gray;
     cursor: pointer;
-  }
-
-  span:hover > svg{
-    color:red
-  }
-
-  svg:hover ~ svg{
-    color: gray;
   }
 
   svg.yellowStar {

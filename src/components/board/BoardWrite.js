@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { boardActions } from "../../toolkit/actions/board_action";
+import "./board_style.css";
 
 const BoardWrite = () => {
   const navigator = useNavigate();
@@ -73,49 +74,53 @@ const BoardWrite = () => {
   };
 
   return (
-    <>
-      <form onSubmit={onSubmit}>
-        <table>
-          <tbody>
-            <tr>
-              <td>글쓴이</td>
-              <td>
-                <input type="type" readOnly value={localStorage.getItem("clientId")} name="clientId" />
-              </td>
-            </tr>
-            <tr>
-              <td width="20%" align="center">
-                제목
-              </td>
-              <td>
-                <input type="text" name="subject" size="40" value={subject} placeholder={omzboardId !== undefined ? "답변" : null} onChange={handleValueChange} />
-              </td>
-            </tr>
-            <tr>
-              <td width="20%" align="center">
-                내용
-              </td>
-              <td>
-                <textarea name="boardContent" rows="13" cols="40" value={boardContent} onChange={handleValueChange}></textarea>
-              </td>
-            </tr>
+    <div className="for-footer-board">
+      <div className="write-padding">
+        <form onSubmit={onSubmit}>
+          <table className="b-form">
+            <tbody>
+              <tr>
+                <td align="center">작성자</td>
+                <td>
+                  <span className="board-btag">{localStorage.getItem("clientId")}</span>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" align="center">
+                  제목
+                </td>
+                <td>
+                  <input className="board-input" type="text" name="subject" size="40" value={subject} placeholder={omzboardId !== undefined ? "답변" : null} onChange={handleValueChange} />
+                </td>
+              </tr>
+              <tr className="write-area">
+                <td width="20%" align="center">
+                  내용
+                </td>
+                <td className="b-write">
+                  <textarea className="board-input" name="boardContent" rows="13" cols="40" value={boardContent} onChange={handleValueChange}></textarea>
+                </td>
+              </tr>
 
-            <tr>
-              <td width="20%" align="center">
-                첨부파일
-              </td>
-              <td>
-                <input type="file" name="filename" id="filepath" onChange={handleFileChange} />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <Link className="btn btn-primary" to={`/board/list/${pv.currentPage}`}>
-          리스트
-        </Link>
-        <input type="submit" className="btn btn-primary" value="등록" />
-      </form>
-    </>
+              <tr>
+                <td width="20%" align="center">
+                  첨부파일
+                </td>
+                <td>
+                  <input type="file" name="filename" id="filepath" onChange={handleFileChange} />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div className="btn-area">
+            <Link className="btn btn-danger btn-l" to={`/board/list/${pv.currentPage}`}>
+              리스트
+            </Link>
+            <input type="submit" className="btn btn-danger" value="등록" />
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

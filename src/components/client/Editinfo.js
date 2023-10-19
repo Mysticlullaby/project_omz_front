@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Editinfo = () => {
   const navigator = useNavigate();
@@ -94,15 +94,15 @@ const Editinfo = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container edit">
       <form onSubmit={onSubmit}>
         <div className="row g-3">
-          <h1 className="text-center mx-auto">회원정보</h1>
-          <div className="col-md-7">
+          <h1 className="text-center mx-auto client">회원정보</h1>
+          <div className="col-md-6">
             아이디
             <input
               type="text"
-              className="form-control"
+              className="form-control id"
               name="clientId"
               placeholder="아이디"
               value={localStorage.clientId}
@@ -156,115 +156,123 @@ const Editinfo = () => {
             />
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-6 insert-area">
             MBTI
-            <input
-              type="text"
-              className="form-control"
-              name="mbti"
-              value={client.mbti}
-              readOnly
-            />
+            <div className="mbti-area">
+              <input
+                type="text"
+                className="form-control"
+                name="mbti"
+                value={client.mbti}
+                readOnly
+              />
+              <div className="Dropdown-lim">
+                <button
+                  className="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  MBTI
+                </button>
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton1"
+                >
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ESTP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ESFP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ENFP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ENTP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ESTJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ESFJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ENFJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ENTJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ISTJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ISFJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      INFJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      INTJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ISTP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ISFP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      INFP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      INTP
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
 
-          <div className="Dropdown">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              MBTI
-            </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ESTP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ESFP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ENFP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ENTP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ESTJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ESFJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ENFJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ENTJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ISTJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ISFJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  INFJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  INTJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ISTP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ISFP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  INFP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  INTP
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="col-12">
-            <button type="submit" className="btn btn-danger">
+          <div className="col-12 edit-btn text-center">
+            <button type="submit" className="btn btn-danger lim-btn">
               회원정보 수정
             </button>
+            &nbsp;
+            <Link className="btn btn-secondary" to="/delete">
+              회원탈퇴
+            </Link>
           </div>
         </div>
       </form>
