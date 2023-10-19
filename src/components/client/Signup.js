@@ -70,7 +70,6 @@ const Signup = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-<<<<<<< HEAD
     if (!checkId) {
       alert("아이디 중복확인을 해주세요");
       return;
@@ -82,9 +81,7 @@ const Signup = () => {
       !client.clientName ||
       !client.mbti
     ) {
-=======
     if (!client.clientId || !client.clientPass || !client.clientName || !client.mbti) {
->>>>>>> develope
       let missingFields = "";
 
       if (!client.clientId) {
