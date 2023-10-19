@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Editinfo = () => {
   const navigator = useNavigate();
@@ -94,128 +94,185 @@ const Editinfo = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container edit">
       <form onSubmit={onSubmit}>
         <div className="row g-3">
           <h1 className="text-center mx-auto client">회원정보</h1>
-          <div className="col-md-7">
+          <div className="col-md-6">
             아이디
-            <input type="text" className="form-control id" name="clientId" placeholder="아이디" value={localStorage.clientId} readOnly />
+            <input
+              type="text"
+              className="form-control id"
+              name="clientId"
+              placeholder="아이디"
+              value={localStorage.clientId}
+              readOnly
+            />
           </div>
 
           <div className="col-md-6">
             비밀번호
-            <input type="password" className="form-control" name="clientPass" pattern="[a-zA-Z0-9]{8,15}" placeholder="비밀번호를 입력해주세요(영문,숫자 8~15자)" value={clientPass} onChange={handleValueChange} />
+            <input
+              type="password"
+              className="form-control"
+              name="clientPass"
+              pattern="[a-zA-Z0-9]{8,15}"
+              placeholder="비밀번호를 입력해주세요(영문,숫자 8~15자)"
+              value={clientPass}
+              onChange={handleValueChange}
+            />
           </div>
 
           <div className="col-md-6">
             비밀번호 확인
-            <input type="password" className="form-control" id="confirmPassword" name="confirmPassword" pattern="[a-zA-Z0-9]{8,15}" placeholder="비밀번호 확인" onChange={passCheck} />
-            <span className={`password-check ${passwordCheck === "비밀번호 불일치" ? "password-checkError" : ""}`}>{passwordCheck}</span>
+            <input
+              type="password"
+              className="form-control"
+              id="confirmPassword"
+              name="confirmPassword"
+              pattern="[a-zA-Z0-9]{8,15}"
+              placeholder="비밀번호 확인"
+              onChange={passCheck}
+            />
+            <span
+              className={`password-check ${
+                passwordCheck === "비밀번호 불일치" ? "password-checkError" : ""
+              }`}
+            >
+              {passwordCheck}
+            </span>
           </div>
 
           <div className="col-md-6">
             이름
-            <input type="text" className="form-control" name="clientName" pattern="[가-힣]{3,7}" placeholder="이름을 입력해주세요(한글 3~7자)" value={clientName} onChange={handleValueChange} />
+            <input
+              type="text"
+              className="form-control"
+              name="clientName"
+              pattern="[가-힣]{3,7}"
+              placeholder="이름을 입력해주세요(한글 3~7자)"
+              value={clientName}
+              onChange={handleValueChange}
+            />
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-6 insert-area">
             MBTI
-            <input type="text" className="form-control" name="mbti" value={client.mbti} readOnly />
-          </div>
-
-          <div className="Dropdown-lim">
-            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              MBTI
-            </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ESTP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ESFP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ENFP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ENTP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ESTJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ESFJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ENFJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ENTJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ISTJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ISFJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  INFJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  INTJ
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ISTP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  ISFP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  INFP
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" onClick={handleChangeMbti}>
-                  INTP
-                </a>
-              </li>
-            </ul>
+            <div className="mbti-area">
+              <input
+                type="text"
+                className="form-control"
+                name="mbti"
+                value={client.mbti}
+                readOnly
+              />
+              <div className="Dropdown-lim">
+                <button
+                  className="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  MBTI
+                </button>
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton1"
+                >
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ESTP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ESFP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ENFP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ENTP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ESTJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ESFJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ENFJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ENTJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ISTJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ISFJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      INFJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      INTJ
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ISTP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      ISFP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      INFP
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleChangeMbti}>
+                      INTP
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           <div className="col-12 edit-btn text-center">
             <button type="submit" className="btn btn-danger lim-btn">
               회원정보 수정
             </button>
+            &nbsp;
+            <Link className="btn btn-secondary" to="/delete">
+              회원탈퇴
+            </Link>
           </div>
         </div>
       </form>
