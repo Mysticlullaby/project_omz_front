@@ -94,11 +94,11 @@ const Editinfo = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container edit">
       <form onSubmit={onSubmit}>
         <div className="row g-3">
           <h1 className="text-center mx-auto">회원정보</h1>
-          <div className="col-md-7">
+          <div className="col-md-6 insert-area">
             아이디
             <input
               type="text"

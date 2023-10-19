@@ -36,10 +36,10 @@
   flex-direction: column;
 }
 
-.join .insert-area {
+/* .join .insert-area {
   display: flex;
   justify-content: space-between;
-}
+} */
 
 .join .insert-area input {
   width: 70%;
@@ -92,6 +92,20 @@
 .delete .row {
   align-items: center;
   flex-direction: column;
+}
+
+/* 정보수정 */
+.edit .row {
+  align-items: center;
+  flex-direction: column;
+}
+
+.edit .insert-area {
+  justify-content: space-between;
+}
+
+.edit .insert-area input {
+  width: 70%;
 }
 
 /* 메인페이지 CSS */
