@@ -3,9 +3,9 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="footer">
-      <p>푸터입니다</p>
-      <p>신논현역 7번출구</p>
-      <p>8번 아님</p>
+      <p>EZEN Academy 강남</p>
+      <p>Team. 신논현역 7번출구 / Project. OMZ</p>
+      <p>팀장 김범규, 김종민, 우정진, 이유림</p>
     </div>
   );
 };

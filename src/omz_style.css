@@ -36,10 +36,10 @@
   flex-direction: column;
 }
 
-/* .join .insert-area {
+.join .insert-area {
   display: flex;
   justify-content: space-between;
-} */
+}
 
 .join .insert-area input {
   width: 70%;
@@ -70,7 +70,7 @@
 }
 
 .login .insert-area {
-  /* display: flex; */
+  display: flex;
   justify-content: space-between;
 }
 
@@ -84,17 +84,7 @@
   background-color: #f8f8f8;
 }
 
-.delete .insert-area {
-  display: flex;
-  justify-content: space-between;
-}
-
-.delete .row {
-  align-items: center;
-  flex-direction: column;
-}
-
-/* 정보수정 */
+/* 회원정보수정 */
 .edit .row {
   align-items: center;
   flex-direction: column;
@@ -106,6 +96,33 @@
 
 .edit .insert-area input {
   width: 70%;
+}
+
+/* 회원탈퇴 */
+.delete .insert-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete .row {
+  align-items: center;
+  flex-direction: column;
+}
+/* 회원가입에서 id input 창 크기조절 */
+.form-control.id {
+  width: 86%;
+}
+
+/* 회원정보 수정에서 MBTI 드롭다운 위치조정 */
+.Dropdown-lim {
+  margin-left: 550px;
+}
+
+.col-12.edit-btn {
+  margin-top: 50px;
+}
+.btn-danger.lim-btn {
+  width: 200px;
 }
 
 /* 메인페이지 CSS */
@@ -129,10 +146,11 @@
   display: flex;
   align-items: center;
   margin-top: 15px;
+  justify-content: space-between;
 }
 
 .main-title img {
-  width: 90px;
+  width: 120px;
   margin-left: 60px;
 }
 
@@ -150,11 +168,40 @@
 }
 
 .footer {
-  /* position: fixed; */
   margin-top: 70px;
   bottom: 0;
   width: 1200px;
-  /* background-color: #f2f2f2; */
   padding: 10px;
   text-align: left;
+}
+
+.card-img-top.size {
+  height: 280px;
+}
+
+.search-input {
+  height: 40px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #f2f2f2;
+}
+
+.top-header {
+  text-align: right;
+}
+
+.lim-header {
+  padding-top: 15px;
+}
+
+.search-area {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+}
+
+/* 로그인, 회원정보 수정 타이틀 마진 */
+.text-center.mx-auto.client {
+  margin: 100px;
 }

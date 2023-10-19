@@ -97,12 +97,12 @@ const Editinfo = () => {
     <div className="container edit">
       <form onSubmit={onSubmit}>
         <div className="row g-3">
-          <h1 className="text-center mx-auto">회원정보</h1>
-          <div className="col-md-6 insert-area">
+          <h1 className="text-center mx-auto client">회원정보</h1>
+          <div className="col-md-7">
             아이디
             <input
               type="text"
-              className="form-control"
+              className="form-control id"
               name="clientId"
               placeholder="아이디"
               value={localStorage.clientId}
@@ -167,7 +167,7 @@ const Editinfo = () => {
             />
           </div>
 
-          <div className="Dropdown">
+          <div className="Dropdown-lim">
             <button
               className="btn btn-secondary dropdown-toggle"
               type="button"
@@ -261,8 +261,8 @@ const Editinfo = () => {
             </ul>
           </div>
 
-          <div className="col-12">
-            <button type="submit" className="btn btn-danger">
+          <div className="col-12 edit-btn text-center">
+            <button type="submit" className="btn btn-danger lim-btn">
               회원정보 수정
             </button>
             &nbsp;
