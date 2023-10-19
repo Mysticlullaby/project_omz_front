@@ -33,11 +33,12 @@ const MovieList = () => {
     dispatch(movieActions.getRecommandList(clientId));
   };
 
-  const checkViewCount = async () => {
-    const response = await axios.get(`/view/check/${clientId}`);
-    const updatedViewCount = response.data;
-    setReviewCount(updatedViewCount);
-    if (updatedViewCount > 0) {
+  const checkReviewCount = async () => {
+    const response = await axios.get(`/review/count/${clientId}`);
+    const updatedReviewCount = response.data;
+    setReviewCount(updatedReviewCount);
+    console.log("reviewCount: ", updatedReviewCount);
+    if (updatedReviewCount > 3) {
       getRecommandList();
     }
   };
@@ -54,7 +55,7 @@ const MovieList = () => {
     getMovieList();
 
     if (localStorage.getItem("clientId") != null) {
-      checkViewCount();
+      checkReviewCount();
       getMbtiRecommend();
     }
   }, []);
