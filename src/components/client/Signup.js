@@ -68,12 +68,7 @@ const Signup = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !client.clientId ||
-      !client.clientPass ||
-      !client.clientName ||
-      !client.mbti
-    ) {
+    if (!client.clientId || !client.clientPass || !client.clientName || !client.mbti) {
       let missingFields = "";
 
       if (!client.clientId) {
@@ -120,90 +115,38 @@ const Signup = () => {
     <div className="container join">
       <form onSubmit={onSubmit}>
         <div className="row g-3">
-          <h1 className="text-center mx-auto">회원가입</h1>
+          <h1 className="text-center mx-auto client">회원가입</h1>
           <div className="col-md-6 insert-area">
             아이디
-            <input
-              type="text"
-              className="form-control"
-              name="clientId"
-              pattern="[A-Za-z0-9]{3,8}"
-              placeholder="아이디를 입력해주세요(영문,숫자 3~8자)"
-              onChange={handleValueChange}
-            />
-            <button
-              type="submit"
-              className="btn btn-danger"
-              onClick={onCheckId}
-            >
+            <input type="text" className="form-control" name="clientId" pattern="[A-Za-z0-9]{3,8}" placeholder="아이디를 입력해주세요(영문,숫자 3~8자)" onChange={handleValueChange} />
+            <button type="submit" className="btn btn-danger" onClick={onCheckId}>
               중복확인
             </button>
           </div>
 
           <div className="col-md-6">
             비밀번호
-            <input
-              type="password"
-              className="form-control"
-              name="clientPass"
-              pattern="[a-zA-Z0-9]{8,15}"
-              placeholder="비밀번호를 입력해주세요(영문,숫자 8~15자)"
-              onChange={handleValueChange}
-            />
+            <input type="password" className="form-control" name="clientPass" pattern="[a-zA-Z0-9]{8,15}" placeholder="비밀번호를 입력해주세요(영문,숫자 8~15자)" onChange={handleValueChange} />
           </div>
 
           <div className="col-md-6">
             비밀번호 확인
-            <input
-              type="password"
-              className="form-control"
-              id="confirmPassword"
-              name="confirmPassword"
-              pattern="[a-zA-Z0-9]{8,15}"
-              placeholder="비밀번호 확인"
-              onChange={passCheck}
-            />
-            <span
-              className={`password-check ${
-                passwordCheck === "비밀번호 불일치" ? "password-checkError" : ""
-              }`}
-            >
-              {passwordCheck}
-            </span>
+            <input type="password" className="form-control" id="confirmPassword" name="confirmPassword" pattern="[a-zA-Z0-9]{8,15}" placeholder="비밀번호 확인" onChange={passCheck} />
+            <span className={`password-check ${passwordCheck === "비밀번호 불일치" ? "password-checkError" : ""}`}>{passwordCheck}</span>
           </div>
 
           <div className="col-md-6">
             이름
-            <input
-              type="text"
-              className="form-control"
-              name="clientName"
-              pattern="[가-힣]{3,7}"
-              placeholder="이름을 입력해주세요(한글 3~7자)"
-              onChange={handleValueChange}
-            />
+            <input type="text" className="form-control" name="clientName" pattern="[가-힣]{3,7}" placeholder="이름을 입력해주세요(한글 3~7자)" onChange={handleValueChange} />
           </div>
 
           <div className="col-md-6">
             MBTI
-            <input
-              type="text"
-              className="form-control"
-              name="mbti"
-              value={client.mbti}
-              placeholder="자신의 MBTI를 선택해주세요"
-              readOnly
-            />
+            <input type="text" className="form-control" name="mbti" value={client.mbti} placeholder="자신의 MBTI를 선택해주세요" readOnly />
           </div>
 
           <div className="col-md-6 Dropdown">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               MBTI
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
