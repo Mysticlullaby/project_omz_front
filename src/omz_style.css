@@ -97,8 +97,14 @@
 .col-12.edit-btn {
   margin-top: 50px;
 }
+
 .btn-danger.lim-btn {
   width: 200px;
+}
+
+/* 로그인, 회원정보 수정 타이틀 마진 */
+.text-center.mx-auto.client {
+  margin: 100px;
 }
 
 /* 메인페이지 CSS */
@@ -177,7 +183,35 @@
   justify-content: flex-end;
 }
 
-/* 로그인, 회원정보 수정 타이틀 마진 */
-.text-center.mx-auto.client {
-  margin: 100px;
+/* 팝업관련 */
+.popup-title {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.popup-btn {
+  margin-top: 20px;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.popup-btn.btn-l {
+  margin-right: 10px;
+}
+
+.popup-div-a {
+  padding: 30px 50px;
+}
+
+.popup-content {
+  font-size: 15px;
+  text-align: center;
+}
+
+.btn-hap {
+  display: flex;
+  justify-content: center;
 }

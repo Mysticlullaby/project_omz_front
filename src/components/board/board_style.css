@@ -73,7 +73,15 @@ td.board-write-td {
   text-align: right;
 }
 
-.btn-area .btn-l {
+.btn-area.change {
+  padding-top: 50px;
+}
+
+.btn-area .btn-lim {
+  margin-right: 10px;
+}
+
+.btn-area .btn-lim2 {
   margin-right: 10px;
 }
 
@@ -142,16 +150,6 @@ tbody.board-view-table-body tr th {
   border: 0;
 }
 
-.popup-title {
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.popup-div-a {
-  background-color: beige;
-  width: 477px;
-  margin: 10px;
-  height: 280px;
+.for-footer-board {
+  padding-bottom: 200px;
 }

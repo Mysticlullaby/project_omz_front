@@ -3,8 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { movieActions } from "../../toolkit/actions/movie_action";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import Popup from "./Popup";
 
 const MovieList = () => {
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
+  const closeModal = (e) => {
+    setIsModalOpen(false);
+  };
+
   const dispatch = useDispatch();
   const clientId = localStorage.getItem("clientId");
   const [reviewCount, setReviewCount] = useState(0);
@@ -70,6 +77,9 @@ const MovieList = () => {
 
   return (
     <div className="overallpage">
+      <div>
+        <Popup isOpen={isModalOpen} closeModal={closeModal} />
+      </div>
       <p className="movielist-title">OMZ 회원들이 가장 많이 본 작품</p>
       <div className="container">
         <div className="row row-cols-md-5 g-3">

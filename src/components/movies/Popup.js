@@ -29,15 +29,25 @@ function Popup({ isOpen, closeModal }) {
         }}
       >
         <div className="popup-div-a">
-          <p className="popup-title">나는ㄴ팝업</p>
-
-          <div>
+          <p className="popup-title">사이트 이용 안내</p>
+          <div className="popup-content">
             회원가입 시 본인의 MBTI를 입력하시면
             <br />
-            MBTI 별로 선호하는 작품의 순위를 추천 받으실 수 있어요!
+            MBTI 별로 선호하는 작품을 추천 받으실 수 있어요!
           </div>
+          <div className="btn-hap">
+            <div>
+              <button className="popup-btn btn-l">
+                <a href="https://www.16personalities.com/ko/%EB%AC%B4%EB%A3%8C-%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95-%EA%B2%80%EC%82%AC">MBTI 검사하러가기</a>
+              </button>
+            </div>
 
-          <button onClick={closeModal}>닫기</button>
+            <div>
+              <button className="popup-btn" onClick={closeModal}>
+                닫기
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
