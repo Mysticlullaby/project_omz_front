@@ -6,7 +6,7 @@ import axios from "axios";
 
 const MovieList = () => {
   const dispatch = useDispatch();
-  const clientId = localStorage.getItem('clientId');
+  const clientId = localStorage.getItem("clientId");
   const [reviewCount, setReviewCount] = useState(0);
 
   const getOmzPopular = () => {
@@ -15,35 +15,34 @@ const MovieList = () => {
 
   const getNetflixPopular = () => {
     dispatch(movieActions.getNetflixPopular());
-  }
+  };
 
   const getTvingPopular = () => {
     dispatch(movieActions.getTvingPopular());
-  }
+  };
 
   const getWavePopular = () => {
     dispatch(movieActions.getWavePopular());
-  }
+  };
 
   const getMovieList = () => {
     dispatch(movieActions.getMovieList());
-  }
+  };
 
   const getRecommandList = () => {
-    dispatch(movieActions.getRecommandList(clientId))
-  }
+    dispatch(movieActions.getRecommandList(clientId));
+  };
 
   const checkReviewCount = async () => {
     const response = await axios.get(`/review/count/${clientId}`);
     const updatedReviewCount = response.data;
     setReviewCount(updatedReviewCount);
-    console.log('reviewCount: ', updatedReviewCount);
+    console.log("reviewCount: ", updatedReviewCount);
     if (updatedReviewCount > 3) {
       getRecommandList();
     }
   };
 
-  // 유림 mbti추가부분
   const getMbtiRecommend = () => {
     dispatch(movieActions.getMbtiRecommend(localStorage.getItem("mbti")));
   };
@@ -80,7 +79,7 @@ const MovieList = () => {
                 <div className="card" style={{ width: "18 rem" }}>
                   <NavLink to={`/movie/${movie.movieId}`}>
                     <div className="number-hear">{index + 1}</div>
-                    <img src={movie.poster} className="card-img-top" alt={movie.title} />
+                    <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                   </NavLink>
                   <div className="card-body">
                     <p className="card-text-main">{movie.title}</p>
@@ -101,10 +100,11 @@ const MovieList = () => {
                   <div key={movie.movieId} className="col">
                     <div className="card" style={{ width: "18 rem" }}>
                       <NavLink to={`/movie/${movie.movieId}`}>
-                        <img src={movie.poster} className="card-img-top" alt={movie.title} />
+                        <div className="number-hear">{index + 1}</div>
+                        <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                       </NavLink>
                       <div className="card-body">
-                        <p className="card-text">{movie.title}</p>
+                        <p className="card-text-main">{movie.title}</p>
                       </div>
                     </div>
                   </div>
@@ -123,10 +123,10 @@ const MovieList = () => {
                 <div className="card" style={{ width: "18 rem" }}>
                   <NavLink to={`/movie/${movie.movieId}`}>
                     <div className="number-hear">{index + 1}</div>
-                    <img src={movie.poster} className="card-img-top" alt={movie.title} />
+                    <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                   </NavLink>
                   <div className="card-body">
-                    <p className="card-text">{movie.title}</p>
+                    <p className="card-text-main">{movie.title}</p>
                   </div>
                 </div>
               </div>
@@ -143,10 +143,10 @@ const MovieList = () => {
                 <div className="card" style={{ width: "18 rem" }}>
                   <NavLink to={`/movie/${movie.movieId}`}>
                     <div className="number-hear">{index + 1}</div>
-                    <img src={movie.poster} className="card-img-top" alt={movie.title} />
+                    <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                   </NavLink>
                   <div className="card-body">
-                    <p className="card-text">{movie.title}</p>
+                    <p className="card-text-main">{movie.title}</p>
                   </div>
                 </div>
               </div>
@@ -163,10 +163,10 @@ const MovieList = () => {
                 <div className="card" style={{ width: "18 rem" }}>
                   <NavLink to={`/movie/${movie.movieId}`}>
                     <div className="number-hear">{index + 1}</div>
-                    <img src={movie.poster} className="card-img-top" alt={movie.title} />
+                    <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                   </NavLink>
                   <div className="card-body">
-                    <p className="card-text">{movie.title}</p>
+                    <p className="card-text-main">{movie.title}</p>
                   </div>
                 </div>
               </div>
@@ -174,7 +174,7 @@ const MovieList = () => {
         </div>
       </div>
 
-      {localStorage.getItem('clientId') && reviewCount > 3 &&
+      {localStorage.getItem("clientId") && reviewCount > 3 && (
         <>
           <p className="movielist-title">이런 작품은 어떠세요?</p>
           <div className="container">
@@ -182,12 +182,12 @@ const MovieList = () => {
               {recommandList &&
                 recommandList.map((movie, index) => (
                   <div key={movie.movieId} className="col">
-                    <div className="card" style={{ width: "18 rem" }}>
+                    <div className="card-all" style={{ width: "18 rem" }}>
                       <NavLink to={`/movie/${movie.movieId}`}>
-                        <img src={movie.poster} className="card-img-top" alt={movie.title} />
+                        <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                       </NavLink>
                       <div className="card-body">
-                        <p className="card-text">{movie.title}</p>
+                        <p className="card-text-main">{movie.title}</p>
                       </div>
                     </div>
                   </div>
@@ -195,7 +195,7 @@ const MovieList = () => {
             </div>
           </div>
         </>
-      }
+      )}
 
       <p className="movielist-title">영화 전체 목록</p>
       <div className="container">
@@ -205,17 +205,16 @@ const MovieList = () => {
               <div key={movie.movieId} className="col">
                 <div className="card" style={{ width: "18 rem" }}>
                   <NavLink to={`/movie/${movie.movieId}`}>
-                    <img src={movie.poster} className="card-img-top" alt={movie.title} />
+                    <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                   </NavLink>
                   <div className="card-body">
-                    <p className="card-text">{movie.title}</p>
+                    <p className="card-text-main">{movie.title}</p>
                   </div>
                 </div>
               </div>
             ))}
         </div>
       </div>
-
     </div>
   );
 };

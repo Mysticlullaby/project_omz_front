@@ -97,84 +97,35 @@ const Editinfo = () => {
     <div className="container">
       <form onSubmit={onSubmit}>
         <div className="row g-3">
-          <h1 className="text-center mx-auto">회원정보</h1>
+          <h1 className="text-center mx-auto client">회원정보</h1>
           <div className="col-md-7">
             아이디
-            <input
-              type="text"
-              className="form-control"
-              name="clientId"
-              placeholder="아이디"
-              value={localStorage.clientId}
-              readOnly
-            />
+            <input type="text" className="form-control id" name="clientId" placeholder="아이디" value={localStorage.clientId} readOnly />
           </div>
 
           <div className="col-md-6">
             비밀번호
-            <input
-              type="password"
-              className="form-control"
-              name="clientPass"
-              pattern="[a-zA-Z0-9]{8,15}"
-              placeholder="비밀번호를 입력해주세요(영문,숫자 8~15자)"
-              value={clientPass}
-              onChange={handleValueChange}
-            />
+            <input type="password" className="form-control" name="clientPass" pattern="[a-zA-Z0-9]{8,15}" placeholder="비밀번호를 입력해주세요(영문,숫자 8~15자)" value={clientPass} onChange={handleValueChange} />
           </div>
 
           <div className="col-md-6">
             비밀번호 확인
-            <input
-              type="password"
-              className="form-control"
-              id="confirmPassword"
-              name="confirmPassword"
-              pattern="[a-zA-Z0-9]{8,15}"
-              placeholder="비밀번호 확인"
-              onChange={passCheck}
-            />
-            <span
-              className={`password-check ${
-                passwordCheck === "비밀번호 불일치" ? "password-checkError" : ""
-              }`}
-            >
-              {passwordCheck}
-            </span>
+            <input type="password" className="form-control" id="confirmPassword" name="confirmPassword" pattern="[a-zA-Z0-9]{8,15}" placeholder="비밀번호 확인" onChange={passCheck} />
+            <span className={`password-check ${passwordCheck === "비밀번호 불일치" ? "password-checkError" : ""}`}>{passwordCheck}</span>
           </div>
 
           <div className="col-md-6">
             이름
-            <input
-              type="text"
-              className="form-control"
-              name="clientName"
-              pattern="[가-힣]{3,7}"
-              placeholder="이름을 입력해주세요(한글 3~7자)"
-              value={clientName}
-              onChange={handleValueChange}
-            />
+            <input type="text" className="form-control" name="clientName" pattern="[가-힣]{3,7}" placeholder="이름을 입력해주세요(한글 3~7자)" value={clientName} onChange={handleValueChange} />
           </div>
 
           <div className="col-md-6">
             MBTI
-            <input
-              type="text"
-              className="form-control"
-              name="mbti"
-              value={client.mbti}
-              readOnly
-            />
+            <input type="text" className="form-control" name="mbti" value={client.mbti} readOnly />
           </div>
 
-          <div className="Dropdown">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+          <div className="Dropdown-lim">
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               MBTI
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -261,8 +212,8 @@ const Editinfo = () => {
             </ul>
           </div>
 
-          <div className="col-12">
-            <button type="submit" className="btn btn-danger">
+          <div className="col-12 edit-btn text-center">
+            <button type="submit" className="btn btn-danger lim-btn">
               회원정보 수정
             </button>
           </div>
