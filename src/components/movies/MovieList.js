@@ -6,7 +6,7 @@ import axios from "axios";
 
 const MovieList = () => {
   const dispatch = useDispatch();
-  const clientId = localStorage.getItem("clientId");
+  const clientId = localStorage.getItem('clientId');
   const [reviewCount, setReviewCount] = useState(0);
 
   const getOmzPopular = () => {
@@ -33,11 +33,12 @@ const MovieList = () => {
     dispatch(movieActions.getRecommandList(clientId));
   };
 
-  const checkViewCount = async () => {
-    const response = await axios.get(`/view/check/${clientId}`);
-    const updatedViewCount = response.data;
-    setViewCount(updatedViewCount);
-    if (updatedViewCount > 0) {
+  const checkReviewCount = async () => {
+    const response = await axios.get(`/review/count/${clientId}`);
+    const updatedReviewCount = response.data;
+    setReviewCount(updatedReviewCount);
+    console.log('reviewCount: ', updatedReviewCount);
+    if (updatedReviewCount > 3) {
       getRecommandList();
     }
   };
@@ -54,7 +55,7 @@ const MovieList = () => {
     getMovieList();
 
     if (localStorage.getItem("clientId") != null) {
-      checkViewCount();
+      checkReviewCount();
       getMbtiRecommend();
     }
   }, []);
@@ -173,7 +174,8 @@ const MovieList = () => {
         </div>
       </div>
 
-      {localStorage.getItem("clientId") && reviewCount > 3 && (
+
+      {localStorage.getItem('clientId') && reviewCount > 3 &&(
         <>
           <p className="movielist-title">이런 작품은 어떠세요?</p>
           <div className="container">
