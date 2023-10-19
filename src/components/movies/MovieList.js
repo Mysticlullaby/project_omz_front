@@ -92,7 +92,7 @@ const MovieList = () => {
 
       {localStorage.getItem("mbti") && (
         <>
-          <p className="movielist-title">MBTI {localStorage.getItem("mbti")} 츄촌</p>
+          <p className="movielist-title">{localStorage.getItem("mbti")} 사이에서는 이런 영화가 인기에요</p>
           <div className="container">
             <div className="row row-cols-md-5 g-3">
               {mbtirecommend &&
@@ -174,7 +174,7 @@ const MovieList = () => {
         </div>
       </div>
 
-      {localStorage.getItem("clientId") && reviewCount > 3 && (
+      {localStorage.getItem("clientId") && reviewCount > 3 &&
         <>
           <p className="movielist-title">이런 작품은 어떠세요?</p>
           <div className="container">
@@ -182,7 +182,7 @@ const MovieList = () => {
               {recommandList &&
                 recommandList.map((movie, index) => (
                   <div key={movie.movieId} className="col">
-                    <div className="card-all" style={{ width: "18 rem" }}>
+                    <div className="card" style={{ width: "18 rem" }}>
                       <NavLink to={`/movie/${movie.movieId}`}>
                         <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                       </NavLink>
@@ -195,7 +195,7 @@ const MovieList = () => {
             </div>
           </div>
         </>
-      )}
+      }
 
       <p className="movielist-title">영화 전체 목록</p>
       <div className="container">
