@@ -6,7 +6,7 @@ import axios from "axios";
 import Popup from "./Popup";
 
 const MovieList = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = (e) => {
     setIsModalOpen(false);
@@ -61,10 +61,15 @@ const MovieList = () => {
     getWavePopular();
     getMovieList();
 
-    if (localStorage.getItem("clientId") != null) {
+    if (clientId == null) {
+      setIsModalOpen(true);
+    }
+
+    if (clientId != null) {
       checkReviewCount();
       getMbtiRecommend();
     }
+
   }, []);
 
   const omzPopularList = useSelector((state) => state.movies.omzPopularList);
@@ -207,7 +212,7 @@ const MovieList = () => {
         </>
       }
 
-      <p className="movielist-title">영화 전체 목록</p>
+      {/* <p className="movielist-title">영화 전체 목록</p>
       <div className="container">
         <div className="row row-cols-md-5 g-3">
           {movieList &&
@@ -224,7 +229,7 @@ const MovieList = () => {
               </div>
             ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
