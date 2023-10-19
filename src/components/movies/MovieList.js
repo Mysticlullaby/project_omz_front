@@ -7,7 +7,7 @@ import axios from "axios";
 const MovieList = () => {
   const dispatch = useDispatch();
   const clientId = localStorage.getItem("clientId");
-  const [viewCount, setViewCount] = useState(0);
+  const [reviewCount, setReviewCount] = useState(0);
 
   const getOmzPopular = () => {
     dispatch(movieActions.getOmzPopular());
@@ -173,7 +173,7 @@ const MovieList = () => {
         </div>
       </div>
 
-      {localStorage.getItem("clientId") && viewCount > 0 && (
+      {localStorage.getItem("clientId") && reviewCount > 3 && (
         <>
           <p className="movielist-title">이런 작품은 어떠세요?</p>
           <div className="container">
