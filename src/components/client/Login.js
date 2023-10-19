@@ -64,7 +64,7 @@ const Login = () => {
   return (
     <div className="container login">
       <div className="row g-3">
-        <h1 className="text-center mx-auto">로그인</h1>
+        <h1 className="text-center mx-auto client">로그인</h1>
         <form onSubmit={onSubmit}>
           <div className="col-md-6 mx-auto insert-area">
             로그인
