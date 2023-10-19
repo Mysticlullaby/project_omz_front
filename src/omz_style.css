@@ -202,3 +202,36 @@
   align-items: stretch;
   justify-content: flex-end;
 }
+
+/* 팝업관련 */
+.popup-title {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.popup-btn {
+  margin-top: 20px;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.popup-btn.btn-l {
+  margin-right: 10px;
+}
+
+.popup-div-a {
+  padding: 30px 50px;
+}
+
+.popup-content {
+  font-size: 15px;
+  text-align: center;
+}
+
+.btn-hap {
+  display: flex;
+  justify-content: center;
+}
