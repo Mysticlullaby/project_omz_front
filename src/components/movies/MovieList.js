@@ -89,6 +89,18 @@ const MovieList = () => {
                 <div className="card" style={{ width: "18 rem" }}>
                   <NavLink to={`/movie/${movie.movieId}`}>
                     <div className="number-hear">{index + 1}</div>
+                    <div className="ott-tag">
+                      {movie.provider.map((platform, index) => {
+                        return (
+                          <div key={index}>
+                            {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                            {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                            {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                            {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                          </div>
+                        )
+                      })}
+                    </div>
                     <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                   </NavLink>
                   <div className="card-body">
@@ -111,6 +123,18 @@ const MovieList = () => {
                     <div className="card" style={{ width: "18 rem" }}>
                       <NavLink to={`/movie/${movie.movieId}`}>
                         <div className="number-hear">{index + 1}</div>
+                        <div className="ott-tag">
+                          {movie.provider.map((platform, index) => {
+                            return (
+                              <div key={index}>
+                                {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                                {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                                {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                                {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                              </div>
+                            )
+                          })}
+                        </div>
                         <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                       </NavLink>
                       <div className="card-body">
@@ -124,23 +148,40 @@ const MovieList = () => {
         </>
       )}
 
-      <p className="movielist-title">넷플릭스 인기작</p>
+      <div className="d-flex align-items-center mt-5">
+        <p className="movielist-title">넷플릭스 인기작</p>
+        <p className="me-4">더 보기</p>
+      </div>
       <div className="container">
         <div className="row row-cols-md-5 g-3">
           {netflixList &&
-            netflixList.map((movie, index) => (
-              <div key={movie.movieId} className="col">
-                <div className="card" style={{ width: "18 rem" }}>
-                  <NavLink to={`/movie/${movie.movieId}`}>
-                    <div className="number-hear">{index + 1}</div>
-                    <img src={movie.poster} className="card-img-top size" alt={movie.title} />
-                  </NavLink>
-                  <div className="card-body">
-                    <p className="card-text-main">{movie.title}</p>
+            netflixList.map((movie, index) => {
+              return (
+                <div key={movie.movieId} className="col">
+                  <div className="card" style={{ width: "18 rem" }}>
+                    <NavLink to={`/movie/${movie.movieId}`}>
+                      <div className="number-hear">{index + 1}</div>
+                      <div className="ott-tag">
+                        {movie.provider.map((platform, index) => {
+                          return (
+                            <div key={index}>
+                              {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                              {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                              {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                              {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                            </div>
+                          )
+                        })}
+                      </div>
+                      <img src={movie.poster} className="card-img-top size" alt={movie.title} />
+                    </NavLink>
+                    <div className="card-body">
+                      <p className="card-text-main">{movie.title}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
         </div>
       </div>
 
@@ -153,6 +194,18 @@ const MovieList = () => {
                 <div className="card" style={{ width: "18 rem" }}>
                   <NavLink to={`/movie/${movie.movieId}`}>
                     <div className="number-hear">{index + 1}</div>
+                    <div className="ott-tag">
+                      {movie.provider.map((platform, index) => {
+                        return (
+                          <div key={index}>
+                            {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                            {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                            {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                            {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                          </div>
+                        )
+                      })}
+                    </div>
                     <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                   </NavLink>
                   <div className="card-body">
@@ -173,6 +226,18 @@ const MovieList = () => {
                 <div className="card" style={{ width: "18 rem" }}>
                   <NavLink to={`/movie/${movie.movieId}`}>
                     <div className="number-hear">{index + 1}</div>
+                    <div className="ott-tag">
+                      {movie.provider.map((platform, index) => {
+                        return (
+                          <div key={index}>
+                            {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                            {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                            {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                            {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                          </div>
+                        )
+                      })}
+                    </div>
                     <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                   </NavLink>
                   <div className="card-body">
@@ -194,6 +259,18 @@ const MovieList = () => {
                   <div key={movie.movieId} className="col">
                     <div className="card-all" style={{ width: "18 rem" }}>
                       <NavLink to={`/movie/${movie.movieId}`}>
+                        <div className="ott-tag">
+                          {movie.provider.map((platform, index) => {
+                            return (
+                              <div key={index}>
+                                {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                                {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                                {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                                {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                              </div>
+                            )
+                          })}
+                        </div>
                         <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                       </NavLink>
                       <div className="card-body">

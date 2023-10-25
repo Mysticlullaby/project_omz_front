@@ -130,7 +130,7 @@
 /* 메인페이지 CSS */
 .movielist-title {
   font-size: 25px;
-  margin-top: 50px;
+  margin-right: auto;
 }
 
 .number-hear {
@@ -141,6 +141,19 @@
   border-radius: 5px;
   color: white;
   font-weight: bold;
+}
+
+.ott-tag {
+  position: absolute;
+  right: 0px;
+  bottom: 75px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.platform-icon {
+  height: 40px;
+  width: 40px;
 }
 
 .main-title {

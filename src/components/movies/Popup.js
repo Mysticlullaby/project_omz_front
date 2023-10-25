@@ -1,6 +1,27 @@
+import { useState } from 'react';
+import cookie from 'react-cookies';
+
 function Popup({ isOpen, closeModal }) {
+  const [checked, setChecked] = useState(false);
+
+  //저장한 쿠키의 지속 시간, 분 단위로 적어주세요.
+  const cookieDuration = 5;
+
+  function onClose() {
+    if (checked) {
+      const expires = new Date();
+      expires.setMinutes(expires.getMinutes() + cookieDuration);
+      cookie.save('isIgnored', true, {
+        path: '/',
+        expires
+      })
+    }
+
+    closeModal();
+  }
+
   return (
-    <div style={{ display: isOpen ? "block" : "none" }}>
+    <div style={{ display: isOpen && !cookie.load('isIgnored') ? "block" : "none" }}>
       <div
         style={{
           position: "fixed",
@@ -43,11 +64,17 @@ function Popup({ isOpen, closeModal }) {
             </div>
 
             <div>
-              <button className="popup-btn" onClick={closeModal}>
+              <button className="popup-btn" onClick={onClose}>
                 닫기
               </button>
             </div>
           </div>
+        </div>
+        <div className="m-3">
+          <label>
+            <input type='checkbox' checked={checked} onChange={({ target: { checked } }) => setChecked(checked)} />
+            <span className="mx-2">{cookieDuration} 분 동안 보지 않기</span>
+          </label>
         </div>
       </div>
     </div>
