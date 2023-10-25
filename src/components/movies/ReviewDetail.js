@@ -71,7 +71,7 @@ const ReviewDetail = () => {
         e.preventDefault();
         dispatch(reviewActions.getReviewDelete(reviewId, config));
         console.log('currentPage parameter value on delete function: ', pv.currentPage);
-        navigator(`/review/page/${review.movieId}/${pv.currentPage}`)
+        window.location.replace(`/review/page/${review.movieId}/${pv.currentPage}`);
     }
 
     const addLike = async () => {

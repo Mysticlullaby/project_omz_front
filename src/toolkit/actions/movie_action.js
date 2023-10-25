@@ -73,6 +73,13 @@ function getMovieDetail(movieId, clientId) {
   };
 }
 
+function getMoreList(platform) {
+  return async (dispatch) => {
+    const data = await axios.get(`http://172.16.141.26:5000/moreList?platform=${platform}`).then((response) => JSON.parse(response.data));
+    dispatch(movieReducers.getMoreList({ data }));
+  };
+}
+
 export const movieActions = {
   getOmzPopular,
   getNetflixPopular,
@@ -83,4 +90,5 @@ export const movieActions = {
   getSearchList,
   getMbtiRecommend,
   getMovieDetail,
+  getMoreList
 };

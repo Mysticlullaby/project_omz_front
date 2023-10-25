@@ -19,6 +19,7 @@ import BoardView from "./components/board/BoardView";
 import BoardUpdate from "./components/board/BoardUpdate";
 import Delete from "./components/client/Delete";
 import SearchList from "./components/movies/SearchList";
+import MoreList from "./components/movies/MoreList";
 
 function App() {
   return (
@@ -90,6 +91,12 @@ function App() {
             path="board/update/:omzboardId"
             element={
               <PrivateRoute isAuth={true} RouteComponent={BoardUpdate} />
+            }
+          />
+          <Route
+            path="moreList/:platform"
+            element={
+              <PrivateRoute isAuth={false} RouteComponent={MoreList} />
             }
           />
         </Route>
