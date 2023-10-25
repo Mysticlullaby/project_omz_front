@@ -80,7 +80,10 @@ const MovieList = () => {
       <div>
         <Popup isOpen={isModalOpen} closeModal={closeModal} />
       </div>
-      <p className="movielist-title">OMZ 회원들이 가장 많이 본 작품</p>
+      <div className="d-flex align-items-center mt-5">
+        <p className="movielist-title">OMZ 회원들이 가장 많이 본 작품</p>
+        <p className="me-4"></p>
+      </div>
       <div className="container">
         <div className="row row-cols-md-5 g-3">
           {omzPopularList &&
@@ -115,7 +118,10 @@ const MovieList = () => {
 
       {localStorage.getItem("mbti") && (
         <>
-          <p className="movielist-title">MBTI {localStorage.getItem("mbti")} 츄촌</p>
+          <div className="d-flex align-items-center mt-5">
+            <p className="movielist-title">{localStorage.getItem("mbti")} 사이에서는 이런 영화가 인기에요</p>
+            <p className="me-4"></p>
+          </div>
           <div className="container">
             <div className="row row-cols-md-5 g-3">
               {mbtirecommend &&
@@ -151,7 +157,7 @@ const MovieList = () => {
 
       <div className="d-flex align-items-center mt-5">
         <p className="movielist-title">넷플릭스 인기작</p>
-        <p className="me-4">더 보기</p>
+        <p className="me-4"></p>
       </div>
       <div className="container">
         <div className="row row-cols-md-5 g-3">
@@ -186,7 +192,10 @@ const MovieList = () => {
         </div>
       </div>
 
-      <p className="movielist-title">티빙 인기작</p>
+      <div className="d-flex align-items-center mt-5">
+        <p className="movielist-title">티빙 인기작</p>
+        <p className="me-4"></p>
+      </div>
       <div className="container">
         <div className="row row-cols-md-5 g-3">
           {tvingList &&
@@ -218,7 +227,10 @@ const MovieList = () => {
         </div>
       </div>
 
-      <p className="movielist-title">웨이브 인기작</p>
+      <div className="d-flex align-items-center mt-5">
+        <p className="movielist-title">웨이브 인기작</p>
+        <p className="me-4"></p>
+      </div>
       <div className="container">
         <div className="row row-cols-md-5 g-3">
           {waveList &&
@@ -250,15 +262,17 @@ const MovieList = () => {
         </div>
       </div>
 
-      {localStorage.getItem("clientId") && reviewCount > 3 && (
-        <>
-          <p className="movielist-title">이런 작품은 어떠세요?</p>
+      {localStorage.getItem("clientId") && reviewCount > 3 &&
+        <div>
+          <div className="d-flex align-items-center mt-5">
+            <p className="movielist-title">이런 작품은 어떠세요?</p>
+          </div>
           <div className="container">
             <div className="row row-cols-md-5 g-3">
               {recommandList &&
                 recommandList.map((movie, index) => (
                   <div key={movie.movieId} className="col">
-                    <div className="card-all" style={{ width: "18 rem" }}>
+                    <div className="card" style={{ width: "18 rem" }}>
                       <NavLink to={`/movie/${movie.movieId}`}>
                         <div className="ott-tag">
                           {movie.provider.map((platform, index) => {
@@ -282,10 +296,10 @@ const MovieList = () => {
                 ))}
             </div>
           </div>
-        </>
-      )}
+        </div>
+      }
 
-      <p className="movielist-title">영화 전체 목록</p>
+      {/* <p className="movielist-title">영화 전체 목록</p>
       <div className="container">
         <div className="row row-cols-md-5 g-3">
           {movieList &&
@@ -302,7 +316,7 @@ const MovieList = () => {
               </div>
             ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
