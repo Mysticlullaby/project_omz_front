@@ -3,35 +3,37 @@ import { movieReducers } from "../reducers/movie_reducer";
 
 function getOmzPopular() {
   return async (dispatch) => {
-    const data = await axios.get(`http://127.0.0.1:5000/movieList/omzPopular`).then((response) => JSON.parse(response.data));
+    const data = await axios.get(`http://172.16.141.26:5000/movieList/omzPopular`).then((response) => JSON.parse(response.data));
     dispatch(movieReducers.getOmzPopular({ data }));
   };
 }
 
 function getNetflixPopular() {
   return async (dispatch) => {
-    const data = await axios.get(`http://127.0.0.1:5000/movieList/netflixPopular`).then((response) => JSON.parse(response.data));
+    const data = await axios.get(`http://172.16.141.26:5000/movieList/netflixPopular`).then((response) => JSON.parse(response.data));
     dispatch(movieReducers.getNetflixPopular({ data }));
   };
 }
 
 function getTvingPopular() {
   return async (dispatch) => {
-    const data = await axios.get(`http://127.0.0.1:5000/movieList/tvingPopular`).then((response) => JSON.parse(response.data));
+    const data = await axios.get(`http://172.16.141.26:5000/movieList/tvingPopular`).then((response) => JSON.parse(response.data));
     dispatch(movieReducers.getTvingPopular({ data }));
   };
 }
 
 function getWavePopular() {
   return async (dispatch) => {
-    const data = await axios.get(`http://127.0.0.1:5000/movieList/wavePopular`).then((response) => JSON.parse(response.data));
+    const data = await axios.get(`http://172.16.141.26:5000/movieList/wavePopular`).then((response) => JSON.parse(response.data));
     dispatch(movieReducers.getWavePopular({ data }));
   };
 }
 
 function getMbtiRecommend(mbti) {
   return async (dispatch) => {
-    const data = await axios.get(`http://127.0.0.1:5000/movieList/mbtiPopular?mbti=${mbti}`).then((response) => JSON.parse(response.data));
+    console.log('get mbti popular axios in progress');
+    const data = await axios.get(`http://172.16.141.26:5000/movieList/mbtiPopular?mbti=${mbti}`).then((response) => JSON.parse(response.data));
+    console.log('mbti record axios data: ', data);
     dispatch(movieReducers.getMbtiRecommend({ data }));
   };
 }
@@ -39,7 +41,7 @@ function getMbtiRecommend(mbti) {
 function getRecommandList(clientId) {
   return async (dispatch) => {
     const data = await axios
-      .get(`http://127.0.0.1:5000/movieList/recommand?clientId=${clientId}`)
+      .get(`http://172.16.141.26:5000/movieList/recommand?clientId=${clientId}`)
       // 여기요
       .then((response) => response.data);
     dispatch(movieReducers.getRecommandList({ data }));
