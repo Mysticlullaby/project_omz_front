@@ -10,7 +10,7 @@ function getOmzPopular() {
 
 function getNetflixPopular() {
   return async (dispatch) => {
-    const data = await axios.get(`http://127.0.0.1:5000/movieList/omzPopular`).then((response) => JSON.parse(response.data));
+    const data = await axios.get(`http://127.0.0.1:5000/movieList/netflixPopular`).then((response) => JSON.parse(response.data));
     dispatch(movieReducers.getNetflixPopular({ data }));
   }
 }
