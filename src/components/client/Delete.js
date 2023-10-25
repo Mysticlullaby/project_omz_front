@@ -49,7 +49,7 @@ const Delete = () => {
     // }
 
     await axios
-      .post("/delete", client, config)
+      .get(`/delete/${clientId}`, config)
       .then((Response) => {
         localStorage.clear();
         window.location.replace("/");
