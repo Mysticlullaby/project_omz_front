@@ -91,17 +91,35 @@ const MovieDetail = () => {
   }
 
   useEffect(() => {
+    console.log('useEffect in action');
     getMovieDetail(movieId);
     getReviewList(movieId);
   }, []);
 
   const movie = useSelector((state) => state.movies.movieDetail);
+
+  // console.log('platform list: ', movie.provider);
+  // console.log(typeof (movie.provider));
+  // const platformList = movie.provider.slice(1, -1).split("', '");
+
   const reviewList = useSelector((state) => state.reviews.reviewList);
 
   return (
     <div>
       <div className="image-box">
         <img className="image-thumbnail" src={movie.image} />
+        <div className="ott-tag">
+          {movie.platformList && movie.platformList.map((platform, index) => {
+            return (
+              <div key={index}>
+                {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+              </div>
+            )
+          })}
+        </div>
       </div>
       <div className="container">
         <div className="row border-bottom">
@@ -140,7 +158,8 @@ const MovieDetail = () => {
               </div>
             </div>
             <hr />
-            <p>우리 회원 중 {movie.viewCount} 명이 이 작품을 봤어요.</p>
+            <span className="mx-1">우리 회원 중 {movie.viewCount} 명이 이 작품을 봤어요.</span>
+            <span className="mx-1">또 다른 스팬 요소에요.</span>
             <hr />
             <p>{movie.movieDescription}</p>
           </div>
@@ -162,7 +181,7 @@ const MovieDetail = () => {
                     <h1>리뷰</h1>
                   </li>
                   <li className="nav-item">
-                    {movie.reviewId == 0 ? <button className="btn btn-danger" onClick={openModal}>리뷰 작성하기</button> :
+                    {movie.reviewId === 0 ? localStorage.getItem('clientId') != null && <button className="btn btn-danger" onClick={openModal}>리뷰 작성하기</button> :
                       <NavLink to={`/review/detail/${movie.reviewId}`}>
                         <button className="btn btn-danger">내가 쓴 리뷰 보기</button>
                       </NavLink>
