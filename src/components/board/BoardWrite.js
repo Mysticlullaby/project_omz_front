@@ -70,7 +70,7 @@ const BoardWrite = () => {
       filename: null,
     });
 
-    navigator(`/board/list/${omzboardId ? pv.currentPage : 1}`);
+    window.location.replace(`/board/list/${omzboardId ? pv.currentPage : 1}`);
   };
 
   return (
