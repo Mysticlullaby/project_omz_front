@@ -6,7 +6,7 @@ import axios from "axios";
 import Popup from "./Popup";
 
 const MovieList = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const closeModal = (e) => {
     setIsModalOpen(false);
@@ -61,15 +61,10 @@ const MovieList = () => {
     getWavePopular();
     getMovieList();
 
-    if (clientId == null) {
-      setIsModalOpen(true);
-    }
-
-    if (clientId != null) {
+    if (localStorage.getItem("clientId") != null) {
       checkReviewCount();
       getMbtiRecommend();
     }
-
   }, []);
 
   const omzPopularList = useSelector((state) => state.movies.omzPopularList);
@@ -95,16 +90,17 @@ const MovieList = () => {
                   <NavLink to={`/movie/${movie.movieId}`}>
                     <div className="number-hear">{index + 1}</div>
                     <div className="ott-tag">
-                      {movie.provider.map((platform, index) => {
-                        return (
-                          <div key={index}>
-                            {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
-                            {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
-                            {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
-                            {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
-                          </div>
-                        )
-                      })}
+                      {movie.provider &&
+                        movie.provider.map((platform, index) => {
+                          return (
+                            <div key={index}>
+                              {platform === "넷플릭스" && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                              {platform === "티빙" && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                              {platform === "웨이브" && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                              {platform === "디즈니+" && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                            </div>
+                          );
+                        })}
                     </div>
                     <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                   </NavLink>
@@ -119,7 +115,7 @@ const MovieList = () => {
 
       {localStorage.getItem("mbti") && (
         <>
-          <p className="movielist-title">{localStorage.getItem("mbti")} 사이에서는 이런 영화가 인기에요</p>
+          <p className="movielist-title">MBTI {localStorage.getItem("mbti")} 츄촌</p>
           <div className="container">
             <div className="row row-cols-md-5 g-3">
               {mbtirecommend &&
@@ -132,12 +128,12 @@ const MovieList = () => {
                           {movie.provider.map((platform, index) => {
                             return (
                               <div key={index}>
-                                {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
-                                {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
-                                {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
-                                {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                                {platform === "넷플릭스" && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                                {platform === "티빙" && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                                {platform === "웨이브" && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                                {platform === "디즈니+" && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
                               </div>
-                            )
+                            );
                           })}
                         </div>
                         <img src={movie.poster} className="card-img-top size" alt={movie.title} />
@@ -170,12 +166,12 @@ const MovieList = () => {
                         {movie.provider.map((platform, index) => {
                           return (
                             <div key={index}>
-                              {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
-                              {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
-                              {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
-                              {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                              {platform === "넷플릭스" && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                              {platform === "티빙" && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                              {platform === "웨이브" && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                              {platform === "디즈니+" && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
                             </div>
-                          )
+                          );
                         })}
                       </div>
                       <img src={movie.poster} className="card-img-top size" alt={movie.title} />
@@ -185,7 +181,7 @@ const MovieList = () => {
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
         </div>
       </div>
@@ -203,12 +199,12 @@ const MovieList = () => {
                       {movie.provider.map((platform, index) => {
                         return (
                           <div key={index}>
-                            {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
-                            {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
-                            {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
-                            {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                            {platform === "넷플릭스" && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                            {platform === "티빙" && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                            {platform === "웨이브" && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                            {platform === "디즈니+" && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
                           </div>
-                        )
+                        );
                       })}
                     </div>
                     <img src={movie.poster} className="card-img-top size" alt={movie.title} />
@@ -235,12 +231,12 @@ const MovieList = () => {
                       {movie.provider.map((platform, index) => {
                         return (
                           <div key={index}>
-                            {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
-                            {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
-                            {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
-                            {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                            {platform === "넷플릭스" && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                            {platform === "티빙" && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                            {platform === "웨이브" && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                            {platform === "디즈니+" && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
                           </div>
-                        )
+                        );
                       })}
                     </div>
                     <img src={movie.poster} className="card-img-top size" alt={movie.title} />
@@ -254,7 +250,7 @@ const MovieList = () => {
         </div>
       </div>
 
-      {localStorage.getItem("clientId") && reviewCount > 3 &&
+      {localStorage.getItem("clientId") && reviewCount > 3 && (
         <>
           <p className="movielist-title">이런 작품은 어떠세요?</p>
           <div className="container">
@@ -262,18 +258,18 @@ const MovieList = () => {
               {recommandList &&
                 recommandList.map((movie, index) => (
                   <div key={movie.movieId} className="col">
-                    <div className="card" style={{ width: "18 rem" }}>
+                    <div className="card-all" style={{ width: "18 rem" }}>
                       <NavLink to={`/movie/${movie.movieId}`}>
                         <div className="ott-tag">
                           {movie.provider.map((platform, index) => {
                             return (
                               <div key={index}>
-                                {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
-                                {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
-                                {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
-                                {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                                {platform === "넷플릭스" && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                                {platform === "티빙" && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                                {platform === "웨이브" && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                                {platform === "디즈니+" && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
                               </div>
-                            )
+                            );
                           })}
                         </div>
                         <img src={movie.poster} className="card-img-top size" alt={movie.title} />
@@ -287,9 +283,9 @@ const MovieList = () => {
             </div>
           </div>
         </>
-      }
+      )}
 
-      {/* <p className="movielist-title">영화 전체 목록</p>
+      <p className="movielist-title">영화 전체 목록</p>
       <div className="container">
         <div className="row row-cols-md-5 g-3">
           {movieList &&
@@ -306,7 +302,7 @@ const MovieList = () => {
               </div>
             ))}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

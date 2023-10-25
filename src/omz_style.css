@@ -4,6 +4,12 @@
   overflow: hidden;
   margin: 0 auto;
 }
+.image-box-detail {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  margin: 0 auto;
+}
 
 .image-thumbnail {
   width: 100%;
@@ -150,6 +156,24 @@
   display: flex;
   flex-direction: row-reverse;
 }
+
+/* MovieDetail 썸네일 위에 플랫폼 이미지 띄우기 */
+.image-box-detail {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+}
+
+.ott-tag-detail {
+  position: absolute;
+  display: flex;
+}
+
+.platform-icon-detail {
+  width: 100px;
+}
+/* MovieDetail 썸네일 위에 플랫폼 이미지 띄우기 끝 */
 
 .platform-icon {
   height: 40px;
