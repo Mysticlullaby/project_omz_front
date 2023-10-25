@@ -90,16 +90,17 @@ const MovieList = () => {
                   <NavLink to={`/movie/${movie.movieId}`}>
                     <div className="number-hear">{index + 1}</div>
                     <div className="ott-tag">
-                      {movie.provider.map((platform, index) => {
-                        return (
-                          <div key={index}>
-                            {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
-                            {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
-                            {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
-                            {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
-                          </div>
-                        )
-                      })}
+                      {movie.provider &&
+                        movie.provider.map((platform, index) => {
+                          return (
+                            <div key={index}>
+                              {platform === "넷플릭스" && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                              {platform === "티빙" && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                              {platform === "웨이브" && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                              {platform === "디즈니+" && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                            </div>
+                          );
+                        })}
                     </div>
                     <img src={movie.poster} className="card-img-top size" alt={movie.title} />
                   </NavLink>
@@ -127,12 +128,12 @@ const MovieList = () => {
                           {movie.provider.map((platform, index) => {
                             return (
                               <div key={index}>
-                                {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
-                                {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
-                                {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
-                                {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                                {platform === "넷플릭스" && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                                {platform === "티빙" && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                                {platform === "웨이브" && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                                {platform === "디즈니+" && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
                               </div>
-                            )
+                            );
                           })}
                         </div>
                         <img src={movie.poster} className="card-img-top size" alt={movie.title} />
@@ -165,12 +166,12 @@ const MovieList = () => {
                         {movie.provider.map((platform, index) => {
                           return (
                             <div key={index}>
-                              {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
-                              {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
-                              {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
-                              {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                              {platform === "넷플릭스" && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                              {platform === "티빙" && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                              {platform === "웨이브" && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                              {platform === "디즈니+" && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
                             </div>
-                          )
+                          );
                         })}
                       </div>
                       <img src={movie.poster} className="card-img-top size" alt={movie.title} />
@@ -180,7 +181,7 @@ const MovieList = () => {
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
         </div>
       </div>
@@ -198,12 +199,12 @@ const MovieList = () => {
                       {movie.provider.map((platform, index) => {
                         return (
                           <div key={index}>
-                            {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
-                            {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
-                            {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
-                            {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                            {platform === "넷플릭스" && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                            {platform === "티빙" && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                            {platform === "웨이브" && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                            {platform === "디즈니+" && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
                           </div>
-                        )
+                        );
                       })}
                     </div>
                     <img src={movie.poster} className="card-img-top size" alt={movie.title} />
@@ -230,12 +231,12 @@ const MovieList = () => {
                       {movie.provider.map((platform, index) => {
                         return (
                           <div key={index}>
-                            {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
-                            {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
-                            {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
-                            {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                            {platform === "넷플릭스" && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                            {platform === "티빙" && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                            {platform === "웨이브" && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                            {platform === "디즈니+" && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
                           </div>
-                        )
+                        );
                       })}
                     </div>
                     <img src={movie.poster} className="card-img-top size" alt={movie.title} />
@@ -263,12 +264,12 @@ const MovieList = () => {
                           {movie.provider.map((platform, index) => {
                             return (
                               <div key={index}>
-                                {platform === '넷플릭스' && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
-                                {platform === '티빙' && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
-                                {platform === '웨이브' && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
-                                {platform === '디즈니+' && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
+                                {platform === "넷플릭스" && <img className="platform-icon" src="/images/netflix_icon.png" alt={platform} />}
+                                {platform === "티빙" && <img className="platform-icon" src="/images/tving_icon.png" alt={platform} />}
+                                {platform === "웨이브" && <img className="platform-icon" src="/images/wavve_icon.png" alt={platform} />}
+                                {platform === "디즈니+" && <img className="platform-icon" src="/images/disney_icon.png" alt={platform} />}
                               </div>
-                            )
+                            );
                           })}
                         </div>
                         <img src={movie.poster} className="card-img-top size" alt={movie.title} />
