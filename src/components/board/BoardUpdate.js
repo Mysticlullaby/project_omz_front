@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { boardActions } from "../../toolkit/actions/board_action";
 import "./board_style.css";
 
+// 내가 쓴 게시판의 게시글을 수정하는 와중에 뒤로가기를 누르면 '수정사항이 저장되지 않았는데 이 페이지를 나갈거야?' 하고 팝업을 띄우는 작업을 리액트로 하고싶어
 const BoardUpdate = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
@@ -117,7 +118,7 @@ const BoardUpdate = () => {
             <button className="btn btn-danger btn-lim" onClick={handleUpdate}>
               수정제출
             </button>
-            <button className="btn btn-danger btn-lim2" onClick={handleReset}>
+            <button className="btn btn-danger btn-lim2" onClick={handleReset}>  
               수정사항 취소
             </button>
             <button className="btn btn-danger" onClick={handleBack}>

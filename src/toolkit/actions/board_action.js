@@ -21,7 +21,7 @@ function getBoardList(currentPage) {
 function getBoardDetail(omzboardId, config) {
   // alert("omzboardId", omzboardId);
   return async (dispatch) => {
-    const data = await axios.get(`http://127.0.0.1:8090/board/view/${omzboardId}`, config).then((response) => response.data);
+    const data = await axios.get(`/board/view/${omzboardId}`, config).then((response) => response.data);
     dispatch(boardReducers.getBoardDetail({ data }));
   };
 }

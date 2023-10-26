@@ -6,10 +6,10 @@ import ReviewWrite from "./ReviewWrite";
 import { IoIosStar } from "react-icons/io";
 import { reviewActions } from "../../toolkit/actions/review_action";
 import styled from "styled-components";
-import { PiThumbsUp, PiThumbsUpFill } from 'react-icons/pi';
-import { RxChatBubble } from 'react-icons/rx'
-import { TbEyePlus } from 'react-icons/tb'
-import { IoMdEye, IoMdEyeOff } from 'react-icons/io'
+import { PiThumbsUp, PiThumbsUpFill } from "react-icons/pi";
+import { RxChatBubble } from "react-icons/rx";
+import { TbEyePlus } from "react-icons/tb";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import axios from "axios";
 
 const MovieDetail = () => {
@@ -34,22 +34,22 @@ const MovieDetail = () => {
   const closeModal = () => setIsModalOpen(false);
 
   const getMovieDetail = (movieId) => {
-    dispatch(movieActions.getMovieDetail(movieId, localStorage.getItem('clientId')));
+    dispatch(movieActions.getMovieDetail(movieId, localStorage.getItem("clientId")));
   };
 
   const getReviewList = (movieId) => {
-    dispatch(reviewActions.getReviewList(movieId, localStorage.getItem('clientId')));
-  }
+    dispatch(reviewActions.getReviewList(movieId, localStorage.getItem("clientId")));
+  };
 
   const config = {
     headers: {
-      Authorization: localStorage.getItem('authorization'),
+      Authorization: localStorage.getItem("authorization"),
     },
   };
 
   const addViewCount = async () => {
-    if (localStorage.getItem('clientId') == null) {
-      alert('로그인이 필요합니다.');
+    if (localStorage.getItem("clientId") == null) {
+      alert("로그인이 필요합니다.");
       return;
     }
 
@@ -64,14 +64,13 @@ const MovieDetail = () => {
     }, 1000);
 
     const formData = new FormData();
-    formData.append('movieId', movieId);
-    formData.append('clientId', localStorage.getItem('clientId'));
+    formData.append("movieId", movieId);
+    formData.append("clientId", localStorage.getItem("clientId"));
 
-    await axios
-      .post(`/view/add`, formData, config);
+    await axios.post(`/view/add`, formData, config);
 
     getMovieDetail(movieId);
-  }
+  };
 
   const removeViewCount = async () => {
     if (isClickOnCool) {
@@ -84,24 +83,42 @@ const MovieDetail = () => {
       setIsClickOnCool(false);
     }, 1000);
 
-    await axios
-      .delete(`/view/delete/${movieId}/${localStorage.getItem('clientId')}`, config);
+    await axios.delete(`/view/delete/${movieId}/${localStorage.getItem("clientId")}`, config);
 
     getMovieDetail(movieId);
-  }
+  };
 
   useEffect(() => {
+    console.log("useEffect in action");
     getMovieDetail(movieId);
     getReviewList(movieId);
   }, []);
 
   const movie = useSelector((state) => state.movies.movieDetail);
+
+  // console.log('platform list: ', movie.provider);
+  // console.log(typeof (movie.provider));
+  // const platformList = movie.provider.slice(1, -1).split("', '");
+
   const reviewList = useSelector((state) => state.reviews.reviewList);
 
   return (
     <div>
-      <div className="image-box">
+      <div className="image-box-detail">
         <img className="image-thumbnail" src={movie.image} />
+        <div className="ott-tag-detail">
+          {movie.platformList &&
+            movie.platformList.map((platform, index) => {
+              return (
+                <div key={index}>
+                  {platform === "넷플릭스" && <img className="platform-icon-detail" src="/images/netflix_icon.png" alt={platform} />}
+                  {platform === "티빙" && <img className="platform-icon-detail" src="/images/tving_icon.png" alt={platform} />}
+                  {platform === "웨이브" && <img className="platform-icon-detail" src="/images/wavve_icon.png" alt={platform} />}
+                  {platform === "디즈니+" && <img className="platform-icon-detail" src="/images/disney_icon.png" alt={platform} />}
+                </div>
+              );
+            })}
+        </div>
       </div>
       <div className="container">
         <div className="row border-bottom">
@@ -113,34 +130,34 @@ const MovieDetail = () => {
               <div className="me-auto">
                 <h1 style={{ fontWeight: 800 }}>{movie.title}</h1>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <Eyes>
                   {movie.viewCheck ? (
-                    <div
-                      onMouseEnter={() => setEyeState(true)}
-                      onMouseLeave={() => setEyeState(false)}
-                    >
+                    <div onMouseEnter={() => setEyeState(true)} onMouseLeave={() => setEyeState(false)}>
                       {eyeState ? (
                         <span onClick={removeViewCount}>
-                          <IoMdEyeOff className="opened-eye" size='50px' />
+                          <IoMdEyeOff className="opened-eye" size="50px" />
                         </span>
                       ) : (
                         <span onClick={removeViewCount}>
-                          <IoMdEye className="opened-eye" size='50px' />
+                          <IoMdEye className="opened-eye" size="50px" />
                         </span>
                       )}
                     </div>
                   ) : (
                     <span onClick={addViewCount}>
-                      <TbEyePlus className="closed-eye" size='50px' />
+                      <TbEyePlus className="closed-eye" size="50px" />
                     </span>
                   )}
                 </Eyes>
-                <span className="mt-1" style={{ fontSize: '12px' }}>본 적 있어요</span>
+                <span className="mt-1" style={{ fontSize: "12px" }}>
+                  본 적 있어요
+                </span>
               </div>
             </div>
             <hr />
-            <p>우리 회원 중 {movie.viewCount} 명이 이 작품을 봤어요.</p>
+            <span className="mx-1">우리 회원 중 {movie.viewCount} 명이 이 작품을 봤어요.</span>
+            <span className="mx-1">또 다른 스팬 요소에요.</span>
             <hr />
             <p>{movie.movieDescription}</p>
           </div>
@@ -162,18 +179,24 @@ const MovieDetail = () => {
                     <h1>리뷰</h1>
                   </li>
                   <li className="nav-item">
-                    {movie.reviewId == 0 ? <button className="btn btn-danger" onClick={openModal}>리뷰 작성하기</button> :
+                    {movie.reviewId === 0 ? (
+                      localStorage.getItem("clientId") != null && (
+                        <button className="btn btn-danger" onClick={openModal}>
+                          리뷰 작성하기
+                        </button>
+                      )
+                    ) : (
                       <NavLink to={`/review/detail/${movie.reviewId}`}>
                         <button className="btn btn-danger">내가 쓴 리뷰 보기</button>
                       </NavLink>
-                    }
+                    )}
                     <ReviewWrite isOpen={isModalOpen} closeModal={closeModal} movie={movie} />
                   </li>
                 </ul>
                 <div>
                   <ul className="navbar-nav align-items-center">
                     <li className="nav-item">
-                      <NavLink to={`/review/page/${movieId}/1`} className='nav-link'>
+                      <NavLink to={`/review/page/${movieId}/1`} className="nav-link">
                         더 보기
                       </NavLink>
                     </li>
@@ -186,8 +209,7 @@ const MovieDetail = () => {
       </div>
 
       <div className="row row-cols-md-4 g-2" style={{ padding: 10 }}>
-
-        {reviewList.length > 0 ?
+        {reviewList.length > 0 ? (
           reviewList.map((review) => {
             let score = review.rating;
             let scoreStates = [true, false, false, false, false];
@@ -197,36 +219,27 @@ const MovieDetail = () => {
 
             return (
               <div key={review.reviewId} className="col">
-                <Link to={`/review/detail/${review.reviewId}`} style={{ textDecoration: 'none' }}>
+                <Link to={`/review/detail/${review.reviewId}`} style={{ textDecoration: "none" }}>
                   <div className="card" style={{ width: "18 rem", height: 320 }}>
-                    <div className="card-body" >
+                    <div className="card-body">
                       <h5 className="card-title border-bottom pb-2">{review.clientId}</h5>
                       <Stars>
                         <span>
                           {scoreStates.map((isTrue, idx) => {
-                            return (
-                              <IoIosStar
-                                key={idx}
-                                size="15"
-                                className={isTrue && 'yellowStar'}
-                              />
-                            );
+                            return <IoIosStar key={idx} size="15" className={isTrue && "yellowStar"} />;
                           })}
                         </span>
                       </Stars>
                       <div>
                         <p className="card-text border-top mt-2 pt-2 context-area">{review.reviewContent}</p>
-
                       </div>
                       <div>
-                        <p className='card-text border-top pt-2'>
-                          {review.likeCheck
-                            ? <PiThumbsUpFill className='icon me-2' />
-                            : <PiThumbsUp className='icon me-2' />}
+                        <p className="card-text border-top pt-2">
+                          {review.likeCheck ? <PiThumbsUpFill className="icon me-2" /> : <PiThumbsUp className="icon me-2" />}
 
                           {review.likeCount}
 
-                          <RxChatBubble className='icon ms-3 me-2' />
+                          <RxChatBubble className="icon ms-3 me-2" />
                           {review.commentCount}
                         </p>
                       </div>
@@ -234,12 +247,13 @@ const MovieDetail = () => {
                   </div>
                 </Link>
               </div>
-            )
-          }) :
+            );
+          })
+        ) : (
           <div>
             <p>아직 작성된 리뷰가 없습니다</p>
           </div>
-        }
+        )}
       </div>
     </div>
   );
@@ -260,24 +274,24 @@ const Stars = styled.div`
 
 const Eyes = styled.div`
   svg {
-    transition: all 100ms
+    transition: all 100ms;
   }
 
   .opened-eye {
-    color:black;
+    color: black;
   }
 
   .closed-eye {
-    color:#CBCBCB;
+    color: #cbcbcb;
   }
 
   svg:hover {
-    color:red;
-    scale:1.2;
+    color: red;
+    scale: 1.2;
   }
-  
+
   svg:active {
-    color:red;
-    scale:1.5;
+    color: red;
+    scale: 1.5;
   }
 `;

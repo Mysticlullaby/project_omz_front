@@ -51,6 +51,10 @@ const movieSlice = createSlice({
         getMbtiRecommend(state, action) {
             state.mbtirecommend = action.payload.data;
         },
+
+        getMoreList(state, action) {
+            state.moreList = action.payload.data;
+        }
     }
 })
 

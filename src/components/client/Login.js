@@ -69,10 +69,11 @@ const Login = () => {
         window.location.replace("/");
       })
       .catch((error) => {
-        console.log(error.response);
-        if (error.response && error.response.status === 401) {
-          alert("가입되지 않은 아이디이거나 비밀번호가 맞지 않습니다.");
-        }
+        console.log(error);
+        alert(error.response.data.errorMsg);
+        // if (error.response && error.response.status === 401) {
+        //   alert("가입되지 않은 아이디이거나 비밀번호가 맞지 않습니다.");
+        // }
       });
   };
 
